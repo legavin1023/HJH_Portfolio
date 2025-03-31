@@ -1,0 +1,141 @@
+<template>
+  <footer
+    class="bg-black-b800 w-full h-[120px] flex flex-col items-center justify-center relative"
+  >
+    <!-- 이미지와 텍스트를 중앙에 배치 -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center">
+      <img src="@/assets/image/logo_gray.svg" alt="Logo" />
+      <p class="text-black-b200 mt-[12px]">
+        ⓒ2025. Team GGZ all rights reserved.
+      </p>
+    </div>
+
+    <!-- 드롭다운 버튼 -->
+    <div
+      class="absolute bottom-[34px] left-1/2 transform translate-x-[251px] text-[14px]"
+    >
+      <button
+        ref="dropdownButton"
+        @click="toggleDropdown"
+        class="text-black-b100 bg-black-b900 px-[30px] py-[18px] rounded-full flex items-center justify-center"
+      >
+        <p class="mr-[16px]">GGZ 더 알아보기</p>
+        <img
+          :src="getToggleIcon()"
+          alt="Toggle Icon"
+          class="w-[18px] h-[18px]"
+        />
+      </button>
+
+      <!-- 드롭다운 메뉴 -->
+      <div
+        v-if="isDropdownOpen"
+        class="absolute bottom-full mb-2 flex flex-col bg-black-b900 text-black-b100 rounded-[26px]"
+        :style="{ minWidth: dropdownWidth + 'px', padding: '18px 30px' }"
+      >
+        <div
+          v-for="item in dropdownItems"
+          :key="item.id"
+          :class="[
+            'flex items-center mb-[18px]',
+            item.state === 'disabled' ? 'opacity-50 pointer-events-none' : '',
+          ]"
+          @mouseenter="changeState(item, 'hover')"
+          @mouseleave="changeState(item, 'normal')"
+          @click="changeState(item, 'disabled')"
+          class="last:mb-0"
+        >
+          <a
+            :href="item.href"
+            class="flex items-center w-full"
+            :class="{
+              'font-bold': item.state === 'hover',
+            }"
+          >
+            {{ item.label }}
+            <img
+              :src="getIcon(item)"
+              alt="Item Icon"
+              class="w-[9.75px] h-[9.75px] ml-[5.17px]"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<script>
+import arrowOutwardNo from "@/assets/image/icons/arrow_outward_no.svg";
+import arrowOutwardHover from "@/assets/image/icons/arrow_outward_hover.svg";
+import arrowOutward from "@/assets/image/icons/arrow_outward.svg";
+import removeIcon from "@/assets/image/icons/remove.svg"; // 버튼에서 사용
+import addIcon from "@/assets/image/icons/add.svg"; // 버튼에서 사용
+
+export default {
+  name: "SiteFooter",
+  data() {
+    return {
+      isDropdownOpen: false, // 드롭다운 상태
+      dropdownWidth: 0, // 드롭다운 메뉴의 최소 너비
+      dropdownItems: [
+        {
+          id: 1,
+          label: "개발자 사이트 가기",
+          href: "#",
+          state: "normal", // 초기 상태
+        },
+        {
+          id: 2,
+          label: "깃헙 바로가기",
+          href: "#",
+          state: "normal", // 초기 상태
+        },
+        {
+          id: 3,
+          label: "프로젝트 협업 문의",
+          href: "#",
+          state: "normal", // 초기 상태
+        },
+      ],
+    };
+  },
+  methods: {
+    toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
+      if (this.isDropdownOpen) {
+        this.updateDropdownWidth();
+      }
+    },
+    updateDropdownWidth() {
+      const button = this.$refs.dropdownButton;
+      if (button) {
+        this.dropdownWidth = button.offsetWidth;
+      }
+    },
+    getIcon(item) {
+      switch (item.state) {
+        case "disabled":
+          return arrowOutwardNo;
+        case "hover":
+          return arrowOutwardHover;
+        default:
+          return arrowOutward;
+      }
+    },
+    getToggleIcon() {
+      return this.isDropdownOpen ? removeIcon : addIcon;
+    },
+    changeState(item, newState) {
+      item.state = newState;
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* 드롭다운 메뉴를 감싸는 div의 패딩 */
+div[v-if] {
+  padding: 18px 30px; /* x: 30px, y: 18px */
+}
+</style>
