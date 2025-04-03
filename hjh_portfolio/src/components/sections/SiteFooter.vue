@@ -12,7 +12,7 @@
 
     <!-- 드롭다운 버튼 -->
     <div
-      class="absolute bottom-0 h-[51px] left-1/2 transform translate-x-[251px] text-[14px]"
+      class="absolute bottom-0 h-[51px] left-1/2 transform translate-x-[400px] text-[14px]"
     >
       <button
         ref="dropdownButton"
