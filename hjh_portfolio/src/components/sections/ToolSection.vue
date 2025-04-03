@@ -1,71 +1,57 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <p
-      class="squiggly text-black-b300 text-3xl text-center pt-[130px] pb-[16px] mb-[12px]"
-    >
+    <p class="squiggly text-black-b300 text-[30px] text-center pt-[130px]">
       (당연하겠지만)
     </p>
-    <div class="overflow-x-hidden">
+    <!-- 슬라이드쇼 컨테이너 -->
+    <div class="relative overflow-hidden w-full h-[90px]">
       <div
-        class="flex transition-transform duration-500 ease-in-out pb-[50px]"
-        :style="{ transform: `translateX(-${currentIndex1 * 100}%)` }"
+        class="absolute top-[170px] w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
+        :style="{ transform: `translateY(-${currentIndex * 100}%)` }"
       >
+        <!-- 슬라이드 텍스트 -->
         <div
           v-for="(text, index) in texts"
           :key="index"
-          class="w-full flex-col flex-shrink-0 flex flcol items-center justify-center"
+          class="w-full h-[90px] flex items-center justify-center text-[60px] font-900 text-green-500"
         >
-          <div class="text-center text-6xl">
-            <span class="text-green-p300 font-black">{{ text }}</span>
-            <span class="font-medium"> 할 줄 알아요!</span>
-          </div>
+          {{ text }} <span class="font-700 text-black-b900">할 줄 알아요!</span>
         </div>
       </div>
     </div>
     <div class="relative flex flex-col items-center justify-center">
       <div
-        class="w-[1706px] absolute bottom-[-40px] z-0 flex flex-row justify-between items-center mt-[50px]"
+        class="w-[1706px] absolute bottom-[0px] z-0 flex flex-row justify-between items-center mt-[50px]"
       >
-        <div class="w-[278px] h-[400px] flex flex-col justify-between">
+        <!-- 왼쪽 이미지 그룹 -->
+        <div class="w-[278px] h-[400px] relative">
           <img
-            src="@/assets/image/tool/Figma.png"
-            alt="figma"
-            :style="generateFloatingStyle()"
-            class="w-[72px] ml-[200px] floating"
-          />
-          <img
-            src="@/assets/image/tool/Ae.png"
-            alt="Ae"
-            :style="generateFloatingStyle()"
-            class="w-[72px] floating"
-          />
-          <img
-            src="@/assets/image/tool/Ps.png"
-            alt="Ps"
-            :style="generateFloatingStyle()"
-            class="w-[72px] ml-[200px] floating"
+            v-for="(image, index) in imagesLeft"
+            :key="`left-${index}`"
+            :src="image.src"
+            :alt="image.alt"
+            class="floating"
+            :style="{
+              animationDuration: `${image.duration}s`,
+              top: image.top,
+              left: image.left,
+            }"
           />
         </div>
-        <div
-          class="w-[278px] h-[441px] flex flex-col justify-between items-end"
-        >
+
+        <!-- 오른쪽 이미지 그룹 -->
+        <div class="w-[278px] h-[400px] relative">
           <img
-            src="@/assets/image/tool/Ae.png"
-            alt="Ae"
-            :style="generateFloatingStyle()"
-            class="w-[72px] mr-[200px] floating"
-          />
-          <img
-            src="@/assets/image/tool/Ai.png"
-            alt="Ai"
-            :style="generateFloatingStyle()"
-            class="w-[72px] floating"
-          />
-          <img
-            src="@/assets/image/tool/vsCode.png"
-            alt="vsCode"
-            :style="generateFloatingStyle()"
-            class="w-[72px] mr-[200px] floating"
+            v-for="(image, index) in imagesRight"
+            :key="`right-${index}`"
+            :src="image.src"
+            :alt="image.alt"
+            class="floating"
+            :style="{
+              animationDuration: `${image.duration}s`,
+              top: image.top,
+              left: image.left,
+            }"
           />
         </div>
       </div>
@@ -79,9 +65,9 @@
             v-for="(text, index) in texts"
             :key="index"
             :style="{
-              backgroundColor: currentIndex1 === index ? '#2B7FFF' : '',
-              borderColor: currentIndex1 === index ? '#2B7FFF' : '',
-              color: currentIndex1 === index ? 'white' : '',
+              backgroundColor: currentIndex === index ? '#2B7FFF' : '',
+              borderColor: currentIndex === index ? '#2B7FFF' : '',
+              color: currentIndex === index ? 'white' : '',
             }"
             class="text-sm text-blue-b300 rounded-full border border-blue-b75 mr-[4px] ml-[4px] bg-[#F2F7FF] px-[14px] py-[8px]"
           >
@@ -92,63 +78,54 @@
           class="relative w-[675px] h-[152px] flex flex-col overflow-x-hidden mt-8"
         >
           <div
-            class="flex transition-transform duration-500 ease-in-out"
-            :style="{ transform: `translateX(-${currentIndex2 * 100}%)` }"
+            class="fl w-full h-[90px] flex-shrink-0 flex flex-row items-center justify-center"
           >
-            <div
-              v-for="(text, index) in texts"
-              :key="index"
-              class="fl w-full h-[90px] flex-shrink-0 flex flex-row items-center justify-center"
-            >
-              <div class="flex items-center justify-center mr-[27px] mb-[14px]">
-                <img
-                  class="w-[12.28px] h-[9.56px] mr-[5.44px]"
-                  src="@/assets/image/icons/check_small.svg"
-                  alt=""
-                />
-                <span class="text-[20px] font-medium"> 숙련도</span>
-              </div>
-              <div class="w-[413px] text-center rounded-full relative">
-                <div class="h-[12px] bg-black-b60 rounded-full">
-                  <div
-                    class="h-[12px] bg-green-p250 relative rounded-full"
-                    :style="{ width: `${progress}%` }"
-                  ></div>
-                </div>
+            <div class="flex items-center justify-center mr-[27px] mb-[14px]">
+              <img
+                class="w-[12.28px] h-[9.56px] mr-[5.44px]"
+                src="@/assets/image/icons/check_small.svg"
+                alt=""
+              />
+              <span class="text-[20px] font-medium"> 숙련도</span>
+            </div>
+            <div class="w-[413px] text-center rounded-full relative">
+              <div class="h-[12px] bg-black-b60 rounded-full">
                 <div
-                  class="w-[49px] h-[28px] absolute top-[-26px] transform translate-x-[-50%] text-black-b0 0 text-xs px-2 py-1 rounded-full bg-cover bg-center"
-                  :style="{
-                    left: `calc(${progress}% - 10px)`,
-                  }"
+                  class="h-[12px] bg-green-p250 relative rounded-full"
+                  :style="{ width: `${progress}%` }"
+                ></div>
+              </div>
+              <div
+                class="w-[49px] h-[28px] absolute top-[-26px] transform translate-x-[-50%] text-black-b0 0 text-xs px-2 py-1 rounded-full bg-cover bg-center"
+                :style="{
+                  left: `calc(${progress}% - 10px)`,
+                }"
+              >
+                <img src="@/assets/image/backgrounds/bubble.svg" alt="" />
+                <span
+                  class="absolute bottom-[9px] text-black-b00 left-1/2 right-0 transform -translate-x-1/2"
                 >
-                  <img src="@/assets/image/backgrounds/bubble.svg" alt="" />
-                  <span
-                    class="absolute bottom-[9px] text-black-b00 left-1/2 right-0 transform -translate-x-1/2"
+                  {{ Math.round(progress) }}</span
+                >
+              </div>
+              <div class="flex items-center mt-[6px]">
+                <div class="relative w-full flex">
+                  <div
+                    v-for="i in 50"
+                    :key="i"
+                    class="flex flex-col items-center justify-center"
+                    :style="{ width: '2%' }"
                   >
-                    {{ Math.round(progress) }}</span
-                  >
-                </div>
-                <div class="flex items-center mt-[6px]">
-                  <div class="relative w-full flex">
+                    <!-- 눈금 -->
                     <div
-                      v-for="i in 50"
-                      :key="i"
-                      class="flex flex-col items-center justify-center"
-                      :style="{ width: '2%' }"
-                    >
-                      <!-- 눈금 -->
-                      <div
-                        :class="
-                          i === 1 || i % 5 === 0
-                            ? 'bg-black-b80'
-                            : 'bg-black-b60'
-                        "
-                        :style="{
-                          width: i === 1 || i % 5 === 0 ? '2px' : '1px',
-                          height: i === 1 || i % 5 === 0 ? '10px' : '6px',
-                        }"
-                      ></div>
-                    </div>
+                      :class="
+                        i === 1 || i % 5 === 0 ? 'bg-black-b80' : 'bg-black-b60'
+                      "
+                      :style="{
+                        width: i === 1 || i % 5 === 0 ? '2px' : '1px',
+                        height: i === 1 || i % 5 === 0 ? '10px' : '6px',
+                      }"
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -170,6 +147,13 @@
 <script>
 import SlideButton from "@/components/partials/slideButton.vue";
 
+import FigmaImage from "@/assets/image/tool/Figma.png";
+import AeImage from "@/assets/image/tool/Ae.png";
+import PsImage from "@/assets/image/tool/Ps.png";
+import AiImage from "@/assets/image/tool/Ai.png";
+import VsCodeImage from "@/assets/image/tool/vsCode.png";
+import SketchImage from "@/assets/image/tool/Ae.png";
+
 export default {
   components: {
     SlideButton,
@@ -178,43 +162,89 @@ export default {
     return {
       texts: ["포토샵", "일러스트레이터", "피그마", "애프터이펙트", "HTML/CSS"],
       percentages: [99, 80, 90, 60, 60], // 각 슬라이드의 퍼센트 지정
-      currentIndex1: 0,
-      currentIndex2: 0,
+      currentIndex: 0, // 현재 슬라이드 인덱스
+      transitionKey: 0, // ReusableTransition을 재생성하기 위한 key
       progress: 0,
       slideInterval: null, // 슬라이드 타이머
-      imageStyles: [], // 각 이미지의 스타일을 저장 (툴)
+      imagesLeft: [
+        {
+          src: FigmaImage, // 임포트된 이미지 경로
+          alt: "Figma",
+          marginClass: "ml-[200px]",
+          duration: 5,
+          top: "0px",
+          left: "275px",
+        },
+        {
+          src: AeImage, // 임포트된 이미지 경로
+          alt: "After Effects",
+          marginClass: "",
+          duration: 6,
+          top: "155px",
+          left: "100px",
+        },
+        {
+          src: PsImage, // 임포트된 이미지 경로
+          alt: "Photoshop",
+          marginClass: "ml-[200px]",
+          duration: 7,
+          top: "325px",
+          left: "275px",
+        },
+      ],
+      imagesRight: [
+        {
+          src: AiImage, // 임포트된 이미지 경로
+          alt: "Illustrator",
+          duration: 5,
+          top: "0px",
+          left: "-100px",
+        },
+        {
+          src: VsCodeImage, // 임포트된 이미지 경로
+          alt: "VS Code",
+          marginClass: "",
+          duration: 6,
+          top: "155px",
+          left: "72px",
+        },
+        {
+          src: SketchImage, // 임포트된 이미지 경로
+          alt: "Sketch",
+          duration: 7,
+          top: "325px",
+          left: "-100px",
+        },
+      ],
+      floatingClassesLeft: [], // 왼쪽 이미지의 클래스 상태
+      floatingClassesRight: [], // 오른쪽 이미지의 클래스 상태
     };
   },
-  methods: {
-    generateFloatingStyle() {
-      const depth = 20; // 고정된 높이
-      const duration = 5; // 고정된 지속 시간
-      const delay = Math.random() * 2; // 0초에서 2초 사이의 랜덤 지연 시간
-      const direction = Math.random() > 0.5 ? "normal" : "reverse"; // 위/아래 방향 랜덤 설정
-      return {
-        animation: `float ${duration}s cubic-bezier(0.25, 0.1, 0.25, 1) infinite`,
-        animationDelay: `${delay}s`,
-        animationDirection: direction, // 위/아래 방향 설정
-        "--float-depth": `${depth}px`, // 고정된 높이 전달
-      };
+  computed: {
+    visibleTexts() {
+      // 현재 슬라이드에 해당하는 텍스트만 반환
+      return [this.texts[this.currentIndex]];
     },
+  },
+  methods: {
     nextSlide() {
-      this.currentIndex1 = (this.currentIndex1 + 1) % this.texts.length;
-      this.currentIndex2 = (this.currentIndex2 + 1) % this.texts.length;
+      this.currentIndex = (this.currentIndex + 1) % this.texts.length;
       this.updateProgress();
       this.resetSlideInterval(); // 타이머 초기화
     },
     prevSlide() {
-      this.currentIndex1 =
-        (this.currentIndex1 - 1 + this.texts.length) % this.texts.length;
-      this.currentIndex2 =
-        (this.currentIndex2 - 1 + this.texts.length) % this.texts.length;
+      this.currentIndex =
+        (this.currentIndex - 1 + this.texts.length) % this.texts.length;
       this.updateProgress();
       this.resetSlideInterval(); // 타이머 초기화
     },
+    resetTransition() {
+      this.transitionKey += 1; // key 값을 변경하여 컴포넌트를 재생성
+    },
+
     updateProgress() {
       this.progress = 0; // 슬라이드 변경 시 즉시 0으로 초기화
-      const targetProgress = this.percentages[this.currentIndex1];
+      const targetProgress = this.percentages[this.currentIndex];
       setTimeout(() => {
         const interval = setInterval(() => {
           if (this.progress < targetProgress) {
@@ -228,6 +258,7 @@ export default {
         }, 50);
       }, 0); // 0ms 지연 후 진행 시작
     },
+
     resetSlideInterval() {
       if (this.slideInterval) {
         clearInterval(this.slideInterval);
@@ -240,32 +271,48 @@ export default {
   mounted() {
     this.resetSlideInterval(); // 컴포넌트가 마운트될 때 타이머 설정
     this.updateProgress();
-    // 이미지 스타일 초기화
-    this.imageStyles = Array.from({ length: 6 }, () =>
-      this.generateFloatingStyle()
-    );
-  },
-  beforeUnmount() {
-    if (this.slideInterval) {
-      clearInterval(this.slideInterval); // 컴포넌트가 파괴될 때 타이머 해제
-    }
   },
 };
 </script>
+
 <style scoped>
-@keyframes float {
-  0% {
-    transform: translateY(0); /* 원래 위치 */
-  }
-  50% {
-    transform: translateY(calc(var(--float-depth, 20px) * -1)); /* 위로 이동 */
-  }
-  100% {
-    transform: translateY(0); /* 원래 위치로 돌아옴 */
-  }
+/* 슬라이드 애니메이션 */
+.vertical-slide-enter-active,
+.vertical-slide-leave-active {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.vertical-slide-enter {
+  transform: translateY(100%); /* 다음 슬라이드가 아래에서 올라옴 */
+  opacity: 0;
+}
+.vertical-slide-leave-to {
+  transform: translateY(-100%); /* 이전 슬라이드가 위로 사라짐 */
+  opacity: 0;
+}
+.floating {
+  position: absolute;
+  animation-name: floating;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  opacity: 0.8;
 }
 
-.floating {
-  animation: float 4s cubic-bezier(0.25, 0.1, 0.25, 1) infinite !important; /* 부드러운 애니메이션 */
+/* 애니메이션 정의 */
+@keyframes floating {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(5px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 </style>

@@ -8,7 +8,7 @@
       alt="스크롤"
       class="mb-[15px] relative z-10"
     />
-    <p class="squiggly font-semibold text-[20px] text-black-b90 relative z-10">
+    <p class="squiggly font-semibold text-[22px] text-black-b90 relative z-10">
       스크롤을 내려주세요!
     </p>
   </div>

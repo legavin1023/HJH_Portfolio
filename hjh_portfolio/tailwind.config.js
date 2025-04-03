@@ -54,6 +54,13 @@ module.exports = {
           green: "#2bbc57",
         },
       },
+      fontWeight: {
+        300: "300", // Light
+        400: "400", // Regular
+        700: "700", // Bold
+        800: "800", // Extra Bold
+        900: "900", // Heavy
+      },
     },
   },
   plugins: [],

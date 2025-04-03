@@ -1,23 +1,23 @@
 <template>
   <footer
-    class="bg-black-b800 w-full h-[120px] flex flex-col items-center justify-center relative"
+    class="bg-black-b800 w-full h-[51px] flex flex-col items-center justify-center relative top-[22px]"
   >
     <!-- 이미지와 텍스트를 중앙에 배치 -->
-    <div class="absolute inset-0 flex flex-col items-center justify-center">
-      <img src="@/assets/image/logo_gray.svg" alt="Logo" />
-      <p class="text-black-b200 mt-[12px]">
+    <div class="absolute bottom-0 inset-0 flex items-center justify-center">
+      <img src="@/assets/image/logo_gray.svg" alt="Logo" class="w-[66px]" />
+      <p class="text-black-b200 ml-[16px] text-[16px] leading-[51px]">
         ⓒ2025. Team GGZ all rights reserved.
       </p>
     </div>
 
     <!-- 드롭다운 버튼 -->
     <div
-      class="absolute bottom-[34px] left-1/2 transform translate-x-[251px] text-[14px]"
+      class="absolute bottom-0 h-[51px] left-1/2 transform translate-x-[251px] text-[14px]"
     >
       <button
         ref="dropdownButton"
         @click="toggleDropdown"
-        class="text-black-b100 bg-black-b900 px-[30px] py-[18px] rounded-full flex items-center justify-center"
+        class="text-black-b100 bg-black-b900 w-[183px] h-[51px] leading-[51px] flex items-center justify-center"
       >
         <p class="mr-[16px]">GGZ 더 알아보기</p>
         <img
@@ -30,8 +30,8 @@
       <!-- 드롭다운 메뉴 -->
       <div
         v-if="isDropdownOpen"
-        class="absolute bottom-full mb-2 flex flex-col bg-black-b900 text-black-b100 rounded-[26px]"
-        :style="{ minWidth: dropdownWidth + 'px', padding: '18px 30px' }"
+        class="absolute z-10 bottom-full flex flex-col bg-black-b900 text-black-b100 text[14px]border-b border-b border-black-b700"
+        :style="{ minWidth: dropdownWidth + 'px', padding: '18px 28px' }"
       >
         <div
           v-for="item in dropdownItems"
@@ -83,7 +83,7 @@ export default {
           id: 1,
           label: "개발자 사이트 가기",
           href: "#",
-          state: "normal", // 초기 상태
+          state: "disabled", // 초기 상태
         },
         {
           id: 2,

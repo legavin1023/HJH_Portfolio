@@ -57,7 +57,6 @@
         </filter>
       </defs>
     </svg>
-
     <router-view />
   </div>
 </template>

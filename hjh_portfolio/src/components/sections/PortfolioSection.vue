@@ -33,63 +33,37 @@
         <div
           v-for="(slide, index) in slides"
           :key="index"
-          class="flex-shrink-0 bg-black-b35 rounded-[16px] overflow-hidden w-[320px] h-[490px]"
+          class="cursor-pointer flex-shrink-0 bg-black-b35 rounded-[16px] overflow-hidden w-[320px] h-[490px] relative group"
           :style="{ width: `${slideWidth}px` }"
         >
           <!-- "준비 중" 슬라이드 구분 -->
           <template v-if="slide.type.includes('준비 중')">
             <div
-              class="w-full h-[228px] bg-black-b50 flex items-center justify-center"
+              class="w-full h-[244px] bg-black-b50 flex items-center justify-center"
             >
               <img
                 :src="slide.image"
                 :alt="slide.alt"
-                class="w-[112px] h-[55px]"
+                class="w-[112px] h-[55px] transition-transform duration-300 group-hover:scale-105"
               />
-            </div>
-            <div
-              class="flex justify-center items-center max-w-none object-contain absolute top-[208px] ml-[278px] w-[80px] h-[80px] rounded-[50%] border-[5px] border-black-b00 bg-black-b40"
-            >
-              <img
-                :src="slide.companyLogo"
-                :alt="slide.companyLogo"
-                class="w-[25.33px] h-auto"
-              />
-            </div>
-            <div class="mt-[26px] ml-[28px] text-black-b300">
-              <span
-                v-for="(type, typeIndex) in slide.type"
-                :key="typeIndex"
-                class="px-[10px] py-[4px] rounded-full mr-[10px] bg-black-b35 border border-black-b60 text-black-b70 text-[12px] font-semibold"
-              >
-                {{ type }}
-              </span>
-              <p class="text=[22px] mt-[14px] mb-[2px] font-semibold">
-                {{ slide.name }}
-              </p>
-              <p class="font-normal text-[14px]">{{ slide.date }}</p>
-              <p
-                class="bg-black-b00 border border-black-b40 max-w-[326px] py-[14px] text-[14px] mt-[43px] text-center font-semibold rounded-full"
-              >
-                <span class="text-black-b80">포트폴리오 보기</span>
-                <img
-                  class="inline ml-[10px]"
-                  src="@/assets/image/icons/arrow_forward_gray.svg"
-                  alt=""
-                />
-              </p>
             </div>
           </template>
           <template v-else>
             <!-- 일반 슬라이드 -->
-            <img :src="slide.image" :alt="slide.alt" class="w-full h-[244px]" />
+            <div class="w-full h-[244px] overflow-hidden">
+              <img
+                :src="slide.image"
+                :alt="slide.alt"
+                class="w-full h-full transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
             <div
               class="flex justify-center items-center max-w-none absolute top-[208px] ml-[278px] w-[80px] h-[80px] rounded-[50%] border-[5px] border-black-b00 bg-black-b40 overflow-hidden"
             >
               <img
                 :src="slide.companyLogo"
                 :alt="slide.companyLogo"
-                class="caption-top"
+                class="w-[25.33px] h-auto"
               />
             </div>
             <div class="mt-[26px] ml-[28px]">
@@ -107,7 +81,7 @@
               </p>
               <button
                 click="openModal(slide)"
-                class="flex justify-center cursor-pointer bg-black-b00 border border-black-b40 w-[336px] h-[50px] leading-[50px] text-[14px] mt-[43px] text-center font-semibold rounded-full"
+                class="flex justify-center bg-black-b00 border border-black-b40 w-[336px] h-[50px] leading-[50px] text-[14px] mt-[43px] text-center font-semibold rounded-full"
                 @click="openModal(slide)"
               >
                 <span>포트폴리오 보기</span>

@@ -1,6 +1,6 @@
 <template>
   <span
-    class="px-[10px] py-[4px] rounded-full mr-[10px] bg-green-p50 border border-green-p300 text-green-p350 text-[12px] font-semibold"
+    class="px-[10px] py-[4px] rounded-full mr-[10px] bg-green-p50 border border-green-p300 text-green-p350 text-[12px] font-800"
   >
     <slot></slot
   ></span>
