@@ -1,9 +1,7 @@
 <template>
-  <footer
-    class="bg-black-b800 w-full h-[51px] flex flex-col items-center justify-center relative top-[22px]"
-  >
+  <footer class="bg-black-b800 w-full h-[51px] absolute bottom-0">
     <!-- 이미지와 텍스트를 중앙에 배치 -->
-    <div class="absolute bottom-0 inset-0 flex items-center justify-center">
+    <div class="inset-0 flex items-center justify-center">
       <img src="@/assets/image/logo_gray.svg" alt="Logo" class="w-[66px]" />
       <p class="text-black-b200 ml-[16px] text-[16px] leading-[51px]">
         ⓒ2025. Team GGZ all rights reserved.

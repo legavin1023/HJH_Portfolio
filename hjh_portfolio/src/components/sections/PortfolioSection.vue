@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-hidden w-full pb-[60px]">
     <p
-      class="squiggly w-full text-black-b600 text-[30px] text-center pt-[100px] mb-6px]"
+      class="squiggly w-full text-black-b600 text-[30px] text-center pt-[70px] mb-6px]"
     >
       거두절미하고,
     </p>
@@ -33,8 +33,12 @@
         <div
           v-for="(slide, index) in slides"
           :key="index"
-          class="cursor-pointer flex-shrink-0 bg-black-b35 rounded-[16px] overflow-hidden w-[320px] h-[490px] relative group"
+          class="flex-shrink-0 bg-black-b35 rounded-[16px] overflow-hidden w-[320px] h-[490px] relative group"
+          :class="{
+            'cursor-pointer': !slide.type.includes('준비 중'), // 준비 중이 아닌 경우에만 커서 포인터
+          }"
           :style="{ width: `${slideWidth}px` }"
+          @click="!slide.type.includes('준비 중') && openModal(slide)"
         >
           <!-- "준비 중" 슬라이드 구분 -->
           <template v-if="slide.type.includes('준비 중')">
@@ -44,8 +48,40 @@
               <img
                 :src="slide.image"
                 :alt="slide.alt"
-                class="w-[112px] h-[55px] transition-transform duration-300 group-hover:scale-105"
+                class="w-[112px] h-[55px]"
               />
+            </div>
+            <div
+              class="flex justify-center items-center max-w-none object-contain absolute top-[208px] ml-[278px] w-[80px] h-[80px] rounded-[50%] border-[5px] border-black-b00 bg-black-b40"
+            >
+              <img
+                :src="slide.companyLogo"
+                :alt="slide.companyLogo"
+                class="w-[25.33px] h-auto"
+              />
+            </div>
+            <div class="mt-[26px] ml-[28px] text-black-b300">
+              <span
+                v-for="(type, typeIndex) in slide.type"
+                :key="typeIndex"
+                class="px-[10px] py-[4px] rounded-full mr-[10px] bg-black-b35 border border-black-b60 text-black-b70 text-[12px] font-semibold"
+              >
+                {{ type }}
+              </span>
+              <p class="text=[22px] mt-[14px] mb-[2px] font-semibold">
+                {{ slide.name }}
+              </p>
+              <p class="font-normal text-[14px]">{{ slide.date }}</p>
+              <p
+                class="bg-black-b00 border border-black-b40 max-w-[326px] py-[14px] text-[14px] mt-[43px] text-center font-semibold rounded-full"
+              >
+                <span class="text-black-b80">포트폴리오 보기</span>
+                <img
+                  class="inline ml-[10px]"
+                  src="@/assets/image/icons/arrow_forward_gray.svg"
+                  alt=""
+                />
+              </p>
             </div>
           </template>
           <template v-else>
@@ -110,37 +146,39 @@
 
 import slide1 from "@/assets/image/portfolio/solas.png";
 import companyLogo1 from "@/assets/image/logo.svg";
-import modalImage1 from "@/assets/image/portfolio/solas.png";
+import modalImage1 from "@/assets/image/portfolio/예시.jpg";
 
 import slide2 from "@/assets/image/portfolio/solas.png";
 import companyLogo2 from "@/assets/image/logo.svg";
-import modalImage2 from "@/assets/image/portfolio/solas.png";
+import modalImage2 from "@/assets/image/portfolio/예시.jpg";
 
 import slide3 from "@/assets/image/portfolio/solas.png";
 import companyLogo3 from "@/assets/image/logo.svg";
-import modalImage3 from "@/assets/image/portfolio/solas.png";
+import modalImage3 from "@/assets/image/portfolio/예시.jpg";
 
 import slide4 from "@/assets/image/portfolio/solas.png";
 import companyLogo4 from "@/assets/image/logo.svg";
-import modalImage4 from "@/assets/image/portfolio/solas.png";
+import modalImage4 from "@/assets/image/portfolio/예시.jpg";
 
 import slide5 from "@/assets/image/portfolio/solas.png";
 import companyLogo5 from "@/assets/image/logo.svg";
-import modalImage5 from "@/assets/image/portfolio/solas.png";
+import modalImage5 from "@/assets/image/portfolio/예시.jpg";
 
 import slide6 from "@/assets/image/portfolio/solas.png";
 import companyLogo6 from "@/assets/image/logo.svg";
-import modalImage6 from "@/assets/image/portfolio/solas.png";
+import modalImage6 from "@/assets/image/portfolio/예시.jpg";
 
 import slide7 from "@/assets/image/portfolio/solas.png";
 import companyLogo7 from "@/assets/image/logo.svg";
-import modalImage7 from "@/assets/image/portfolio/solas.png";
+import modalImage7 from "@/assets/image/portfolio/예시.jpg";
 
 //---------------버튼-----------------
 import moreHoriz from "@/assets/image/icons/more_horiz.svg";
 import teamGGZ from "@/assets/image/icons/teamGGZ.svg";
+//---------------슬라이드 내용-----------------
 import EmphasisSpan from "@/components/partials/EmphasisSpan.vue";
 import SlideButton from "@/components/partials/slideButton.vue";
+//---------------모달달-----------------
 import modalPage from "@/components/partials/modalPage.vue";
 
 export default {

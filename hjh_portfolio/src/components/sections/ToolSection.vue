@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
+  <div class="absolute top-0 flex flex-col items-center justify-center">
     <p class="squiggly text-black-b300 text-[30px] text-center pt-[130px]">
       (당연하겠지만)
     </p>
     <!-- 슬라이드쇼 컨테이너 -->
-    <div class="relative overflow-hidden w-full h-[90px]">
+    <div class="relative overflow-hidden w-full h-[90px] mb-[20px]">
       <div
         class="absolute top-[170px] w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
         :style="{ transform: `translateY(-${currentIndex * 100}%)` }"
@@ -303,13 +303,13 @@ export default {
     transform: translateY(0) rotate(0deg);
   }
   25% {
-    transform: translateY(-5px) rotate(5deg);
+    transform: translateY(-10px) rotate(5deg);
   }
   50% {
-    transform: translateY(5px) rotate(-5deg);
+    transform: translateY(10px) rotate(-5deg);
   }
   75% {
-    transform: translateY(-5px) rotate(5deg);
+    transform: translateY(-10px) rotate(5deg);
   }
   100% {
     transform: translateY(0) rotate(0deg);

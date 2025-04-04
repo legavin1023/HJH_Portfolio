@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-[388px] bg-background-green mt-[60px] flex justify-center items-center"
+    class="absolute bottom-0 w-full h-[388px] bg-background-green mt-[60px] flex justify-center items-center"
   >
     <div class="flex items-end">
       <div

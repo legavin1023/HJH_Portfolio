@@ -1,18 +1,24 @@
 <template>
   <div
     ref="scrollContainer"
-    class="snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden"
+    class="relative bottom-0 snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden"
   >
     <NavBar />
-    <div class="snap-start h-screen flex flex-col items-center justify-center">
+    <div
+      class="relative bottom-0 snap-start h-full flex flex-col items-center justify-center"
+    >
       <HeroSection id="hero" />
       <PageScroll />
     </div>
-    <div class="snap-start h-screen flex flex-col items-center justify-center">
+    <div
+      class="relative bottom-0 snap-start h-full flex flex-col items-center justify-center"
+    >
       <ToolSection id="tools" />
       <MeSection />
     </div>
-    <div class="snap-start h-screen flex flex-col items-center justify-center">
+    <div
+      class="relative bottom-0 snap-start h-full flex flex-col items-center justify-center"
+    >
       <PortfolioSection id="portfolio" />
       <SiteFooter />
     </div>
@@ -48,6 +54,10 @@ export default {
 
       let isScrolling;
       container.addEventListener("wheel", (event) => {
+        // 모달이 열려 있으면 스크롤 동작을 막지 않음
+        const isModalOpen = document.body.classList.contains("no-scroll");
+        if (isModalOpen) return;
+
         event.preventDefault();
 
         clearTimeout(isScrolling);
