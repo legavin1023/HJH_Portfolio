@@ -3,40 +3,43 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* NanumSquareNeo */
-/* Define specific weights for better control */
+/* NanumSquareNeo - Light */
 @font-face {
     font-family: "NanumSquareNeo";
-    src: url("@/assets/font/NanumSquareNeo-Variable.woff") format("woff-variations");
-    font-weight: 300;
+    src: url("@/assets/font/NanumSquareNeo-aLt.ttf") format("truetype");
+    font-weight: 300; /* Light */
     font-style: normal;
 }
 
+/* NanumSquareNeo - Regular */
 @font-face {
     font-family: "NanumSquareNeo";
-    src: url("@/assets/font/NanumSquareNeo-Variable.woff") format("woff-variations");
-    font-weight: 400;
+    src: url("@/assets/font/NanumSquareNeo-bRg.ttf") format("truetype");
+    font-weight: 400; /* Regular */
     font-style: normal;
 }
 
+/* NanumSquareNeo - Bold */
 @font-face {
     font-family: "NanumSquareNeo";
-    src: url("@/assets/font/NanumSquareNeo-Variable.woff") format("woff-variations");
-    font-weight: 700;
+    src: url("@/assets/font/NanumSquareNeo-cBd.ttf") format("truetype");
+    font-weight: 700; /* Bold */
     font-style: normal;
 }
 
+/* NanumSquareNeo - Extra Bold */
 @font-face {
     font-family: "NanumSquareNeo";
-    src: url("@/assets/font/NanumSquareNeo-Variable.woff") format("woff-variations");
-    font-weight: 800;
+    src: url("@/assets/font/NanumSquareNeo-dEb.ttf") format("truetype");
+    font-weight: 800; /* Extra Bold */
     font-style: normal;
 }
 
+/* NanumSquareNeo - Heavy */
 @font-face {
     font-family: "NanumSquareNeo";
-    src: url("@/assets/font/NanumSquareNeo-Variable.woff") format("woff-variations");
-    font-weight: 900;
+    src: url("@/assets/font/NanumSquareNeo-eHv.ttf") format("truetype");
+    font-weight: 900; /* Heavy */
     font-style: normal;
 }
 
@@ -51,6 +54,7 @@ body {
     font-family: "NanumSquareNeo", sans-serif;
     background-color: #ffffff;
     caret-color: transparent; /* 커서를 숨김 */
+    color: #0f0f0f;
 }
 
 .squiggly {
@@ -59,7 +63,28 @@ body {
     vertical-align: middle;
     font-family: "BMkkubulim";
     font-weight: 400;
+    filter: url("#squiggly-0"); /* 기본 필터 */
 }
+
+/* Firefox 호환성을 위한 추가 설정 */
+@-moz-keyframes squiggly-anim {
+    0% {
+        filter: url("#squiggly-0");
+    }
+    25% {
+        filter: url("#squiggly-1");
+    }
+    50% {
+        filter: url("#squiggly-2");
+    }
+    75% {
+        filter: url("#squiggly-3");
+    }
+    100% {
+        filter: url("#squiggly-4");
+    }
+}
+
 @keyframes squiggly-anim {
     0% {
         filter: url("#squiggly-0");

@@ -13,9 +13,10 @@
         <div
           v-for="(text, index) in texts"
           :key="index"
-          class="w-full h-[90px] flex items-center justify-center text-[60px] font-900 text-green-500"
+          class="w-full h-[90px] flex items-center justify-center text-[60px] font-900 text-green-p300"
         >
-          {{ text }} <span class="font-700 text-black-b900">할 줄 알아요!</span>
+          {{ text }}
+          <span class="font-700 text-black-b900">할 줄 알아요!</span>
         </div>
       </div>
     </div>
@@ -56,10 +57,10 @@
         </div>
       </div>
       <div
-        class="relative z-10 w-[675px] h-[225px] border rounded-[60px] flex flex-col overflow-x-hidden"
+        class="relative z-10 w-[675px] h-[225px] border rounded-t-[30px] rounded-b-[40px] flex flex-col overflow-x-hidden"
       >
         <div
-          class="flex justify-center items-center w-full h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
+          class="flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
         >
           <span
             v-for="(text, index) in texts"
@@ -86,7 +87,7 @@
                 src="@/assets/image/icons/check_small.svg"
                 alt=""
               />
-              <span class="text-[20px] font-medium"> 숙련도</span>
+              <span class="text-[20px] font-800 text-black-b500"> 숙련도</span>
             </div>
             <div class="w-[413px] text-center rounded-full relative">
               <div class="h-[12px] bg-black-b60 rounded-full">
@@ -150,9 +151,9 @@ import SlideButton from "@/components/partials/slideButton.vue";
 import FigmaImage from "@/assets/image/tool/Figma.png";
 import AeImage from "@/assets/image/tool/Ae.png";
 import PsImage from "@/assets/image/tool/Ps.png";
+import htmlImage from "@/assets/image/tool/html.png";
+import CssImage from "@/assets/image/tool/css.png";
 import AiImage from "@/assets/image/tool/Ai.png";
-import VsCodeImage from "@/assets/image/tool/vsCode.png";
-import SketchImage from "@/assets/image/tool/Ae.png";
 
 export default {
   components: {
@@ -173,7 +174,7 @@ export default {
           marginClass: "ml-[200px]",
           duration: 5,
           top: "0px",
-          left: "275px",
+          left: "335px",
         },
         {
           src: AeImage, // 임포트된 이미지 경로
@@ -194,26 +195,26 @@ export default {
       ],
       imagesRight: [
         {
-          src: AiImage, // 임포트된 이미지 경로
+          src: htmlImage, // 임포트된 이미지 경로
           alt: "Illustrator",
           duration: 5,
           top: "0px",
-          left: "-100px",
+          left: "-80px",
         },
         {
-          src: VsCodeImage, // 임포트된 이미지 경로
+          src: CssImage, // 임포트된 이미지 경로
           alt: "VS Code",
           marginClass: "",
           duration: 6,
           top: "155px",
-          left: "72px",
+          left: "112px",
         },
         {
-          src: SketchImage, // 임포트된 이미지 경로
+          src: AiImage, // 임포트된 이미지 경로
           alt: "Sketch",
           duration: 7,
           top: "325px",
-          left: "-100px",
+          left: "-40px",
         },
       ],
       floatingClassesLeft: [], // 왼쪽 이미지의 클래스 상태
@@ -294,25 +295,24 @@ export default {
   animation-name: floating;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-  opacity: 0.8;
 }
 
 /* 애니메이션 정의 */
 @keyframes floating {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
   }
   25% {
-    transform: translateY(-10px) rotate(5deg);
+    transform: translateY(-10px);
   }
   50% {
-    transform: translateY(10px) rotate(-5deg);
+    transform: translateY(10px);
   }
   75% {
-    transform: translateY(-10px) rotate(5deg);
+    transform: translateY(-10px);
   }
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
   }
 }
 </style>

@@ -3,7 +3,7 @@
     <!-- 이미지와 텍스트를 중앙에 배치 -->
     <div class="inset-0 flex items-center justify-center">
       <img src="@/assets/image/logo_gray.svg" alt="Logo" class="w-[66px]" />
-      <p class="text-black-b200 ml-[16px] text-[16px] leading-[51px]">
+      <p class="text-black-b300 ml-[16px] text-[16px] leading-[51px]">
         ⓒ2025. Team GGZ all rights reserved.
       </p>
     </div>
@@ -15,9 +15,9 @@
       <button
         ref="dropdownButton"
         @click="toggleDropdown"
-        class="text-black-b100 bg-black-b900 w-[183px] h-[51px] leading-[51px] flex items-center justify-center"
+        class="text-black-b100 bg-black-b900 w-[185px] h-[51px] leading-[51px] flex items-center justify-center"
       >
-        <p class="mr-[16px]">GGZ 더 알아보기</p>
+        <p class="mr-[16px] text-black-b100 font-800">GGZ 더 알아보기</p>
         <img
           :src="getToggleIcon()"
           alt="Toggle Icon"
@@ -35,7 +35,7 @@
           v-for="item in dropdownItems"
           :key="item.id"
           :class="[
-            'flex items-center mb-[18px]',
+            'flex items-center mb-[18px] font-800 ',
             item.state === 'disabled' ? 'opacity-50 pointer-events-none' : '',
           ]"
           @mouseenter="changeState(item, 'hover')"
@@ -47,7 +47,7 @@
             :href="item.href"
             class="flex items-center w-full"
             :class="{
-              'font-bold': item.state === 'hover',
+              'font-900 text-black-b80': item.state === 'hover',
             }"
           >
             {{ item.label }}

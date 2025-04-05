@@ -11,7 +11,7 @@
           src="@/assets/image/backgrounds/hong.png"
           alt=""
         />
-        <p class="text-[26px] font-semibold">
+        <p class="text-[26px] font-800 text-black-b800">
           <span class="text-black-b80">@ </span>홍지혜
         </p>
       </div>
@@ -23,7 +23,7 @@
             v-for="(item, index) in items"
             :key="index"
             :class="[
-              'relative inline-block items-center space-x-2 mx-[6px] my-[7px] px-[20px] py-[9px] rounded-full overflow-hidden bg-black-b20',
+              'relative inline-block items-center space-x-2 mx-[4px] my-[7px] px-[20px] py-[9px] font-700 text-black-b600 rounded-full overflow-hidden bg-black-b20',
               {
                 'active-div': activeIndex === index,
               },

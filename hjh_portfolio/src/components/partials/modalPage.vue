@@ -15,12 +15,12 @@
     </button>
     <div class="relative overflow-y-scroll w-full h-full">
       <div
-        class="absolute top-[42px] bg-black-b900 rounded-[10px] w-[1400px] mx-auto h-auto"
+        class="absolute top-[42px] bg-black-b900 w-[1400px] mx-auto h-auto rounded-t-[10px]"
         style="left: 50%; transform: translateX(-50%)"
       >
         <div class="sticky">
           <div
-            class="w-full top-0 z-10 bg-black-b00"
+            class="w-full top-0 z-10 bg-black-b00 rounded-t-[10px]"
             style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)"
           >
             <div class="flex items-center pl-[44px] pt-[31px] pb-[20px]">
@@ -30,7 +30,7 @@
                 class="w-[82px] h-[82px] rounded-full bg-black-b50"
               />
               <div class="ml-[25px]">
-                <p class="text-[26px] font-bold">{{ content.name }}</p>
+                <p class="text-[26px] font-700">{{ content.name }}</p>
                 <p class="text-[16px]">{{ content.description }}</p>
               </div>
             </div>
