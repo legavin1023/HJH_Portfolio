@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center flex-col mb-[178px] relative">
+  <div class="absolute bottom-[40px] flex justify-center items-center flex-col">
     <div
       class="pulse-bg absolute top-[-8px] w-[73px] h-[73px] rounded-[23px] bg-green-p200 opacity-30"
     ></div>

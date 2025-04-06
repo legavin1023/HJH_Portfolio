@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center pt-[249px] pb-[45px]">
+  <div class="flex justify-center">
     <div class="text-box">
       <div>
         <span

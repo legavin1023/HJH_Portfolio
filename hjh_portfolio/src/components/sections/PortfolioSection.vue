@@ -1,5 +1,7 @@
 <template>
-  <div class="overflow-hidden w-full pb-[60px]">
+  <div
+    class="relative overflow-hidden h-full flex flex-col items-center justify-center w-full pb-[51px] xhd_uhd:pb-[194px]"
+  >
     <p
       class="squiggly w-full text-black-b600 text-[30px] text-center pt-[70px] mb-6px]"
     >

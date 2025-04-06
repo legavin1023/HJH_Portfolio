@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute top-0 flex flex-col items-center justify-center">
+  <div class="relative h-full flex flex-col items-center justify-center">
     <p class="squiggly text-black-b300 text-[30px] text-center pt-[130px]">
       (당연하겠지만)
     </p>
@@ -76,7 +76,7 @@
           </span>
         </div>
         <div
-          class="relative w-[675px] h-[152px] flex flex-col overflow-x-hidden mt-8"
+          class="relative w-[675px] h-[152px] flex flex-col justify-center overflow-x-hidden mt- bg-black-b00"
         >
           <div
             class="fl w-full h-[90px] flex-shrink-0 flex flex-row items-center justify-center"

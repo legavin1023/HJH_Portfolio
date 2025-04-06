@@ -1,10 +1,10 @@
 <template>
   <div
-    class="absolute bottom-0 w-full h-[388px] bg-background-green mt-[60px] flex justify-center items-center"
+    class="relative bottom-0 w-full box-border bg-background-green pt-[20px] pb-[30px] xhd_uhd:pt-[69px] xhd_uhd:pb-[91px] flex justify-center items-center"
   >
     <div class="flex items-end">
       <div
-        class="flex flex-col items-center w-[175px] h-[225px] rounded-[50px] rounded-br-none bg-black-b00"
+        class="flex flex-col items-center w-[175px] h-[228px] rounded-[50px] rounded-br-none bg-black-b00"
       >
         <img
           class="w-[129px] h-[129px] mt-[23px] mb-[16px]"

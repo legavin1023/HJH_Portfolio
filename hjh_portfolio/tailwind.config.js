@@ -61,6 +61,12 @@ module.exports = {
         800: "800", // Extra Bold
         900: "900", // Heavy
       },
+      screens: {
+        xhd_uhd: "140rem", // 1920px (QHD)
+        fhd_qhd: "90rem", // 1440px (FHD)
+        tablet: "48rem", // 768px (Tablet)
+        mobile: "30rem", // 480px (Mobile)
+      },
     },
   },
   plugins: [],
