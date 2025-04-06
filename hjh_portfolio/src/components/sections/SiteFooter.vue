@@ -85,12 +85,12 @@ export default {
           href: "#",
           state: "disabled", // 초기 상태
         },
-        {
-          id: 2,
-          label: "깃헙 바로가기",
-          href: "#",
-          state: "normal", // 초기 상태
-        },
+
+        // id: 2,
+        // label: "깃헙 바로가기",
+        // href: "#",
+        // state: "normal", // 초기 상태
+
         {
           id: 3,
           label: "프로젝트 협업 문의",
