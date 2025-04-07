@@ -45,9 +45,7 @@ export default {
     PortfolioSection,
     SiteFooter,
   },
-  mounted() {
-    this.enableSmoothScroll();
-  },
+
   methods: {
     enableSmoothScroll() {
       const container = this.$refs.scrollContainer;
@@ -76,6 +74,9 @@ export default {
         }, 500);
       });
     },
+  },
+  mounted() {
+    this.enableSmoothScroll();
   },
 };
 </script>

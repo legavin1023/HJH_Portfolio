@@ -1,5 +1,7 @@
 <template>
-  <div class="relative h-full flex flex-col items-center justify-center">
+  <div
+    class="relative h-full flex flex-col items-center justify-center mt-[-30px]"
+  >
     <p class="squiggly text-black-b300 text-[30px] text-center pt-[130px]">
       (당연하겠지만)
     </p>
@@ -133,6 +135,18 @@
             </div>
           </div>
         </div>
+        <!-- 테스트용 애니메이션 제어 버튼 -->
+        <button
+          @click="toggleSlideShow"
+          class="fixed bottom-10 right-10 bg-blue-b300 text-white px-4 py-2 rounded-lg z-50"
+          :class="
+            isPaused
+              ? 'bg-gray-500 cursor-not-allowed'
+              : 'bg-blue-b300 hover:bg-blue-b400'
+          "
+        >
+          {{ isPaused ? "슬라이드쇼 시작" : "슬라이드쇼 멈춤" }}
+        </button>
       </div>
     </div>
 
@@ -167,6 +181,7 @@ export default {
       transitionKey: 0, // ReusableTransition을 재생성하기 위한 key
       progress: 0,
       slideInterval: null, // 슬라이드 타이머
+      isPaused: false, // 슬라이드쇼 상태
       imagesLeft: [
         {
           src: FigmaImage, // 임포트된 이미지 경로
@@ -229,20 +244,23 @@ export default {
   },
   methods: {
     nextSlide() {
-      this.currentIndex = (this.currentIndex + 1) % this.texts.length;
-      this.updateProgress();
-      this.resetSlideInterval(); // 타이머 초기화
+      if (!this.isPaused) {
+        this.currentIndex = (this.currentIndex + 1) % this.texts.length;
+        this.updateProgress();
+        this.resetSlideInterval(); // 타이머 초기화
+      }
     },
     prevSlide() {
-      this.currentIndex =
-        (this.currentIndex - 1 + this.texts.length) % this.texts.length;
-      this.updateProgress();
-      this.resetSlideInterval(); // 타이머 초기화
+      if (!this.isPaused) {
+        this.currentIndex =
+          (this.currentIndex - 1 + this.texts.length) % this.texts.length;
+        this.updateProgress();
+        this.resetSlideInterval(); // 타이머 초기화
+      }
     },
     resetTransition() {
       this.transitionKey += 1; // key 값을 변경하여 컴포넌트를 재생성
     },
-
     updateProgress() {
       this.progress = 0; // 슬라이드 변경 시 즉시 0으로 초기화
       const targetProgress = this.percentages[this.currentIndex];
@@ -259,7 +277,6 @@ export default {
         }, 50);
       }, 0); // 0ms 지연 후 진행 시작
     },
-
     resetSlideInterval() {
       if (this.slideInterval) {
         clearInterval(this.slideInterval);
@@ -268,10 +285,22 @@ export default {
         this.nextSlide();
       }, 4000); // 4초마다 슬라이드 변경
     },
+    toggleSlideShow() {
+      this.isPaused = !this.isPaused;
+
+      if (this.isPaused) {
+        clearInterval(this.slideInterval); // 슬라이드쇼 멈춤
+      } else {
+        this.resetSlideInterval(); // 슬라이드쇼 다시 시작
+      }
+    },
   },
   mounted() {
     this.resetSlideInterval(); // 컴포넌트가 마운트될 때 타이머 설정
     this.updateProgress();
+  },
+  beforeUnmount() {
+    clearInterval(this.slideInterval); // 컴포넌트가 언마운트될 때 타이머 제거
   },
 };
 </script>

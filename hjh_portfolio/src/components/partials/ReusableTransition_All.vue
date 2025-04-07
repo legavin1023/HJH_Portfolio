@@ -2,7 +2,7 @@
   <transition-group
     name="fade-move"
     tag="div"
-    class="w-[600px] h-[88px] sticky overflow-hidden flex flex-col text-left top-0 left-0"
+    class="w-[620px] h-[88px] sticky overflow-hidden flex flex-col text-left top-0 left-0"
   >
     <!-- 현재 텍스트 -->
     <div
@@ -36,6 +36,11 @@
 <script>
 export default {
   props: {
+    isPaused: {
+      type: Boolean,
+      required: false,
+      default: false, // 기본값: 애니메이션 실행
+    },
     texts: {
       type: Array,
       required: true,
@@ -59,22 +64,15 @@ export default {
   data() {
     return {
       currentIndex: 0,
-      currentText: this.texts[0], // 초록색과 검은색 텍스트를 포함한 객체
+      currentText: this.texts[0],
       middleText: null, // 중간 텍스트 초기값
       intervalId: null,
     };
   },
-  computed: {
-    textPositionStyle() {
-      return {
-        position: this.textPosition.position || "absolute", // 기본값으로 "absolute" 설정
-        top: this.textPosition.top || "0px",
-        left: this.textPosition.left || "0px",
-      };
-    },
-  },
   methods: {
     rotateText(nextIndex = null) {
+      if (this.isPaused) return; // 애니메이션이 멈춘 상태라면 실행하지 않음
+
       const targetIndex =
         nextIndex !== null
           ? nextIndex
@@ -94,20 +92,29 @@ export default {
       }, this.transitionSpeed);
     },
     startAutoRotate() {
-      // 첫 번째 전환: initialDelay 후 실행
+      if (this.isPaused) return; // 멈춘 상태에서는 실행하지 않음
+
       setTimeout(() => {
         this.rotateText();
 
-        // 이후 전환: transitionSpeed 간격으로 실행
         this.intervalId = setInterval(() => {
           this.rotateText();
-        }, this.transitionSpeed + this.middleTextDelay); // 정확한 간격 유지
+        }, this.transitionSpeed + this.middleTextDelay);
       }, this.initialDelay);
     },
     stopAutoRotate() {
       if (this.intervalId) {
         clearInterval(this.intervalId);
         this.intervalId = null;
+      }
+    },
+  },
+  watch: {
+    isPaused(newVal) {
+      if (newVal) {
+        this.stopAutoRotate();
+      } else {
+        this.startAutoRotate();
       }
     },
   },

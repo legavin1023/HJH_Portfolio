@@ -5,7 +5,7 @@
         <span
           v-for="(text, index) in texts"
           :key="index"
-          class="inline-block w-[84px] h-[35px] rounded-full border text-black-b700 border-black-b50 mb-[30px] mr-[8px] text-center text-sm/[33px]"
+          class="inline-block w-[84px] h-[35px] leading-[35px] rounded-full border font-800 text-black-b700 border-black-b50 mb-[30px] mr-[8px] text-center text-[14px]"
           :class="{
             '!bg-green-p250 !text-black-b00 !border-green-p250 transition-colors duration-300 ease-in-out':
               highlightClasses[index],
@@ -42,6 +42,7 @@
           :initialDelay="0"
           :transitionSpeed="2000"
           :middleTextDelay="2000"
+          :isPaused="isPaused"
           @update="updateHighlight"
           class="space-nowrap mb-[17px]"
         />
@@ -51,6 +52,7 @@
           :initialDelay="500"
           :transitionSpeed="2000"
           :middleTextDelay="2000"
+          :isPaused="isPaused"
           class="space-nowrap"
         />
       </div>
@@ -60,6 +62,18 @@
       <img class="mt-[79px]" src="@/assets/image/backgrounds/tree.svg" alt="" />
     </div>
     <LottieAnimation class="ml-[99px]" />
+    <!-- 애니메이션 제어 버튼 -->
+    <button
+      @click="toggleAnimation"
+      class="fixed bottom-10 right-[200px] bg-blue-b300 text-white px-4 py-2 rounded-lg z-50"
+      :class="
+        isPaused
+          ? 'bg-gray-500 cursor-not-allowed'
+          : 'bg-blue-b300 hover:bg-blue-b400'
+      "
+    >
+      {{ isPaused ? "메인페이지 시작" : "메인페이지 멈춤" }}
+    </button>
   </div>
 </template>
 
@@ -88,6 +102,7 @@ export default {
       // texts1: ["디자인", "HTML", "드로잉"],
       // texts2: ["설계", "대화", "아트"],
       highlightClasses: [true, false, false], // 강조 상태
+      isPaused: false, // 애니메이션 상태
     };
   },
   methods: {
@@ -96,6 +111,9 @@ export default {
       this.highlightClasses = this.texts1.map(
         (_, index) => index === currentIndex
       );
+    },
+    toggleAnimation() {
+      this.isPaused = !this.isPaused;
     },
   },
 };
