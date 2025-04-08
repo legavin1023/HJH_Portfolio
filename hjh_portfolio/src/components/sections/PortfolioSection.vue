@@ -278,7 +278,7 @@ export default {
           contribution: "100%",
           liveUrl: "https://example.com/project2",
           description: "이 프로젝트는 모바일 개발을 위한 포트폴리오입니다.",
-          companyType: "개인",
+          companyType: "회사",
         },
         {
           image: slide3,
@@ -293,7 +293,7 @@ export default {
           liveUrl: "https://example.com/project3",
           description:
             "이 프로젝트는 웹 애플리케이션 개발을 위한 포트폴리오입니다.",
-          companyType: "개인",
+          companyType: "회사",
         },
         {
           image: slide4,
@@ -308,7 +308,7 @@ export default {
           liveUrl: "https://example.com/project4",
           description:
             "이 프로젝트는 모바일 애플리케이션 개발을 위한 포트폴리오입니다.",
-          companyType: "개인",
+          companyType: "회사",
         },
         {
           image: slide5,
@@ -352,7 +352,7 @@ export default {
           contribution: "75%",
           liveUrl: "https://example.com/project7",
           description: "이 프로젝트는 최신 웹 기술을 활용한 포트폴리오입니다.",
-          companyType: "회사",
+          companyType: "개인",
         },
       ],
     };
@@ -362,21 +362,26 @@ export default {
   },
   computed: {
     slides() {
-      const requiredSlides = 10; // 최소 슬라이드 개수
+      const requiredSlides = 3; // 최소 슬라이드 개수
       const currentSlides = this.baseSlides.length;
-      const missingSlides = requiredSlides - currentSlides;
+      const missingSlides = Math.max(0, requiredSlides - currentSlides); // 부족한 슬라이드 개수 계산
 
       // "준비 중" 슬라이드 추가
-      const placeholderSlides = Array.from({ length: missingSlides }, () => ({
-        image: teamGGZ, // 임시 이미지
-        alt: "준비 중",
-        name: "준비중입니다.",
-        date: "0000.00.00 ~ 00.00",
-        companyLogo: moreHoriz, // 임시 서브 이미지
-        type: ["준비 중"],
-      }));
+      if (missingSlides > 0) {
+        const placeholderSlides = Array.from({ length: missingSlides }, () => ({
+          image: teamGGZ, // 임시 이미지
+          alt: "준비 중",
+          name: "준비중입니다.",
+          date: "0000.00.00 ~ 00.00",
+          companyLogo: moreHoriz, // 임시 서브 이미지
+          type: ["준비 중"],
+          companyType: "준비 중", // "준비 중" 타입 추가
+        }));
 
-      return [...this.baseSlides, ...placeholderSlides];
+        return [...this.baseSlides, ...placeholderSlides];
+      }
+
+      return this.baseSlides; // 슬라이드가 충분하면 그대로 반환
     },
   },
   methods: {
@@ -410,11 +415,12 @@ export default {
     },
     filterSlides(type) {
       this.isDropdownOpen = false; // 드롭다운 닫기
+
       if (type === "전체") {
         // "전체"일 때 모든 슬라이드 표시
-        const requiredSlides = 10; // 최소 슬라이드 개수
+        const requiredSlides = 3; // 최소 슬라이드 개수
         const currentSlides = this.baseSlides.length;
-        const missingSlides = requiredSlides - currentSlides;
+        const missingSlides = Math.max(0, requiredSlides - currentSlides); // 부족한 슬라이드 개수 계산
 
         // "준비 중" 슬라이드 생성
         const placeholderSlides = Array.from({ length: missingSlides }, () => ({
@@ -423,16 +429,33 @@ export default {
           name: "준비중입니다.",
           date: "0000.00.00 ~ 00.00",
           companyLogo: moreHoriz, // 임시 서브 이미지
-          type: ["준비 중"],
+          type: ["준비 중"], // 중복 방지
           companyType: "준비 중", // "준비 중" 타입 추가
         }));
 
         this.filteredSlides = [...this.baseSlides, ...placeholderSlides]; // 모든 슬라이드 + "준비 중" 슬라이드
       } else {
         // "회사" 또는 "개인" 필터링
-        this.filteredSlides = this.baseSlides.filter(
+        const filteredBaseSlides = this.baseSlides.filter(
           (slide) => slide.companyType === type
         );
+
+        const requiredSlides = 3; // 최소 슬라이드 개수
+        const currentSlides = filteredBaseSlides.length;
+        const missingSlides = Math.max(0, requiredSlides - currentSlides); // 부족한 슬라이드 개수 계산
+
+        // "준비 중" 슬라이드 생성
+        const placeholderSlides = Array.from({ length: missingSlides }, () => ({
+          image: teamGGZ, // 임시 이미지
+          alt: "준비 중",
+          name: "준비중입니다.",
+          date: "0000.00.00 ~ 00.00",
+          companyLogo: moreHoriz, // 임시 서브 이미지
+          type: ["준비 중"], // 중복 방지
+          companyType: "준비 중", // "준비 중" 타입 추가
+        }));
+
+        this.filteredSlides = [...filteredBaseSlides, ...placeholderSlides]; // 필터링된 슬라이드 + "준비 중" 슬라이드
       }
 
       // 슬라이드 인덱스를 맨 앞으로 초기화
