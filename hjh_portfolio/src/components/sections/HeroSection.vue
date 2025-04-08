@@ -56,7 +56,7 @@
           class="space-nowrap"
         />
       </div>
-      <p class="squiggly mt-[10px] font-800 text-[30px] text-black-b600">
+      <p class="squiggly font-800 text-[30px] text-black-b600">
         언제나 디자이너의 본분을 잊지 말자!
       </p>
       <img class="mt-[79px]" src="@/assets/image/backgrounds/tree.svg" alt="" />

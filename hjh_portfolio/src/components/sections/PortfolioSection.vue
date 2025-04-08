@@ -3,7 +3,7 @@
     class="relative overflow-hidden h-full flex flex-col items-center justify-center w-full pb-[51px] xhd_uhd:pb-[194px]"
   >
     <p
-      class="squiggly w-full text-black-b600 text-[30px] text-center pt-[70px] mb-6px]"
+      class="squiggly w-full text-black-b600 text-[30px] text-center pt-[70px] mb-[16px]"
     >
       거두절미하고,
     </p>
@@ -33,7 +33,7 @@
           <!-- 드롭다운 버튼 -->
           <button
             @click="toggleDropdown"
-            class="inline-flex justify-between items-center w-[88px] h-[40px] pl-[18px] pr-[8px] py-[12px] bg-white text-[14px] font-800 text-gray-700 border border-gray-300 rounded-[21px] focus:outline-none"
+            class="inline-flex justify-between items-center w-[88px] h-[40px] pl-[18px] pr-[8px] py-[12px] bg-white text-[14px] font-800 text-black-400 border border-black-b50 rounded-[21px] focus:outline-none"
           >
             <span>{{ selectedOption }}</span>
             <img
@@ -47,14 +47,14 @@
           <!-- 드롭다운 메뉴 -->
           <div
             v-if="isDropdownOpen"
-            class="absolute left-0 mt-[-40px] text-[14px] w-full border py-[9px] rounded-[21px] bg-white border-black-b50 z-10"
+            class="absolute left-0 mt-[-40px] text-[14px] w-full border py-[6px] rounded-[21px] bg-white border-black-b50 z-10"
           >
             <ul class="">
               <li
                 v-for="option in options"
                 :key="option"
                 @click="selectOption(option)"
-                class="block text-black-b400 pl-[18px] hover:text-black-b700 hover:font-800 cursor-pointer"
+                class="block text-black-b400 pl-[18px] py-[3px] hover:text-black-b700 hover:font-800 cursor-pointer"
               >
                 {{ option }}
               </li>
@@ -91,7 +91,7 @@
               />
             </div>
             <div
-              class="flex justify-center items-center max-w-none object-contain absolute top-[208px] ml-[278px] w-[80px] h-[80px] rounded-[50%] border-[5px] border-black-b00 bg-black-b40"
+              class="flex justify-center items-center max-w-none absolute top-[208px] ml-[278px] w-[80px] h-[80px] rounded-[50%] border-[5px] border-black-b00 bg-black-b40 overflow-hidden"
             >
               <img
                 :src="slide.companyLogo"
@@ -99,30 +99,39 @@
                 class="w-[25.33px] h-auto"
               />
             </div>
-            <div class="mt-[26px] ml-[28px] text-black-b300">
-              <span
-                v-for="(type, typeIndex) in slide.type"
-                :key="typeIndex"
-                class="px-[10px] py-[4px] rounded-full mr-[10px] bg-black-b35 border border-black-b60 text-black-b70 text-[12px] font-800"
+            <div
+              class="flex flex-col h-[244px] justify-between p-[28px] text-black-b300"
+            >
+              <div>
+                <span
+                  v-for="(type, typeIndex) in slide.type"
+                  :key="typeIndex"
+                  class="px-[10px] py-[4px] rounded-full mr-[10px] bg-black-b35 border border-black-b60 text-black-b70 text-[12px] font-800"
+                >
+                  {{ type }}
+                </span>
+                <p class="text-[22px] mt-[14px] mb-[2px] font-800">
+                  {{ slide.name }}
+                </p>
+                <p class="text-[14px] font-700">
+                  {{ slide.date }}
+                </p>
+              </div>
+              <button
+                click="openModal(slide)"
+                class="flex justify-center bg-black-b00 border border-black-b40 w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
+                @click="openModal(slide)"
               >
-                {{ type }}
-              </span>
-              <p class="text=[22px] mt-[14px] mb-[2px] font-800">
-                {{ slide.name }}
-              </p>
-              <p class="font-normal text-[14px]">{{ slide.date }}</p>
-              <p
-                class="bg-black-b00 border border-black-b40 max-w-[326px] py-[14px] text-[14px] mt-[43px] text-center font-800 rounded-full"
-              >
-                <span class="text-black-b80">포트폴리오 보기</span>
+                <span class="font-800 text-black-b80">포트폴리오 보기</span>
                 <img
-                  class="inline ml-[10px]"
-                  src="@/assets/image/icons/arrow_forward_gray.svg"
+                  class="inline ml-[10px] w-[22px] opacity-60"
+                  src="@/assets/image/icons/arrow_forward_black.svg"
                   alt=""
                 />
-              </p>
+              </button>
             </div>
           </template>
+
           <template v-else>
             <!-- 일반 슬라이드 -->
             <div class="w-full h-[244px] overflow-hidden">
@@ -141,24 +150,26 @@
                 class="w-[25.33px] h-auto"
               />
             </div>
-            <div class="mt-[26px] ml-[28px]">
-              <EmphasisSpan
-                v-for="(type, typeIndex) in slide.type"
-                :key="typeIndex"
-              >
-                {{ type }}
-              </EmphasisSpan>
-              <p
-                class="text=[22px] mt-[14px] mb-[2px] font-800 text-black-b800"
-              >
-                {{ slide.name }}
-              </p>
-              <p class="text-[14px] font-700 text-black-b700">
-                {{ slide.date }}
-              </p>
+            <div class="flex flex-col h-[244px] justify-between p-[28px]">
+              <div>
+                <EmphasisSpan
+                  v-for="(type, typeIndex) in slide.type"
+                  :key="typeIndex"
+                >
+                  {{ type }}
+                </EmphasisSpan>
+                <p
+                  class="text-[22px] mt-[14px] mb-[2px] font-800 text-black-b800"
+                >
+                  {{ slide.name }}
+                </p>
+                <p class="text-[14px] font-700 text-black-b700">
+                  {{ slide.date }}
+                </p>
+              </div>
               <button
                 click="openModal(slide)"
-                class="flex justify-center bg-black-b00 border border-black-b40 w-[336px] h-[50px] leading-[50px] text-[14px] mt-[43px] text-center font-800 rounded-full"
+                class="flex justify-center bg-black-b00 border border-black-b40 w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
                 @click="openModal(slide)"
               >
                 <span class="font-800 text-black-b750">포트폴리오 보기</span>

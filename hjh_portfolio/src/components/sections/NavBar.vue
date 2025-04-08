@@ -3,7 +3,7 @@
     class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[640px] h-[60px] rounded-full bg-black-b40 bg-opacity-80 backdrop-blur-md z-50"
   >
     <ul
-      class="flex justify-between items-center h-[60px] mr-[36px] ml-[36px] font-800 text-base"
+      class="flex justify-between items-center h-[60px] mr-[18px] ml-[36px] font-800 text-base"
     >
       <li class="flex items-center">
         <img

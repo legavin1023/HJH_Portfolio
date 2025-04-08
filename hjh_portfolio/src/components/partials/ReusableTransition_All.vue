@@ -2,13 +2,13 @@
   <transition-group
     name="fade-move"
     tag="div"
-    class="w-[620px] h-[88px] sticky overflow-hidden flex flex-col text-left top-0 left-0"
+    class="w-[620px] h-[88px] sticky overflow-hidden flex flex-col text-left top-0 left-0 text-[0px]"
   >
     <!-- 현재 텍스트 -->
     <div
       v-if="currentText"
       :key="`current-${currentText.green}-${currentText.black}`"
-      class="flex items-center gap-[10px]"
+      class="flex items-center"
     >
       <span class="text-green-p300 font-900 text-[80px] leading-[88px]">
         {{ currentText.green }}
@@ -22,7 +22,7 @@
     <div
       v-if="middleText"
       :key="`middle-${middleText.green}-${middleText.black}`"
-      class="flex items-center gap-[10px] opacity-effect"
+      class="flex items-center opacity-effect"
     >
       <span class="text-green-p300 font-900 text-[80px] leading-[88px]">
         {{ middleText.green }}

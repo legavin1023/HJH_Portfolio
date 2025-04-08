@@ -23,7 +23,7 @@
             v-for="(item, index) in items"
             :key="index"
             :class="[
-              'relative inline-block items-center space-x-2 mx-[4px] my-[7px] px-[20px] py-[9px] font-700 text-black-b600 rounded-full overflow-hidden bg-black-b20',
+              'relative inline-block items-center space-x-2 mx-[4px] my-[7px] px-[20px] py-[9px] font-700 text-black-b600 rounded-full overflow-hidden bg-black-b30',
               {
                 'active-div': activeIndex === index,
               },
