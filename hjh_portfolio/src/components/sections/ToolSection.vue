@@ -3,7 +3,7 @@
     class="relative h-full flex flex-col items-center justify-center mt-[-30px]"
   >
     <p
-      class="squiggly text-black-b600 text-[30px] text-center pt-[130px] mb-[16px]"
+      class="squiggly text-black-b750 text-[30px] text-center pt-[130px] mb-[16px]"
     >
       (당연하겠지만)
     </p>
@@ -20,7 +20,7 @@
           class="w-full h-[90px] flex items-center justify-center text-[60px] font-900 text-green-p300"
         >
           {{ text }}
-          <span class="font-700 text-black-b750">할 줄 알아요!</span>
+          <span class="font-700 text-black-b900">할 줄 알아요!</span>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div
-        class="relative z-10 w-[675px] h-[225px] border rounded-t-[30px] rounded-b-[40px] flex flex-col overflow-x-hidden"
+        class="relative z-10 w-[675px] h-[225px] border border-black-b40 rounded-t-[30px] rounded-b-[40px] flex flex-col overflow-x-hidden"
       >
         <div
           class="flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
@@ -74,7 +74,7 @@
               borderColor: currentIndex === index ? '#2B7FFF' : '',
               color: currentIndex === index ? 'white' : '',
             }"
-            class="text-[14px] text-[#3C7BDC] rounded-full border border-blue-b75 mr-[4px] ml-[4px] bg-[#F2F7FF] px-[14px] py-[8px]"
+            class="text-[14px] text-[#3C7BDC] rounded-full border border-blue-b75 mr-[4px] ml-[4px] bg-[#F2F7FF] px-[14px] py-[8px] leading-none"
           >
             {{ text }}
           </span>
@@ -101,14 +101,14 @@
                 ></div>
               </div>
               <div
-                class="w-[69px] h-[48px] absolute top-[-26px] transform translate-x-[-50%] text-black-b0 0 text-xs px-2 py-1 rounded-full bg-cover bg-center"
+                class="w-[69px] h-[48px] absolute top-[-40px] transform translate-x-[-50%] text-black-b0 0 text-xs px-2 py-1 rounded-full bg-cover bg-center"
                 :style="{
                   left: `calc(${progress}% - 10px)`,
                 }"
               >
                 <img src="@/assets/image/backgrounds/bubble.svg" alt="" />
                 <span
-                  class="absolute bottom-[9px] leading-[48px] text-black-b00 left-1/2 right-0 transform -translate-x-1/2"
+                  class="absolute bottom-[7px] leading-[48px] text-black-b00 left-1/2 right-0 transform -translate-x-1/2"
                 >
                   {{ Math.round(progress) }}</span
                 >

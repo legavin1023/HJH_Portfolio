@@ -3,13 +3,13 @@
     class="relative overflow-hidden h-full flex flex-col items-center justify-center w-full pb-[51px] xhd_uhd:pb-[194px]"
   >
     <p
-      class="squiggly w-full text-black-b600 text-[30px] text-center pt-[70px] mb-[16px]"
+      class="squiggly w-full text-black-b750 text-[30px] text-center pt-[70px] mb-[16px]"
     >
       거두절미하고,
     </p>
     <div class="text-center text-6xl mb-[62px]">
       <span class="text-green-p300 font-900">포트폴리오 </span>
-      <span class="font-700 text-black-b750">보실까요?</span>
+      <span class="font-700 text-black-b900">보실까요?</span>
     </div>
 
     <div class="relative w-[1193px] mx-auto">
@@ -110,7 +110,7 @@
                 >
                   {{ type }}
                 </span>
-                <p class="text-[22px] mt-[14px] mb-[2px] font-800">
+                <p class="text-[22px] mt-[14px] mb-[14px] font-800">
                   {{ slide.name }}
                 </p>
                 <p class="text-[14px] font-700">
@@ -159,7 +159,7 @@
                   {{ type }}
                 </EmphasisSpan>
                 <p
-                  class="text-[22px] mt-[14px] mb-[2px] font-800 text-black-b800"
+                  class="text-[22px] mt-[14px] mb-[14px] font-800 text-black-b800"
                 >
                   {{ slide.name }}
                 </p>
@@ -172,7 +172,7 @@
                 class="flex justify-center bg-black-b00 border border-black-b40 w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
                 @click="openModal(slide)"
               >
-                <span class="font-800 text-black-b750">포트폴리오 보기</span>
+                <span class="font-800 text-black-b600">포트폴리오 보기</span>
                 <img
                   class="inline ml-[10px] w-[22px]"
                   src="@/assets/image/icons/arrow_forward_black.svg"

@@ -23,7 +23,7 @@
             v-for="(item, index) in items"
             :key="index"
             :class="[
-              'relative inline-block items-center space-x-2 mx-[4px] my-[7px] px-[20px] py-[9px] font-700 text-black-b600 rounded-full overflow-hidden bg-black-b30',
+              'relative inline-block items-center space-x-2 mx-[4px] my-[7px] px-[20px] py-[9px] font-700  rounded-full overflow-hidden bg-black-b30',
               {
                 'active-div': activeIndex === index,
               },
@@ -32,7 +32,7 @@
             <!-- 텍스트 -->
             <img :src="item.imgSrc" alt="" class="inline relative z-10" />
             <span
-              class="text-[18px] p relative z-10 text-black-b600"
+              class="text-[18px] p relative z-10 text-black-b800"
               :class="{ 'active-slide-text': activeIndex === index }"
               >{{ item.text }}</span
             >
