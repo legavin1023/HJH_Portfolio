@@ -1,3 +1,4 @@
+B80009
 <template>
   <nav
     class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[640px] h-[60px] rounded-full bg-black-b40 bg-opacity-80 backdrop-blur-md z-50"
@@ -12,7 +13,7 @@
           class="h-[18px] w-[62px] object-contain"
         />
       </li>
-      <div class="flex space-x-[30px] text-black-b700">
+      <div class="flex space-x-[30px] text-black-b900">
         <li @click="scrollToSection('hero')" class="cursor-pointer">홈으로</li>
         <li @click="scrollToSection('tools')" class="cursor-pointer">
           자기소개

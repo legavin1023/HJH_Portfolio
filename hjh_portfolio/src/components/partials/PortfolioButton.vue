@@ -11,7 +11,7 @@
   >
     <slot></slot>
     <img
-      src="@/assets/image/icons/arrow_forward_line.svg"
+      :src="!liveUrl ? arrowOutwardNo : arrowForwardLine"
       alt="Arrow"
       class="inline w-[22px] ml-[11px]"
     />
@@ -19,6 +19,9 @@
 </template>
 
 <script>
+import arrowForwardLine from "@/assets/image/icons/arrow_forward_line.svg";
+import arrowOutwardNo from "@/assets/image/icons/arrow_forward_gray_line.svg";
+
 export default {
   props: {
     liveUrl: {
@@ -32,6 +35,12 @@ export default {
         window.open(this.liveUrl, "_blank"); // liveUrl이 있을 경우 새 창에서 열기
       }
     },
+  },
+  data() {
+    return {
+      arrowForwardLine,
+      arrowOutwardNo,
+    };
   },
 };
 </script>

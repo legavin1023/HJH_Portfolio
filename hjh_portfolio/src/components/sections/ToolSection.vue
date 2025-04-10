@@ -3,7 +3,7 @@
     class="relative h-full flex flex-col items-center justify-center mt-[-30px]"
   >
     <p
-      class="squiggly text-black-b750 text-[30px] text-center pt-[130px] mb-[16px]"
+      class="squiggly text-black-b900 text-[30px] text-center pt-[130px] mb-[16px]"
     >
       (당연하겠지만)
     </p>
