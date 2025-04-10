@@ -27,7 +27,7 @@
       <span class="text-green-p300 font-900 text-[80px] leading-[88px]">
         {{ middleText.green }}
       </span>
-      <p class="text-black-b700 font-900 text-[80px] leading-[88px]">
+      <p class="text-black-b700 font-700 text-[80px] leading-[88px]">
         {{ middleText.black }}
       </p>
     </div>

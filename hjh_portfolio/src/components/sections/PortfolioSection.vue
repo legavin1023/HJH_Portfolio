@@ -110,7 +110,7 @@
                 >
                   {{ type }}
                 </span>
-                <p class="text-[22px] mt-[14px] mb-[14px] font-800">
+                <p class="text-[22px] my-[14px] font-800">
                   {{ slide.name }}
                 </p>
                 <p class="text-[14px] font-700">
