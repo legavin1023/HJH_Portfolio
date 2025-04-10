@@ -23,7 +23,7 @@
             class="w-full top-0 z-10 bg-black-b00 rounded-t-[10px]"
             style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)"
           >
-            <div class="flex items-center pl-[44px] pt-[38px] pb-[20px]">
+            <div class="flex items-center pl-[44px] pt-[30px] pb-[20px]">
               <img
                 :src="content.companyLogo"
                 alt="Company Logo"
@@ -41,7 +41,7 @@
           >
             <div class="flex items-center">
               <p>
-                <EmphasisSpan class="mr-[0px]">작업기간</EmphasisSpan>
+                <EmphasisSpan>작업기간</EmphasisSpan>
                 <span class="ml-[10px] mr-[36px] text-[14px]">{{
                   content.date
                 }}</span>

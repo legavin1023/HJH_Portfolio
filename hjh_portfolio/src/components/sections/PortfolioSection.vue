@@ -150,16 +150,19 @@
                 class="w-[25.33px] h-auto"
               />
             </div>
-            <div class="flex flex-col h-[244px] justify-between p-[28px]">
+            <div
+              class="flex flex-col h-[244px] justify-between px-[28px] py-[26px]"
+            >
               <div>
                 <EmphasisSpan
+                  class="mr-[10px]"
                   v-for="(type, typeIndex) in slide.type"
                   :key="typeIndex"
                 >
                   {{ type }}
                 </EmphasisSpan>
                 <p
-                  class="text-[22px] mt-[14px] mb-[14px] font-800 text-black-b800"
+                  class="text-[22px] mt-[22px] mb-[4px] font-800 text-black-b800"
                 >
                   {{ slide.name }}
                 </p>
