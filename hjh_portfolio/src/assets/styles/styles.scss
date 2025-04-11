@@ -60,7 +60,6 @@ body {
 .squiggly {
     animation: squiggly-anim 1s linear infinite;
     display: inline-block;
-    vertical-align: middle;
     font-family: "BMkkubulim";
     font-weight: 400;
     filter: url("#squiggly-0"); /* 기본 필터 */

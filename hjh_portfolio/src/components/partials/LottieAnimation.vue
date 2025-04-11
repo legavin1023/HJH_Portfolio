@@ -1,5 +1,7 @@
 <template>
-  <div id="lottie" ref="lottieContainer"></div>
+  <div :class="customClass">
+    <div id="lottie" ref="lottieContainer"></div>
+  </div>
 </template>
 
 <script>
@@ -8,6 +10,12 @@ import animationData from "@/assets/chracter_movin_hong/chracter_movin_hong.json
 
 export default {
   name: "HongAnimation",
+  props: {
+    customClass: {
+      type: String,
+      default: "",
+    },
+  },
   mounted() {
     lottie.loadAnimation({
       container: this.$refs.lottieContainer,

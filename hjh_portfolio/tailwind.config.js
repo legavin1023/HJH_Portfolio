@@ -2,6 +2,12 @@ module.exports = {
   content: ["./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        mobile: "30rem", // 480px (Mobile)
+        tablet: "64rem", // 1024px (Tablet)
+        fhd_qhd: "90rem", // 1440px (FHD)
+        xhd_uhd: "140rem", // 1920px (QHD)
+      },
       colors: {
         green: {
           p25: "#f5faf6",
@@ -60,12 +66,6 @@ module.exports = {
         700: "700", // Bold
         800: "800", // Extra Bold
         900: "900", // Heavy
-      },
-      screens: {
-        xhd_uhd: "140rem", // 1920px (QHD)
-        fhd_qhd: "90rem", // 1440px (FHD)
-        tablet: "48rem", // 768px (Tablet)
-        mobile: "30rem", // 480px (Mobile)
       },
     },
   },

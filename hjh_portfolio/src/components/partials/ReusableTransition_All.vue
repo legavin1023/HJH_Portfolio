@@ -2,18 +2,18 @@
   <transition-group
     name="fade-move"
     tag="div"
-    class="w-[620px] h-[88px] sticky overflow-hidden flex flex-col text-left top-0 left-0 text-[0px]"
+    class="sticky w-[620px] items-center tablet:items-start h-[44px] tablet:h-[66px] fhd_qhd:h-[99px] overflow-hidden flex flex-col text-left top-0 left-0 text-[0px]"
   >
     <!-- 현재 텍스트 -->
     <div
       v-if="currentText"
       :key="`current-${currentText.green}-${currentText.black}`"
-      class="flex items-center"
+      class="flex items-center leading-[44px] tablet:leading-[66px] fhd_qhd:leading-[100px] text-[40px] tablet:text-[60px] fhd_qhd:text-[80px]"
     >
-      <span class="text-green-p300 font-900 text-[80px] leading-[88px]">
+      <span class="text-green-p300 font-900">
         {{ currentText.green }}
       </span>
-      <p class="text-black-b900 font-700 text-[80px] leading-[88px]">
+      <p class="text-black-b700 font-700">
         {{ currentText.black }}
       </p>
     </div>
@@ -22,12 +22,12 @@
     <div
       v-if="middleText"
       :key="`middle-${middleText.green}-${middleText.black}`"
-      class="flex items-center opacity-effect"
+      class="flex items-center leading-[44px] tablet:leading-[66px] fhd_qhd:leading-[99px] text-[40px] tablet:text-[60px] fhd_qhd:text-[80px] opacity-effect"
     >
-      <span class="text-green-p300 font-900 text-[80px] leading-[88px]">
+      <span class="text-green-p300 font-900">
         {{ middleText.green }}
       </span>
-      <p class="text-black-b900 font-700 text-[80px] leading-[88px]">
+      <p class="text-black-b700 font-700">
         {{ middleText.black }}
       </p>
     </div>
@@ -89,7 +89,7 @@ export default {
 
         // 부모 컴포넌트에 현재 인덱스 전달
         this.$emit("update", targetIndex);
-      }, this.transitionSpeed);
+      }, this.middleTextDelay); // middleTextDelay로 조정
     },
     startAutoRotate() {
       if (this.isPaused) return; // 멈춘 상태에서는 실행하지 않음
@@ -108,6 +108,39 @@ export default {
         this.intervalId = null;
       }
     },
+    updateDynamicStyles() {
+      const styleSheet = document.styleSheets[0]; // 첫 번째 스타일 시트를 가져옴
+      const windowWidth = window.innerWidth;
+      let translateY = "-44px"; // 기본값 (Mobile)
+
+      // 크기 기준 변경
+      if (windowWidth >= 1024 && windowWidth < 1440) {
+        translateY = "-66px"; // Tablet
+      } else if (windowWidth >= 1440 && windowWidth < 1920) {
+        translateY = "-99px"; // FHD
+      }
+
+      // 기존 규칙 제거
+      for (let i = 0; i < styleSheet.cssRules.length; i++) {
+        const rule = styleSheet.cssRules[i];
+        if (
+          rule.selectorText === ".fade-move-enter" ||
+          rule.selectorText === ".fade-move-leave-to"
+        ) {
+          styleSheet.deleteRule(i);
+          i--; // 삭제 후 인덱스 조정
+        }
+      }
+
+      // 새로운 규칙 추가
+      styleSheet.insertRule(
+        `.fade-move-enter, .fade-move-leave-to {
+        transform: translateY(${translateY});
+        opacity: 0;
+      }`,
+        styleSheet.cssRules.length
+      );
+    },
   },
   watch: {
     isPaused(newVal) {
@@ -120,9 +153,12 @@ export default {
   },
   mounted() {
     this.startAutoRotate();
+    this.updateDynamicStyles();
+    window.addEventListener("resize", this.updateDynamicStyles); // 화면 크기 변경 시 업데이트
   },
   beforeUnmount() {
     this.stopAutoRotate();
+    window.removeEventListener("resize", this.updateDynamicStyles); // 이벤트 제거
   },
 };
 </script>
@@ -158,10 +194,5 @@ export default {
 .fade-move-enter,
 .fade-move-leave-to {
   opacity: 0;
-  transform: translateY(-88px);
-}
-
-.space-nowrap {
-  white-space: nowrap;
 }
 </style>

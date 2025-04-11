@@ -8,18 +8,20 @@
       (당연하겠지만)
     </p>
     <!-- 슬라이드쇼 컨테이너 -->
-    <div class="relative overflow-hidden w-full h-[90px] mb-[20px]">
+    <div
+      class="relative overflow-hidden w-full h-[50px] tablet:h-[70px] fhd_qhd:h-[90px] mb-[20px] bg-red-200"
+    >
       <div
-        class="absolute top-[170px] w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
+        class="absolute top-[102px] tablet:top-[142px] fhd_qhd:top-[182px] w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
         :style="{ transform: `translateY(-${currentIndex * 100}%)` }"
       >
         <!-- 슬라이드 텍스트 -->
         <div
           v-for="(text, index) in texts"
           :key="index"
-          class="w-full h-[90px] flex items-center justify-center text-[60px] font-900 text-green-p300"
+          class="w-full h-[90px] flex items-center justify-center leading-[50px] tablet:leading-[70px] fhd_qhd:leading-[90px] text-[38px] tablet:text-[50px] fhd_qhd:text-[60px] font-900 text-green-p300 text-nowrap"
         >
-          {{ text }}
+          {{ text }} <br class="block tablet:hidden" />
           <span class="font-700 text-black-b900">할 줄 알아요!</span>
         </div>
       </div>
@@ -61,7 +63,7 @@
         </div>
       </div>
       <div
-        class="relative z-10 w-[675px] h-[225px] border border-black-b40 rounded-t-[30px] rounded-b-[40px] flex flex-col overflow-x-hidden"
+        class="relative z-10] tablet-[100%] fhd_qhd:w-[724px] w-[794px h-[225px] border border-black-b40 rounded-t-[30px] rounded-b-[40px] flex flex-col overflow-x-hidden"
       >
         <div
           class="flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
@@ -80,7 +82,7 @@
           </span>
         </div>
         <div
-          class="relative w-[675px] h-[152px] flex flex-col justify-center overflow-x-hidden mt- bg-black-b00"
+          class="relative w-[794px] h-[152px] flex flex-col justify-center overflow-x-hidden mt- bg-black-b00"
         >
           <div
             class="fl w-full h-[90px] flex-shrink-0 flex flex-row items-center justify-center"
@@ -138,7 +140,7 @@
           </div>
         </div>
         <!-- 테스트용 애니메이션 제어 버튼 -->
-        <button
+        <!-- <button
           @click="toggleSlideShow"
           class="fixed bottom-10 right-10 bg-blue-b300 text-white px-4 py-2 rounded-lg z-50"
           :class="
@@ -148,11 +150,11 @@
           "
         >
           {{ isPaused ? "슬라이드쇼 시작" : "슬라이드쇼 멈춤" }}
-        </button>
+        </button> -->
       </div>
     </div>
 
-    <div class="flex justify-center w-[820px] relative bottom-[100px]">
+    <div class="flex justify-center w-[694px] relative bottom-[80px] z-50">
       <!-- 이전 슬라이드 버튼 -->
       <SlideButton direction="prev" :onClick="prevSlide" />
       <!-- 다음 슬라이드 버튼 -->

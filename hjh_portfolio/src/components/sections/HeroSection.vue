@@ -1,21 +1,26 @@
 <template>
   <div class="flex justify-center">
-    <div class="text-box">
-      <div>
-        <span
-          v-for="(text, index) in texts"
-          :key="index"
-          class="inline-block w-[84px] h-[35px] leading-[35px] rounded-full border font-800 text-black-b700 border-black-b50 mb-[30px] mr-[8px] text-center text-[14px]"
-          :class="{
-            '!bg-green-p250 !text-black-b00 !border-green-p250 transition-colors duration-300 ease-in-out':
-              highlightClasses[index],
-          }"
-        >
-          {{ text }}
-        </span>
-      </div>
-      <div class="mb-[30px] text-[80px] leading-[88px]">
-        <!-- <ReusableTransition_All
+    <div
+      class="text-box relative flex justify-between items-center flex-col tablet:flex-row tablet:w-[898px] fhd_qhd:w-[1260px]"
+    >
+      <div
+        class="flex flex-col justify-center items-center tablet:justify-start tablet:items-start"
+      >
+        <div>
+          <span
+            v-for="(text, index) in texts"
+            :key="index"
+            class="inline-block w-[84px] h-[35px] leading-[35px] rounded-full border font-800 text-black-b700 bg-black-b00 border-black-b50 mb-[30px] mr-[8px] text-center text-[14px]"
+            :class="{
+              '!bg-green-p250 !text-black-b00 !border-green-p250 transition-colors duration-300 ease-in-out':
+                highlightClasses[index],
+            }"
+          >
+            {{ text }}
+          </span>
+        </div>
+        <div>
+          <!-- <ReusableTransition_All
           :texts="texts1"
           staticText="을 합니다."
           :initialDelay="0"
@@ -25,8 +30,8 @@
           class="space-nowrap"
           mode="staticTogether"
           @update="updateHighlight"
-        />
-        <ReusableTransition_All
+          />
+          <ReusableTransition_All
           :texts="texts2"
           staticText="를 합니다."
           :initialDelay="500"
@@ -35,35 +40,45 @@
           :staticTextPadding="160"
           class="space-nowrap text-black-b750"
           mode="staticTogether"
-        /> -->
-        <!-- 첫 번째 ReusableTransition -->
-        <ReusableTransition_All
-          :texts="texts1"
-          :initialDelay="0"
-          :transitionSpeed="2000"
-          :middleTextDelay="2000"
-          :isPaused="isPaused"
-          @update="updateHighlight"
-          class="space-nowrap mb-[17px]"
-        />
-        <!-- 두 번째 ReusableTransition -->
-        <ReusableTransition_All
-          :texts="texts2"
-          :initialDelay="500"
-          :transitionSpeed="2000"
-          :middleTextDelay="2000"
-          :isPaused="isPaused"
-          class="space-nowrap"
+          /> -->
+          <!-- 첫 번째 ReusableTransition -->
+          <ReusableTransition_All
+            :texts="texts1"
+            :initialDelay="0"
+            :transitionSpeed="2000"
+            :middleTextDelay="2000"
+            :isPaused="isPaused"
+            @update="updateHighlight"
+            class="space-nowrap mb-[12px] tablet:mb-[17px]"
+          />
+          <!-- 두 번째 ReusableTransition -->
+          <ReusableTransition_All
+            :texts="texts2"
+            :initialDelay="500"
+            :transitionSpeed="2000"
+            :middleTextDelay="2000"
+            :isPaused="isPaused"
+            class="space-nowrap"
+          />
+        </div>
+        <p
+          class="squiggly block font-800 mt-[14px] text-[18px] mobile:text-[26px] fhd_qhd:text-[30px] text-black-b750"
+        >
+          언제나 디자이너의 본분을 잊지 말자!
+        </p>
+        <img
+          class="mt-[79px] hidden tablet:block tablet:w-[201px] fhd_qhd:w-[342px]"
+          src="@/assets/image/backgrounds/tree.svg"
+          alt=""
         />
       </div>
-      <p class="squiggly font-800 text-[30px] text-black-b750">
-        언제나 디자이너의 본분을 잊지 말자!
-      </p>
-      <img class="mt-[79px]" src="@/assets/image/backgrounds/tree.svg" alt="" />
+      <!-- 애니메이션 -->
+      <LottieAnimation
+        customClass="relative tablet:absolute tablet:top-0 tablet:right-[-50px] w-[268px] tablet:w-[416px] fhd_qhd:w-[590px]  mt-[39px] mb-[56px] tablet:mb-0 tablet:mt-0"
+      />
     </div>
-    <LottieAnimation class="ml-[99px]" />
     <!-- 애니메이션 제어 버튼 -->
-    <button
+    <!-- <button
       @click="toggleAnimation"
       class="fixed bottom-10 right-[200px] bg-blue-b300 text-white px-4 py-2 rounded-lg z-50"
       :class="
@@ -73,7 +88,7 @@
       "
     >
       {{ isPaused ? "메인페이지 시작" : "메인페이지 멈춤" }}
-    </button>
+    </button> -->
   </div>
 </template>
 
