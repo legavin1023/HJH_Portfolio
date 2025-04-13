@@ -1,7 +1,7 @@
 <template>
   <div
     ref="scrollContainer"
-    class="relative bottom-0 snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden"
+    class="relative bottom-0 snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden bg-red-100 tablet:bg-blue-100 fhd_qhd:bg-green-100 xhd_uhd:bg-yellow-100"
   >
     <NavBar />
     <div
@@ -11,10 +11,20 @@
       <PageScroll />
     </div>
     <div
-      class="relative bottom-0 snap-start h-full flex flex-col items-center justify-center"
+      class="hidden relative bottom-0 snap-start h-full tablet:flex flex-col items-center justify-center"
     >
       <ToolSection id="tools" />
       <MeSection />
+    </div>
+    <div
+      class="flex relative bottom-0 snap-start h-full tablet:hidden flex-col items-center justify-center"
+    >
+      <ToolSection id="tools" />
+    </div>
+    <div
+      class="flex relative bottom-0 snap-start h-full tablet:hidden flex-col items-center justify-center"
+    >
+      <MeSection id="me" />
     </div>
     <div
       class="relative bottom-0 snap-start h-full flex flex-col items-center justify-center"

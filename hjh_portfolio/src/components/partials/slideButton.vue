@@ -43,7 +43,7 @@ export default {
     },
     onClick: {
       type: Function,
-      required: true,
+      required: true, // 부모에서 반드시 전달해야 함
     },
   },
   computed: {

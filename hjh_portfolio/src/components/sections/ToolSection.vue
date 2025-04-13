@@ -1,69 +1,92 @@
 <template>
-  <div
-    class="relative h-full flex flex-col items-center justify-center mt-[-30px]"
-  >
+  <div class="relative w-full h-full flex flex-col items-center justify-center">
     <p
-      class="squiggly text-black-b900 text-[30px] text-center pt-[130px] mb-[16px]"
+      class="full squiggly text-black-b900 text-[20px] tablet:text-[26px] fhd_qhd:text-[30px] text-center"
     >
       (당연하겠지만)
     </p>
     <!-- 슬라이드쇼 컨테이너 -->
+
     <div
-      class="relative overflow-hidden w-full h-[50px] tablet:h-[70px] fhd_qhd:h-[90px] mb-[20px] bg-red-200"
+      class="w-full flex flex-col items-center justify-center mb-[170px] tablet:mb-[54px]"
     >
       <div
-        class="absolute top-[102px] tablet:top-[142px] fhd_qhd:top-[182px] w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
-        :style="{ transform: `translateY(-${currentIndex * 100}%)` }"
+        class="relative overflow-y-hidden w-full h-[50px] tablet:h-[70px] fhd_qhd:h-[90px]"
       >
-        <!-- 슬라이드 텍스트 -->
         <div
-          v-for="(text, index) in texts"
-          :key="index"
-          class="w-full h-[90px] flex items-center justify-center leading-[50px] tablet:leading-[70px] fhd_qhd:leading-[90px] text-[38px] tablet:text-[50px] fhd_qhd:text-[60px] font-900 text-green-p300 text-nowrap"
+          class="absolute top-[102px] tablet:top-[142px] fhd_qhd:top-[182px] w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
+          :style="{ transform: `translateY(-${currentIndex * 100}%)` }"
         >
-          {{ text }} <br class="block tablet:hidden" />
-          <span class="font-700 text-black-b900">할 줄 알아요!</span>
+          <!-- 슬라이드 텍스트 -->
+          <div
+            v-for="(text, index) in texts"
+            :key="index"
+            class="w-full h-[90px] flex items-center justify-center leading-[50px] tablet:leading-[70px] fhd_qhd:leading-[90px] text-[38px] tablet:text-[50px] fhd_qhd:text-[60px] font-900 text-green-p300 text-nowrap"
+          >
+            <span> {{ text }}</span>
+
+            <span class="font-700 text-black-b900 hidden tablet:block"
+              >할 줄 알아요!</span
+            >
+          </div>
         </div>
       </div>
+      <span
+        class="mt-[6px] font-700 text-center text-black-b900 tablet:hidden leading-[50px] text-[38px]"
+        >할 줄 알아요!</span
+      >
     </div>
-    <div class="relative flex flex-col items-center justify-center">
+
+    <div class="relative w-full flex flex-col items-center justify-center">
       <div
-        class="w-[1706px] absolute bottom-[0px] z-0 flex flex-row justify-between items-center mt-[50px]"
+        class="flex w-[400px] tablet:w-[1500px] fhd_qhd:w-[1706px] absolute bottom-[0px] z-0 flex-row justify-between items-center mt-[50px]"
       >
         <!-- 왼쪽 이미지 그룹 -->
-        <div class="w-[278px] h-[400px] relative">
+        <div class="w-[80px] tablet:w-[278px] h-[400px] relative">
           <img
             v-for="(image, index) in imagesLeft"
             :key="`left-${index}`"
             :src="image.src"
             :alt="image.alt"
-            class="floating"
+            :class="[
+              'floating absolute',
+              'w-[34px]',
+              'tablet:w-[60px]',
+              'fhd_qhd:w-[72px]',
+            ]"
             :style="{
               animationDuration: `${image.duration}s`,
-              top: image.top,
-              left: image.left,
+              top: getPosition(image.positions).top,
+              left: getPosition(image.positions).left,
+              border: `2px solid ${getPosition(image.positions).borderColor}`, // 보더 색상 적용
             }"
           />
         </div>
-
         <!-- 오른쪽 이미지 그룹 -->
-        <div class="w-[278px] h-[400px] relative">
+        <div class="w-[80px] tablet:w-[278px] h-[400px] relative">
           <img
             v-for="(image, index) in imagesRight"
             :key="`right-${index}`"
             :src="image.src"
             :alt="image.alt"
-            class="floating"
+            :class="[
+              'floating absolute',
+              'w-[34px]',
+              'tablet:w-[60px]',
+              'fhd_qhd:w-[72px]',
+            ]"
             :style="{
               animationDuration: `${image.duration}s`,
-              top: image.top,
-              left: image.left,
+              top: getPosition(image.positions).top,
+              left: getPosition(image.positions).left,
+              border: `2px solid ${getPosition(image.positions).borderColor}`, // 보더 색상 적용
             }"
           />
         </div>
       </div>
+
       <div
-        class="relative z-10] tablet-[100%] fhd_qhd:w-[724px] w-[794px h-[225px] border border-black-b40 rounded-t-[30px] rounded-b-[40px] flex flex-col overflow-x-hidden"
+        class="absolute tablet:relative w-full tablet:w-[724px] fhd_qhd:w-[794px] h-[225px] border bg-black-b00 border-black-b40 tablet:rounded-t-[30px] tablet:rounded-b-[40px] flex flex-col overflow-x-hidden"
       >
         <div
           class="flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
@@ -76,26 +99,36 @@
               borderColor: currentIndex === index ? '#2B7FFF' : '',
               color: currentIndex === index ? 'white' : '',
             }"
-            class="text-[14px] text-[#3C7BDC] rounded-full border border-blue-b75 mr-[4px] ml-[4px] bg-[#F2F7FF] px-[14px] py-[8px] leading-none"
+            class="text-[14px] text-[#3C7BDC] rounded-full border flex-shrink-0 border-blue-b75 mr-[4px] ml-[4px] bg-[#F2F7FF] px-[14px] py-[8px] leading-none"
           >
             {{ text }}
           </span>
         </div>
         <div
-          class="relative w-[794px] h-[152px] flex flex-col justify-center overflow-x-hidden mt- bg-black-b00"
+          class="relative w-full border-2 h-[152px] flex flex-col justify-center overflow-x-hidden"
         >
           <div
-            class="fl w-full h-[90px] flex-shrink-0 flex flex-row items-center justify-center"
+            class="fl w-full h-[90px] flex-shrink-0 flex flex-col tablet:flex-row items-center justify-center"
           >
-            <div class="flex items-center justify-center mr-[27px] mb-[14px]">
+            <div
+              class="flex w-full tablet:w-[76px] items-center justify-center mb-[9px]"
+            >
               <img
                 class="w-[12.28px] h-[9.56px] mr-[5.44px]"
                 src="@/assets/image/icons/check_small.svg"
                 alt=""
               />
-              <span class="text-[20px] font-800 text-black-b500"> 숙련도</span>
+              <div
+                class="min-w-[260px] tablet:min-w-[0px] w-[75%] tablet:w-auto flex justify-start items-start"
+              >
+                <span class="text-[20px] font-800 text-black-b500">
+                  숙련도</span
+                >
+              </div>
             </div>
-            <div class="w-[413px] text-center rounded-full relative">
+            <div
+              class="ml-0 tablet:ml-[16px] min-w-[300px] tablet:min-w-[0px] w-[80%] tablet:w-[413px] text-center rounded-full relative"
+            >
               <div class="h-[12px] bg-black-b60 rounded-full">
                 <div
                   class="h-[12px] bg-green-p250 relative rounded-full"
@@ -121,7 +154,7 @@
                     v-for="i in 50"
                     :key="i"
                     class="flex flex-col items-center justify-center"
-                    :style="{ width: '2%' }"
+                    :style="{ width: '100%' }"
                   >
                     <!-- 눈금 -->
                     <div
@@ -154,7 +187,9 @@
       </div>
     </div>
 
-    <div class="flex justify-center w-[694px] relative bottom-[80px] z-50">
+    <div
+      class="hidden tablet:flex justify-center tablet:w-[680px] fhd_qhd:w-[694px] relative bottom-[80px] z-50"
+    >
       <!-- 이전 슬라이드 버튼 -->
       <SlideButton direction="prev" :onClick="prevSlide" />
       <!-- 다음 슬라이드 버튼 -->
@@ -188,52 +223,66 @@ export default {
       isPaused: false, // 슬라이드쇼 상태
       imagesLeft: [
         {
-          src: FigmaImage, // 임포트된 이미지 경로
+          src: FigmaImage,
           alt: "Figma",
-          marginClass: "ml-[200px]",
           duration: 5,
-          top: "0px",
-          left: "335px",
+          positions: {
+            mobile: { top: "80px", left: "90px" }, // 모바일
+            tablet: { top: "0px", left: "335px" }, // 태블릿
+            fhd_qhd: { top: "0px", left: "335px" }, // 데스크톱
+          },
         },
         {
-          src: AeImage, // 임포트된 이미지 경로
+          src: AeImage,
           alt: "After Effects",
-          marginClass: "",
           duration: 6,
-          top: "155px",
-          left: "100px",
+          positions: {
+            mobile: { top: "160px", left: "30px" }, // 모바일
+            tablet: { top: "325px", left: "275px" }, // 태블릿
+            fhd_qhd: { top: "325px", left: "275px" }, // 데스크톱
+          },
         },
         {
-          src: PsImage, // 임포트된 이미지 경로
+          src: PsImage,
           alt: "Photoshop",
-          marginClass: "ml-[200px]",
           duration: 7,
-          top: "325px",
-          left: "275px",
+          positions: {
+            mobile: { top: "240px", left: "70px" }, // 모바일
+            tablet: { top: "155px", left: "100px" }, // 태블릿
+            fhd_qhd: { top: "155px", left: "100px" }, // 데스크톱
+          },
         },
       ],
       imagesRight: [
         {
-          src: htmlImage, // 임포트된 이미지 경로
-          alt: "Illustrator",
+          src: htmlImage,
+          alt: "HTML",
           duration: 5,
-          top: "0px",
-          left: "-80px",
+          positions: {
+            mobile: { top: "80px", left: "-40px" }, // 모바일
+            tablet: { top: "0px", left: "-80px" }, // 태블릿
+            fhd_qhd: { top: "0px", left: "-80px" }, // 데스크톱
+          },
         },
         {
-          src: CssImage, // 임포트된 이미지 경로
-          alt: "VS Code",
-          marginClass: "",
+          src: CssImage,
+          alt: "CSS",
           duration: 6,
-          top: "155px",
-          left: "112px",
+          positions: {
+            mobile: { top: "160px", left: "18px" }, // 모바일
+            tablet: { top: "155px", left: "112px" }, // 태블릿
+            fhd_qhd: { top: "155px", left: "112px" }, // 데스크톱
+          },
         },
         {
-          src: AiImage, // 임포트된 이미지 경로
-          alt: "Sketch",
+          src: AiImage,
+          alt: "Illustrator",
           duration: 7,
-          top: "325px",
-          left: "-40px",
+          positions: {
+            mobile: { top: "240px", left: "-30px" }, // 모바일
+            tablet: { top: "325px", left: "-40px" }, // 태블릿
+            fhd_qhd: { top: "325px", left: "-40px" }, // 데스크톱
+          },
         },
       ],
       floatingClassesLeft: [], // 왼쪽 이미지의 클래스 상태
@@ -247,6 +296,24 @@ export default {
     },
   },
   methods: {
+    getPosition(positions) {
+      const width = window.innerWidth;
+
+      if (width <= 1024) {
+        return {
+          ...positions.mobile,
+        };
+      } else if (width > 1024 && width <= 1920) {
+        return {
+          ...positions.tablet,
+        };
+      } else if (width > 1920) {
+        // PC (1025px 이상)
+        return {
+          ...positions.fhd_qhd,
+        };
+      }
+    },
     nextSlide() {
       if (!this.isPaused) {
         this.currentIndex = (this.currentIndex + 1) % this.texts.length;
@@ -328,9 +395,7 @@ export default {
   animation-name: floating;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-}
-
-/* 애니메이션 정의 */
+} /* 애니메이션 정의 */
 @keyframes floating {
   0% {
     transform: translateY(0);

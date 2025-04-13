@@ -15,7 +15,22 @@ B80009
       </li>
       <div class="flex space-x-[30px] text-black-b900">
         <li @click="scrollToSection('hero')" class="cursor-pointer">홈으로</li>
-        <li @click="scrollToSection('tools')" class="cursor-pointer">
+        <li
+          @click="scrollToSection('tools')"
+          class="block tablet:hidden cursor-pointer"
+        >
+          숙련도
+        </li>
+        <li
+          @click="scrollToSection('me')"
+          class="block tablet:hidden cursor-pointer"
+        >
+          자기소개
+        </li>
+        <li
+          @click="scrollToSection('tools')"
+          class="hidden tablet:block cursor-pointer"
+        >
           자기소개
         </li>
         <li @click="scrollToSection('portfolio')" class="cursor-pointer">
