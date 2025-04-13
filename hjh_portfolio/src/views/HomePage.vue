@@ -13,7 +13,7 @@
     <div
       class="hidden relative bottom-0 snap-start h-full tablet:flex flex-col items-center justify-center"
     >
-      <ToolSection id="tools" />
+      <ToolSection id="toolsMe" />
       <MeSection />
     </div>
     <div

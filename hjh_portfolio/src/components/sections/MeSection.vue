@@ -18,7 +18,9 @@
       <div
         class="flex items-center jc w-[1018px] h-[162px] rounded-[50px] rounded-tl-none rounded-bl-none bg-black-b00"
       >
-        <div class="flex items-center flex-wrap w-[93%] ml-[21px]">
+        <div
+          class="flex items-center flex-wrap flex-col tablet:flex-row w-[93%] ml-[21px]"
+        >
           <div
             v-for="(item, index) in items"
             :key="index"
