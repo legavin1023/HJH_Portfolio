@@ -3,7 +3,7 @@
     class="relative overflow-hidden h-full flex flex-col items-center justify-center w-full pb-[51px] xhd_uhd:pb-[194px]"
   >
     <p
-      class="squiggly w-full text-black-b750 text-[30px] text-center pt-[70px] mb-[16px]"
+      class="squiggly w-full text-black-b750 text-[20px] mobile:text-[26px] fhd_qhd:text-[30px] text-center pt-[70px] mb-[16px]"
     >
       거두절미하고,
     </p>

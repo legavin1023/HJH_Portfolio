@@ -62,7 +62,7 @@
           />
         </div>
         <p
-          class="squiggly block font-800 mt-[14px] text-[18px] mobile:text-[26px] fhd_qhd:text-[30px] text-black-b750"
+          class="squiggly block font-800 mt-[14px] text-[20px] mobile:text-[26px] fhd_qhd:text-[30px] text-black-b750"
         >
           언제나 디자이너의 본분을 잊지 말자!
         </p>

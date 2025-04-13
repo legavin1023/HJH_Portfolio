@@ -58,7 +58,6 @@
               animationDuration: `${image.duration}s`,
               top: getPosition(image.positions).top,
               left: getPosition(image.positions).left,
-              border: `2px solid ${getPosition(image.positions).borderColor}`, // 보더 색상 적용
             }"
           />
         </div>
@@ -79,7 +78,6 @@
               animationDuration: `${image.duration}s`,
               top: getPosition(image.positions).top,
               left: getPosition(image.positions).left,
-              border: `2px solid ${getPosition(image.positions).borderColor}`, // 보더 색상 적용
             }"
           />
         </div>
@@ -248,7 +246,7 @@ export default {
           duration: 7,
           positions: {
             mobile: { top: "240px", left: "70px" }, // 모바일
-            tablet: { top: "155px", left: "100px" }, // 태블릿
+            tablet: { top: "155px", left: "200px" }, // 태블릿
             fhd_qhd: { top: "155px", left: "100px" }, // 데스크톱
           },
         },
@@ -270,7 +268,7 @@ export default {
           duration: 6,
           positions: {
             mobile: { top: "160px", left: "18px" }, // 모바일
-            tablet: { top: "155px", left: "112px" }, // 태블릿
+            tablet: { top: "155px", left: "12px" }, // 태블릿
             fhd_qhd: { top: "155px", left: "112px" }, // 데스크톱
           },
         },
@@ -299,16 +297,15 @@ export default {
     getPosition(positions) {
       const width = window.innerWidth;
 
-      if (width <= 1024) {
+      if (width <= 1023) {
         return {
           ...positions.mobile,
         };
-      } else if (width > 1024 && width <= 1920) {
+      } else if (width > 1024 && width <= 1439) {
         return {
           ...positions.tablet,
         };
-      } else if (width > 1920) {
-        // PC (1025px 이상)
+      } else if (width > 1440) {
         return {
           ...positions.fhd_qhd,
         };

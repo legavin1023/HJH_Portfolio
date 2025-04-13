@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        mobile: "40rem", // 480px (Mobile)
+        mobile: "40rem", // 640px? (Mobile)
         // mobile: "30rem", // 480px (Mobile)
         tablet: "64rem", // 1024px (Tablet)
         fhd_qhd: "90rem", // 1440px (FHD)
