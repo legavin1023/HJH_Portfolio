@@ -10,7 +10,7 @@
           <span
             v-for="(text, index) in texts"
             :key="index"
-            class="inline-block w-[84px] h-[35px] leading-[35px] rounded-full border font-800 text-black-b700 bg-black-b00 border-black-b50 mb-[30px] mr-[8px] text-center text-[14px]"
+            class="inline-block px-[18px] tablet:px-[22px] py-[8px] tablet:py-[10px] rounded-full border font-800 text-black-b700 bg-black-b00 border-black-b50 mb-[30px] mr-[8px] text-center text-[12px] tablet:text-[14px]"
             :class="{
               '!bg-green-p250 !text-black-b00 !border-green-p250 transition-colors duration-300 ease-in-out':
                 highlightClasses[index],

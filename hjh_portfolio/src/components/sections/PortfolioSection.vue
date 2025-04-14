@@ -73,10 +73,15 @@
           v-for="(slide, index) in filteredSlides"
           :key="index"
           class="flex-shrink-0 bg-black-b35 rounded-[16px] overflow-hidden w-[320px] h-[490px] text-black-b800 font-800 relative group"
-          :class="{
-            'cursor-pointer': !slide.type.includes('준비 중'), // 준비 중이 아닌 경우에만 커서 포인터
+          :class="[
+            {
+              'cursor-pointer': !slide.type.includes('준비 중'), // 준비 중이 아닌 경우에만 커서 포인터
+            },
+          ]"
+          :style="{
+            width: `${slideDimensions.width}px`,
+            height: `${slideDimensions.height}px`,
           }"
-          :style="{ width: `${slideWidth}px` }"
           @click="!slide.type.includes('준비 중') && openModal(slide)"
         >
           <!-- "준비 중" 슬라이드 구분 -->
@@ -142,7 +147,7 @@
               />
             </div>
             <div
-              class="flex justify-center items-center max-w-none absolute top-[208px] ml-[278px] w-[80px] h-[80px] rounded-[50%] border-[5px] border-black-b00 bg-black-b40 overflow-hidden"
+              class="flex justify-center items-center max-w-none absolute top-[208px] right-[20px] w-[80px] h-[80px] rounded-[50%] border-[5px] border-black-b00 bg-black-b40 overflow-hidden"
             >
               <img
                 :src="slide.companyLogo"
@@ -151,7 +156,7 @@
               />
             </div>
             <div
-              class="flex flex-col h-[244px] justify-between px-[28px] py-[26px]"
+              class="flex flex-col h-[244px] justify-between px-[20px] py-[20px] tablet:px-[20px] tablet:py-[18px] fhd_qhd:px-[28px] fhd_qhd:py-[26px]"
             >
               <div>
                 <EmphasisSpan
@@ -172,7 +177,7 @@
               </div>
               <button
                 click="openModal(slide)"
-                class="flex justify-center bg-black-b00 border border-black-b40 w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
+                class="flex justify-center absolute bottom-[18px] tablet:bottom-[20px] fhd_qhd:bottom-[28px] bg-black-b00 border border-black-b40 w-[90%] min-w-[232px] max-w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
                 @click="openModal(slide)"
               >
                 <span class="font-800 text-black-b600">포트폴리오 보기</span>
@@ -235,7 +240,6 @@ import EmphasisSpan from "@/components/partials/EmphasisSpan.vue";
 import SlideButton from "@/components/partials/slideButton.vue";
 //---------------모달달-----------------
 import modalPage from "@/components/partials/modalPage.vue";
-
 export default {
   components: {
     SlideButton,
@@ -245,6 +249,7 @@ export default {
   data() {
     return {
       currentIndex: 0,
+      slideDimensions: { width: 380, height: 490 },
       visibleSlides: 3, // 한 번에 보이는 슬라이드 개수
       slideWidth: 380, // 각 슬라이드의 너비 (px)
       gap: 16, // 슬라이드 간의 여백 (px)
@@ -387,7 +392,31 @@ export default {
       return this.baseSlides; // 슬라이드가 충분하면 그대로 반환
     },
   },
+  mounted() {
+    window.addEventListener("resize", this.updateSlideDimensions);
+    this.updateSlideDimensions(); // 초기화
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.updateSlideDimensions);
+  },
   methods: {
+    //w-[270px] h-[440px] mobile:w-[320px] mobile:h-[466px] fhd_qhd:w-[320px] fhd_qhd:h-[490px]
+
+    updateSlideDimensions() {
+      this.slideDimensions = this.getSlideDimensions();
+    },
+    getSlideDimensions() {
+      const width = window.innerWidth;
+
+      if (width <= 1023) {
+        return { width: 272, height: 440 }; // 모바일 너비와 높이
+      } else if (width >= 1024 && width <= 1439) {
+        return { width: 320, height: 466 }; // 태블릿 너비와 높이
+      } else if (width >= 1440) {
+        return { width: 380, height: 490 }; // 데스크톱 너비와 높이
+      }
+      return { width: 440, height: 490 }; // 기본값
+    },
     nextSlide() {
       if (this.currentIndex < this.filteredSlides.length - this.visibleSlides) {
         this.currentIndex++;

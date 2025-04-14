@@ -1,31 +1,40 @@
 <template>
   <div
-    class="relative bottom-0 w-full box-border bg-background-green pt-[20px] pb-[30px] xhd_uhd:pt-[69px] xhd_uhd:pb-[91px] flex justify-center items-center"
+    class="relative w-full h-full tablet:h-auto box-border bg-background-green tablet:pt-[86px] tablet:pb-[30px] xhd_uhd:pt-[rexd] xhd_uhd:pb-[91px] flex justify-center items-center tablet:items-center flex-col"
   >
-    <div class="flex items-end">
+    <div
+      class="absolute min-w-[322px] tablet:w-[864px] fhd_qhd:w-[1193px] bottom-[360px] tablet:bottom-[32px] xhd_uhd:bottom-[92px]"
+    >
       <div
-        class="flex flex-col items-center w-[175px] h-[228px] rounded-[50px] rounded-br-none bg-black-b00"
+        class="flex flex-col items-center w-[175px] tablet:h-[340px] h-[225px] fhd_qhd:h-[228px] rounded-[50px] rounded-br-none bg-black-b00"
       >
         <img
           class="w-[129px] h-[129px] mt-[23px] mb-[16px]"
           src="@/assets/image/backgrounds/hong.png"
           alt=""
         />
-        <p class="text-[26px] font-800 text-black-b800">
+        <p
+          class="text-[22px] tablet:text-[26px] font-800 text-black-b800 absolute top-[90px] left-[182px] tablet:relative tablet:top-[0px] tablet:left-[0px] text-nowrap"
+        >
           <span class="text-black-b80">@ </span>홍지혜
         </p>
       </div>
+    </div>
+
+    <div
+      class="flex w-full h-full tablet:h-auto justify-center items-end tablet:items-center"
+    >
       <div
-        class="flex items-center jc w-[1018px] h-[162px] rounded-[50px] rounded-tl-none rounded-bl-none bg-black-b00"
+        class="flex items-center min-w-[322px] tablet:w-[864px] fhd_qhd:w-[1193px] h-[520px] tablet:h-[274px] fhd_qhd:h-[162px] tablet:rounded-[50px] rounded-tr-[50px] bg-black-b00"
       >
         <div
-          class="flex items-center flex-wrap flex-col tablet:flex-row w-[93%] ml-[21px]"
+          class="flex items-start tablet:items-center flex-wrap flex-col tablet:flex-row pt-[100px] tablet:pt-0 pl-[26px] tablet:pl-[196px] fhd_qhd:pl-[200px] tablet:pr-[49px]"
         >
           <div
             v-for="(item, index) in items"
             :key="index"
             :class="[
-              'relative inline-block items-center space-x-2 mx-[4px] my-[7px] px-[20px] py-[9px] font-700  rounded-full overflow-hidden bg-black-b30',
+              'relative inline-block items-center space-x-2 mx-[4px] my-[3px] tablet:my-[7px] px-[20px] py-[9px] font-700  rounded-full overflow-hidden bg-black-b30',
               {
                 'active-div': activeIndex === index,
               },
@@ -34,7 +43,7 @@
             <!-- 텍스트 -->
             <img :src="item.imgSrc" alt="" class="inline relative z-10" />
             <span
-              class="text-[18px] p relative z-10 text-black-b800"
+              class="text-[14px] tablet:text-[18px] p relative z-10 text-black-b800"
               :class="{ 'active-slide-text': activeIndex === index }"
               >{{ item.text }}</span
             >

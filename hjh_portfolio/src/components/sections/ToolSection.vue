@@ -301,11 +301,11 @@ export default {
         return {
           ...positions.mobile,
         };
-      } else if (width > 1024 && width <= 1439) {
+      } else if (width >= 1024 && width <= 1439) {
         return {
           ...positions.tablet,
         };
-      } else if (width > 1440) {
+      } else if (width >= 1440) {
         return {
           ...positions.fhd_qhd,
         };
