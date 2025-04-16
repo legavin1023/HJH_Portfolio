@@ -18,6 +18,13 @@ app.config.warnHandler = (msg, vm, trace) => {
   // 다른 경고는 콘솔에 출력
   console.warn(`[Vue warn]: ${msg}\n${trace}`);
 };
+function setViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+}
+
+setViewportHeight();
+window.addEventListener("resize", setViewportHeight);
 
 app.use(store);
 app.use(router);

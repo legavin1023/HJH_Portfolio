@@ -30,6 +30,10 @@
       class="relative bottom-0 snap-start h-full flex flex-col items-center justify-center"
     >
       <PortfolioSection id="portfolio" />
+    </div>
+    <div
+      class="relative bottom-0 snap-start h-[194px] flex flex-col items-center justify-center"
+    >
       <SiteFooter />
     </div>
   </div>

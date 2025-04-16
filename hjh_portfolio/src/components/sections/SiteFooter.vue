@@ -1,9 +1,11 @@
 <template>
   <footer
-    class="bg-black-b800 w-full h-[51px] xhd_uhd:h-[194px] absolute bottom-0 flex items-center justify-center xhd_uhd:flex-col"
+    class="bg-black-b800 w-full h-[194px] tablet:h-[51px] xhd_uhd:h-[194px] absolute bottom-0 flex items-center justify-center flex-col tablet:flex-row xhd_uhd:flex-col"
   >
     <!-- 이미지와 텍스트를 중앙에 배치 -->
-    <div class="inset-0 flex items-center justify-center xhd_uhd:flex-col">
+    <div
+      class="inset-0 flex items-center justify-center flex-col tablet:flex-row xhd_uhd:flex-col"
+    >
       <img src="@/assets/image/logo_gray.svg" alt="Logo" class="w-[66px]" />
       <p class="text-black-b300 ml-[16px] text-[16px] leading-[51px]">
         ⓒ2025. Team GGZ all rights reserved.
@@ -12,7 +14,7 @@
 
     <!-- 드롭다운 버튼 -->
     <div
-      class="absolute bottom-0 h-[51px] left-1/2 transform translate-x-[400px] text-[14px] xhd_uhd:relative xhd_uhd:left-0 xhd_uhd:translate-x-0 xhd_uhd:mt-[8px]"
+      class="relative bottom-0 xhd_uhd:relative h-[51px] tablet:h-[51px] mobile:h-[51px] xhd_uhd:h-[51px] left-0 tablet:left-1/2 xhd_uhd:left-0 transform translate-x-0 tablet:translate-x-[400px] xhd_uhd:translate-x-0 text-[14px] mt-[8px] tablet:mt-0 xhd_uhd:mt-[8px]"
     >
       <button
         ref="dropdownButton"

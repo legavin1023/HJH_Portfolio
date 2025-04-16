@@ -3,16 +3,21 @@
     class="relative overflow-hidden h-full flex flex-col items-center justify-center w-full pb-[51px] xhd_uhd:pb-[194px]"
   >
     <p
-      class="squiggly w-full text-black-b750 text-[20px] mobile:text-[26px] fhd_qhd:text-[30px] text-center pt-[70px] mb-[16px]"
+      class="squiggly relative top-[10px] w-full text-black-b750 text-[20px] mobile:text-[26px] fhd_qhd:text-[30px] text-center pt-[100px]"
     >
       거두절미하고,
     </p>
-    <div class="text-center text-6xl mb-[62px]">
-      <span class="text-green-p300 font-900">포트폴리오 </span>
+    <div
+      class="text-center mb-[62px] text-[38px] tablet:text-[50px] fhd_qhd:text-[60px]"
+    >
+      <span class="text-green-p300 font-900 relative top-[10px]"
+        >포트폴리오</span
+      >
+      <br v-show="isMobile" />
       <span class="font-700 text-black-b900">보실까요?</span>
     </div>
 
-    <div class="relative w-[1193px] mx-auto">
+    <div class="relative w-[322px] tablet:w-[864px] fhd_qhd:w-[1193px] mx-auto">
       <div class="flex justify-between items-center">
         <div>
           <!-- 슬라이드 버튼 -->
@@ -177,7 +182,7 @@
               </div>
               <button
                 click="openModal(slide)"
-                class="flex justify-center absolute bottom-[18px] tablet:bottom-[20px] fhd_qhd:bottom-[28px] bg-black-b00 border border-black-b40 w-[90%] min-w-[232px] max-w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
+                class="flex justify-center absolute bottom-[18px] tablet:bottom-[20px] fhd_qhd:bottom-[28px] bg-black-b00 border border-black-b40 w-[232px] tablet:w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
                 @click="openModal(slide)"
               >
                 <span class="font-800 text-black-b600">포트폴리오 보기</span>
@@ -395,9 +400,12 @@ export default {
   mounted() {
     window.addEventListener("resize", this.updateSlideDimensions);
     this.updateSlideDimensions(); // 초기화
+    this.checkScreenSize();
+    window.addEventListener("resize", this.checkScreenSize);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.updateSlideDimensions);
+    window.removeEventListener("resize", this.checkScreenSize);
   },
   methods: {
     //w-[270px] h-[440px] mobile:w-[320px] mobile:h-[466px] fhd_qhd:w-[320px] fhd_qhd:h-[490px]
@@ -492,6 +500,9 @@ export default {
 
       // 슬라이드 인덱스를 맨 앞으로 초기화
       this.currentIndex = 0;
+    },
+    checkScreenSize() {
+      this.isMobile = window.innerWidth <= 1024;
     },
   },
 };

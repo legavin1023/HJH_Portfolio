@@ -3,7 +3,7 @@
     class="relative w-full h-full tablet:h-auto box-border bg-background-green tablet:pt-[86px] tablet:pb-[30px] xhd_uhd:pt-[rexd] xhd_uhd:pb-[91px] flex justify-center items-center tablet:items-center flex-col"
   >
     <div
-      class="absolute min-w-[322px] tablet:w-[864px] fhd_qhd:w-[1193px] bottom-[360px] tablet:bottom-[32px] xhd_uhd:bottom-[92px]"
+      class="absolute w-[322px] tablet:w-[864px] fhd_qhd:w-[1193px] bottom-[360px] tablet:bottom-[32px] xhd_uhd:bottom-[92px]"
     >
       <div
         class="flex flex-col items-center w-[175px] tablet:h-[340px] h-[225px] fhd_qhd:h-[228px] rounded-[50px] rounded-br-none bg-black-b00"
