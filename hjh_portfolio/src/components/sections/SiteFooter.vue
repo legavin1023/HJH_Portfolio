@@ -14,7 +14,7 @@
 
     <!-- 드롭다운 버튼 -->
     <div
-      class="relative bottom-0 xhd_uhd:relative h-[51px] tablet:h-[51px] mobile:h-[51px] xhd_uhd:h-[51px] left-0 tablet:left-1/2 xhd_uhd:left-0 transform translate-x-0 tablet:translate-x-[400px] xhd_uhd:translate-x-0 text-[14px] mt-[8px] tablet:mt-0 xhd_uhd:mt-[8px]"
+      class="relative tablet:absolute bottom-0 right-10 xhd_uhd:relative h-[51px] tablet:h-[51px] mobile:h-[51px] xhd_uhd:h-[51px] left-0 tablet:left-1/2 xhd_uhd:left-0 transform translate-x-0 tablet:translate-x-[60%] xhd_uhd:translate-x-0 text-[14px] mt-[8px] tablet:mt-0 xhd_uhd:mt-[8px]"
     >
       <button
         ref="dropdownButton"
