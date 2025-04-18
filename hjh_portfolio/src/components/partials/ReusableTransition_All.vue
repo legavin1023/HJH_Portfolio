@@ -2,13 +2,13 @@
   <transition-group
     name="fade-move"
     tag="div"
-    class="sticky w-[620px] items-center tablet:items-start h-[44px] tablet:h-[66px] fhd_qhd:h-[99px] overflow-hidden flex flex-col text-left top-0 left-0 text-[0px]"
+    class="sticky w-[620px] items-center tablet:items-start h-[44px] tablet:h-[66px] desktop:h-[99px] overflow-hidden flex flex-col text-left top-0 left-0 text-[0px]"
   >
     <!-- 현재 텍스트 -->
     <div
       v-if="currentText"
       :key="`current-${currentText.green}-${currentText.black}`"
-      class="flex items-center leading-[44px] tablet:leading-[66px] fhd_qhd:leading-[100px] text-[40px] tablet:text-[60px] fhd_qhd:text-[80px]"
+      class="flex items-center leading-[44px] tablet:leading-[66px] desktop:leading-[100px] text-[40px] tablet:text-[60px] desktop:text-[80px]"
     >
       <span class="text-green-p300 font-900">
         {{ currentText.green }}
@@ -22,7 +22,7 @@
     <div
       v-if="middleText"
       :key="`middle-${middleText.green}-${middleText.black}`"
-      class="flex items-center leading-[44px] tablet:leading-[66px] fhd_qhd:leading-[99px] text-[40px] tablet:text-[60px] fhd_qhd:text-[80px] opacity-effect"
+      class="flex items-center leading-[44px] tablet:leading-[66px] desktop:leading-[99px] text-[40px] tablet:text-[60px] desktop:text-[80px] opacity-effect"
     >
       <span class="text-green-p300 font-900">
         {{ middleText.green }}

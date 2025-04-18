@@ -3,11 +3,15 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        mobile: "40rem", // 640px? (Mobile)
-        // mobile: "30rem", // 480px (Mobile)
-        tablet: "64rem", // 1024px (Tablet)
-        fhd_qhd: "90rem", // 1440px (FHD)
-        xhd_uhd: "140rem", // 1920px (QHD)
+        // mobile: "40rem", // 640px? (Mobile)
+        // // mobile: "30rem", // 480px (Mobile)
+        // tablet: "64rem", // 1024px (Tablet)
+        // desktop: "90rem", // 1440px (FHD)
+        // largeDesktop: "140rem", // 1920px (QHD)
+        mobile: "30rem", // 480px (Custom Mobile)
+        tablet: "60rem", // 960px (Custom Tablet)
+        desktop: "80rem", // 1280px (Custom Desktop)
+        largeDesktop: "140rem", // 2240px (Custom Large Desktop)
       },
       colors: {
         green: {

@@ -1,7 +1,7 @@
 <template>
   <div
     ref="scrollContainer"
-    class="relative bottom-0 snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden bg-red-100 tablet:bg-blue-100 fhd_qhd:bg-green-100 xhd_uhd:bg-yellow-100"
+    class="relative bottom-0 snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden bg-red-100 tablet:bg-blue-100 desktop:bg-green-100 largeDesktop:bg-yellow-100"
   >
     <NavBar />
     <div

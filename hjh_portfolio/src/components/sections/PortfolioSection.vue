@@ -1,14 +1,14 @@
 <template>
   <div
-    class="relative overflow-hidden h-full flex flex-col items-center justify-center w-full pb-[51px] xhd_uhd:pb-[194px]"
+    class="relative overflow-hidden h-full flex flex-col items-center justify-center w-full pb-[51px] largeDesktop:pb-[194px]"
   >
     <p
-      class="squiggly relative top-[10px] w-full text-black-b750 text-[20px] mobile:text-[26px] fhd_qhd:text-[30px] text-center pt-[100px]"
+      class="squiggly relative top-[10px] w-full text-black-b750 text-[20px] mobile:text-[26px] desktop:text-[30px] text-center pt-[100px]"
     >
       거두절미하고,
     </p>
     <div
-      class="text-center mb-[62px] text-[38px] tablet:text-[50px] fhd_qhd:text-[60px]"
+      class="text-center mb-[62px] text-[38px] tablet:text-[50px] desktop:text-[60px]"
     >
       <span class="text-green-p300 font-900 relative top-[10px]"
         >포트폴리오</span
@@ -17,7 +17,7 @@
       <span class="font-700 text-black-b900">보실까요?</span>
     </div>
 
-    <div class="relative w-[322px] tablet:w-[864px] fhd_qhd:w-[1193px] mx-auto">
+    <div class="relative w-[322px] tablet:w-[864px] desktop:w-[1193px] mx-auto">
       <div class="flex justify-between items-center">
         <div>
           <!-- 슬라이드 버튼 -->
@@ -161,7 +161,7 @@
               />
             </div>
             <div
-              class="flex flex-col h-[244px] justify-between px-[20px] py-[20px] tablet:px-[20px] tablet:py-[18px] fhd_qhd:px-[28px] fhd_qhd:py-[26px]"
+              class="flex flex-col h-[244px] justify-between px-[20px] py-[20px] tablet:px-[20px] tablet:py-[18px] desktop:px-[28px] desktop:py-[26px]"
             >
               <div>
                 <EmphasisSpan
@@ -182,7 +182,7 @@
               </div>
               <button
                 click="openModal(slide)"
-                class="flex justify-center absolute bottom-[18px] tablet:bottom-[20px] fhd_qhd:bottom-[28px] bg-black-b00 border border-black-b40 w-[232px] tablet:w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
+                class="flex justify-center absolute bottom-[18px] tablet:bottom-[20px] desktop:bottom-[28px] bg-black-b00 border border-black-b40 w-[232px] tablet:w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
                 @click="openModal(slide)"
               >
                 <span class="font-800 text-black-b600">포트폴리오 보기</span>
@@ -408,7 +408,7 @@ export default {
     window.removeEventListener("resize", this.checkScreenSize);
   },
   methods: {
-    //w-[270px] h-[440px] mobile:w-[320px] mobile:h-[466px] fhd_qhd:w-[320px] fhd_qhd:h-[490px]
+    //w-[270px] h-[440px] mobile:w-[320px] mobile:h-[466px] desktop:w-[320px] desktop:h-[490px]
 
     updateSlideDimensions() {
       this.slideDimensions = this.getSlideDimensions();
@@ -416,11 +416,11 @@ export default {
     getSlideDimensions() {
       const width = window.innerWidth;
 
-      if (width <= 1023) {
+      if (width <= 959) {
         return { width: 272, height: 440 }; // 모바일 너비와 높이
-      } else if (width >= 1024 && width <= 1439) {
+      } else if (width >= 960 && width <= 1279) {
         return { width: 320, height: 466 }; // 태블릿 너비와 높이
-      } else if (width >= 1440) {
+      } else if (width >= 1280) {
         return { width: 380, height: 490 }; // 데스크톱 너비와 높이
       }
       return { width: 440, height: 490 }; // 기본값
@@ -502,7 +502,7 @@ export default {
       this.currentIndex = 0;
     },
     checkScreenSize() {
-      this.isMobile = window.innerWidth <= 1024;
+      this.isMobile = window.innerWidth <= 960;
     },
   },
 };

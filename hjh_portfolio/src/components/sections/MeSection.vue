@@ -1,12 +1,12 @@
 <template>
   <div
-    class="relative w-full h-full tablet:h-auto box-border bg-background-green tablet:pt-[86px] tablet:pb-[30px] xhd_uhd:pt-[rexd] xhd_uhd:pb-[91px] flex justify-center items-center tablet:items-center flex-col"
+    class="relative w-full h-full tablet:h-auto box-border bg-background-green tablet:pt-[86px] tablet:pb-[30px] largeDesktop:pt-[rexd] largeDesktop:pb-[91px] flex justify-center items-center tablet:items-center flex-col"
   >
     <div
-      class="absolute w-[322px] tablet:w-[864px] fhd_qhd:w-[1193px] bottom-[360px] tablet:bottom-[32px] xhd_uhd:bottom-[92px]"
+      class="absolute w-[322px] tablet:w-[864px] desktop:w-[1193px] bottom-[360px] tablet:bottom-[32px] largeDesktop:bottom-[92px]"
     >
       <div
-        class="flex flex-col items-center w-[175px] tablet:h-[340px] h-[225px] fhd_qhd:h-[228px] rounded-[50px] rounded-br-none bg-black-b00"
+        class="flex flex-col items-center w-[175px] tablet:h-[340px] h-[225px] desktop:h-[228px] rounded-[50px] rounded-br-none bg-black-b00"
       >
         <img
           class="w-[129px] h-[129px] mt-[23px] mb-[16px]"
@@ -25,10 +25,10 @@
       class="flex w-full h-full tablet:h-auto justify-center items-end tablet:items-center"
     >
       <div
-        class="flex items-center min-w-[322px] tablet:w-[864px] fhd_qhd:w-[1193px] h-[520px] tablet:h-[274px] fhd_qhd:h-[162px] tablet:rounded-[50px] rounded-tr-[50px] bg-black-b00"
+        class="flex items-center min-w-[322px] tablet:w-[864px] desktop:w-[1193px] h-[520px] tablet:h-[274px] desktop:h-[162px] tablet:rounded-[50px] rounded-tr-[50px] bg-black-b00"
       >
         <div
-          class="flex items-start tablet:items-center flex-wrap flex-col tablet:flex-row pt-[100px] tablet:pt-0 pl-[26px] tablet:pl-[196px] fhd_qhd:pl-[200px] tablet:pr-[49px]"
+          class="flex items-start tablet:items-center flex-wrap flex-col tablet:flex-row pt-[100px] tablet:pt-0 pl-[26px] tablet:pl-[196px] desktop:pl-[200px] tablet:pr-[49px]"
         >
           <div
             v-for="(item, index) in items"

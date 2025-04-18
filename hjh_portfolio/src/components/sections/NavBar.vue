@@ -8,14 +8,14 @@
     <ul
       class="flex justify-between items-center h-[60px] mr-[18px] ml-[36px] font-800 text-base"
     >
-      <li class="flex items-center">
+      <li class="flex items-center cursor-pointer">
         <img
           src="@/assets/image/logo.svg"
           alt="로고"
           class="h-[18px] w-[62px] object-contain"
         />
       </li>
-      <li class="flex tablet:hidden">
+      <li class="flex tablet:hidden cursor-pointer">
         <!-- 햄버거 버튼과 X 버튼 -->
         <img
           v-if="!isDropdownOpen"
@@ -77,6 +77,7 @@
             '',
             index !== dropdownItems.length - 1 ? 'mb-[16px]' : '', // 마지막 항목 제외
           ]"
+          class="cursor-pointer"
         >
           {{ item.label }}
         </li>

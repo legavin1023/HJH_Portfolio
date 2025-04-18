@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full h-full flex flex-col items-center justify-center">
     <p
-      class="full squiggly text-black-b900 text-[20px] tablet:text-[26px] fhd_qhd:text-[30px] text-center"
+      class="full squiggly text-black-b900 text-[20px] tablet:text-[26px] desktop:text-[30px] text-center"
     >
       (당연하겠지만)
     </p>
@@ -11,17 +11,17 @@
       class="w-full flex flex-col items-center justify-center mb-[170px] tablet:mb-[54px]"
     >
       <div
-        class="relative overflow-y-hidden w-full h-[50px] tablet:h-[70px] fhd_qhd:h-[90px]"
+        class="relative overflow-y-hidden w-full h-[50px] tablet:h-[70px] desktop:h-[90px]"
       >
         <div
-          class="absolute top-[102px] tablet:top-[142px] fhd_qhd:top-[182px] w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
+          class="absolute top-[102px] tablet:top-[142px] desktop:top-[182px] w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
           :style="{ transform: `translateY(-${currentIndex * 100}%)` }"
         >
           <!-- 슬라이드 텍스트 -->
           <div
             v-for="(text, index) in texts"
             :key="index"
-            class="w-full h-[90px] flex items-center justify-center leading-[50px] tablet:leading-[70px] fhd_qhd:leading-[90px] text-[38px] tablet:text-[50px] fhd_qhd:text-[60px] font-900 text-green-p300 text-nowrap"
+            class="w-full h-[90px] flex items-center justify-center leading-[50px] tablet:leading-[70px] desktop:leading-[90px] text-[38px] tablet:text-[50px] desktop:text-[60px] font-900 text-green-p300 text-nowrap"
           >
             <span> {{ text }}</span>
 
@@ -39,7 +39,7 @@
 
     <div class="relative w-full flex flex-col items-center justify-center">
       <div
-        class="flex w-[400px] tablet:w-[1500px] fhd_qhd:w-[1706px] absolute bottom-[0px] z-0 flex-row justify-between items-center mt-[50px]"
+        class="flex w-[400px] tablet:w-[1500px] desktop:w-[1706px] absolute bottom-[0px] z-0 flex-row justify-between items-center mt-[50px]"
       >
         <!-- 왼쪽 이미지 그룹 -->
         <div class="w-[80px] tablet:w-[278px] h-[400px] relative">
@@ -52,7 +52,7 @@
               'floating absolute',
               'w-[34px]',
               'tablet:w-[60px]',
-              'fhd_qhd:w-[72px]',
+              'desktop:w-[72px]',
             ]"
             :style="{
               animationDuration: `${image.duration}s`,
@@ -72,7 +72,7 @@
               'floating absolute',
               'w-[34px]',
               'tablet:w-[60px]',
-              'fhd_qhd:w-[72px]',
+              'desktop:w-[72px]',
             ]"
             :style="{
               animationDuration: `${image.duration}s`,
@@ -84,7 +84,7 @@
       </div>
 
       <div
-        class="absolute tablet:relative w-full tablet:w-[724px] fhd_qhd:w-[794px] h-[225px] border bg-black-b00 border-black-b40 tablet:rounded-t-[30px] tablet:rounded-b-[40px] flex flex-col overflow-x-hidden"
+        class="absolute tablet:relative w-full tablet:w-[724px] desktop:w-[794px] h-[225px] border bg-black-b00 border-black-b40 tablet:rounded-t-[30px] tablet:rounded-b-[40px] flex flex-col overflow-x-hidden"
       >
         <div
           class="flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
@@ -186,7 +186,7 @@
     </div>
 
     <div
-      class="hidden tablet:flex justify-center tablet:w-[680px] fhd_qhd:w-[694px] relative bottom-[80px] z-50"
+      class="hidden tablet:flex justify-center tablet:w-[680px] desktop:w-[694px] relative bottom-[80px] z-50"
     >
       <!-- 이전 슬라이드 버튼 -->
       <SlideButton direction="prev" :onClick="prevSlide" />
@@ -227,7 +227,7 @@ export default {
           positions: {
             mobile: { top: "80px", left: "90px" }, // 모바일
             tablet: { top: "0px", left: "335px" }, // 태블릿
-            fhd_qhd: { top: "0px", left: "335px" }, // 데스크톱
+            desktop: { top: "0px", left: "335px" }, // 데스크톱
           },
         },
         {
@@ -237,7 +237,7 @@ export default {
           positions: {
             mobile: { top: "160px", left: "30px" }, // 모바일
             tablet: { top: "325px", left: "275px" }, // 태블릿
-            fhd_qhd: { top: "325px", left: "275px" }, // 데스크톱
+            desktop: { top: "325px", left: "275px" }, // 데스크톱
           },
         },
         {
@@ -247,7 +247,7 @@ export default {
           positions: {
             mobile: { top: "240px", left: "70px" }, // 모바일
             tablet: { top: "155px", left: "200px" }, // 태블릿
-            fhd_qhd: { top: "155px", left: "100px" }, // 데스크톱
+            desktop: { top: "155px", left: "100px" }, // 데스크톱
           },
         },
       ],
@@ -259,7 +259,7 @@ export default {
           positions: {
             mobile: { top: "80px", left: "-40px" }, // 모바일
             tablet: { top: "0px", left: "-80px" }, // 태블릿
-            fhd_qhd: { top: "0px", left: "-80px" }, // 데스크톱
+            desktop: { top: "0px", left: "-80px" }, // 데스크톱
           },
         },
         {
@@ -269,7 +269,7 @@ export default {
           positions: {
             mobile: { top: "160px", left: "18px" }, // 모바일
             tablet: { top: "155px", left: "12px" }, // 태블릿
-            fhd_qhd: { top: "155px", left: "112px" }, // 데스크톱
+            desktop: { top: "155px", left: "112px" }, // 데스크톱
           },
         },
         {
@@ -279,7 +279,7 @@ export default {
           positions: {
             mobile: { top: "240px", left: "-30px" }, // 모바일
             tablet: { top: "325px", left: "-40px" }, // 태블릿
-            fhd_qhd: { top: "325px", left: "-40px" }, // 데스크톱
+            desktop: { top: "325px", left: "-40px" }, // 데스크톱
           },
         },
       ],
@@ -297,17 +297,17 @@ export default {
     getPosition(positions) {
       const width = window.innerWidth;
 
-      if (width <= 1023) {
+      if (width <= 959) {
         return {
           ...positions.mobile,
         };
-      } else if (width >= 1024 && width <= 1439) {
+      } else if (width >= 960 && width <= 1279) {
         return {
           ...positions.tablet,
         };
-      } else if (width >= 1440) {
+      } else if (width >= 1280) {
         return {
-          ...positions.fhd_qhd,
+          ...positions.desktop,
         };
       }
     },

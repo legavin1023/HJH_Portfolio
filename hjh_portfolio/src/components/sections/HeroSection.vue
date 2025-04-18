@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center">
     <div
-      class="text-box relative flex justify-between items-center flex-col tablet:flex-row tablet:w-[898px] fhd_qhd:w-[1260px]"
+      class="text-box relative flex justify-between items-center flex-col tablet:flex-row tablet:w-[898px] desktop:w-[1260px]"
     >
       <div
         class="flex flex-col justify-center items-center tablet:justify-start tablet:items-start"
@@ -62,19 +62,19 @@
           />
         </div>
         <p
-          class="squiggly block font-800 mt-[14px] text-[20px] mobile:text-[26px] fhd_qhd:text-[30px] text-black-b750"
+          class="squiggly block font-800 mt-[14px] text-[20px] mobile:text-[26px] desktop:text-[30px] text-black-b750"
         >
           언제나 디자이너의 본분을 잊지 말자!
         </p>
         <img
-          class="mt-[79px] hidden tablet:block tablet:w-[201px] fhd_qhd:w-[342px]"
+          class="mt-[79px] hidden tablet:block tablet:w-[201px] desktop:w-[342px]"
           src="@/assets/image/backgrounds/tree.svg"
           alt=""
         />
       </div>
       <!-- 애니메이션 -->
       <LottieAnimation
-        customClass="relative tablet:absolute tablet:top-0 tablet:right-[-50px] w-[268px] tablet:w-[416px] fhd_qhd:w-[590px]  mt-[39px] mb-[56px] tablet:mb-0 tablet:mt-0"
+        customClass="relative tablet:absolute tablet:top-0 tablet:right-[-50px] w-[268px] tablet:w-[416px] desktop:w-[590px]  mt-[39px] mb-[56px] tablet:mb-0 tablet:mt-0"
       />
     </div>
     <!-- 애니메이션 제어 버튼 -->
