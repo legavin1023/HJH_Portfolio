@@ -76,7 +76,7 @@
             class="flex justify-center border-[1px] desktop:border-none w-full tablet:w-auto bg-black-b00 desktop:bg-none tablet:bg-opacity-0 py-[24px]"
           >
             <!-- PortfolioButton 사용 -->
-            <PortfolioButton :liveUrl="content.liveUrl" class="w-[90%]">
+            <PortfolioButton :liveUrl="content.liveUrl">
               실서비스 페이지
             </PortfolioButton>
           </div>

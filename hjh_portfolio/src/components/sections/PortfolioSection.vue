@@ -14,7 +14,9 @@
         >포트폴리오</span
       >
       <br v-show="isMobile" />
-      <span class="font-700 text-black-b900">보실까요?</span>
+      <span class="font-700 text-black-b900 relative top-[10px] pl-[20px]"
+        >보실까요?</span
+      >
     </div>
 
     <div class="relative w-[322px] tablet:w-[864px] desktop:w-[1193px] mx-auto">
@@ -400,12 +402,12 @@ export default {
   mounted() {
     window.addEventListener("resize", this.updateSlideDimensions);
     this.updateSlideDimensions(); // 초기화
-    this.checkScreenSize();
-    window.addEventListener("resize", this.checkScreenSize);
+    this.checkIsMobile();
+    window.addEventListener("resize", this.checkIsMobile);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.updateSlideDimensions);
-    window.removeEventListener("resize", this.checkScreenSize);
+    window.removeEventListener("resize", this.checkIsMobile);
   },
   methods: {
     //w-[270px] h-[440px] mobile:w-[320px] mobile:h-[466px] desktop:w-[320px] desktop:h-[490px]
@@ -501,7 +503,7 @@ export default {
       // 슬라이드 인덱스를 맨 앞으로 초기화
       this.currentIndex = 0;
     },
-    checkScreenSize() {
+    checkIsMobile() {
       this.isMobile = window.innerWidth <= 960;
     },
   },

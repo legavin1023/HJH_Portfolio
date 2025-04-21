@@ -1,8 +1,9 @@
 <template>
   <div
     ref="scrollContainer"
-    class="relative bottom-0 snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden bg-red-100 tablet:bg-blue-100 desktop:bg-green-100 largeDesktop:bg-yellow-100"
+    class="relative bottom-0 snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden"
   >
+    <!-- bg-red-100 tablet:bg-blue-100 desktop:bg-green-100 largeDesktop:bg-yellow-100 -->
     <NavBar />
     <div
       class="relative bottom-0 snap-start h-full flex flex-col items-center justify-center"
@@ -60,41 +61,71 @@ export default {
     SiteFooter,
   },
 
+  data() {
+    return {
+      isScrolling: false, // 스크롤 중인지 여부
+    };
+  },
+
   methods: {
     enableSmoothScroll() {
       const container = this.$refs.scrollContainer;
 
-      let isScrolling;
       container.addEventListener("wheel", (event) => {
-        // 모달이 열려 있으면 스크롤 동작을 막지 않음
         const isModalOpen = document.body.classList.contains("no-scroll");
-        if (isModalOpen) return;
+        if (isModalOpen || this.isScrolling) return;
 
         event.preventDefault();
 
-        clearTimeout(isScrolling);
+        const delta = event.deltaY > 0 ? 1 : -1; // 스크롤 방향
+        const sectionHeight = window.innerHeight; // 한 섹션의 높이
+        const scrollAmount = container.scrollTop + delta * sectionHeight; // 이동 거리 계산
 
-        const delta = event.deltaY > 0 ? 1 : -1;
-        const scrollAmount = container.scrollTop + delta * window.innerHeight;
+        this.isScrolling = true;
 
         container.scrollTo({
           top: scrollAmount,
-          behavior: "smooth",
+          behavior: "smooth", // 부드러운 스크롤
         });
 
-        // Prevent rapid scrolling
-        isScrolling = setTimeout(() => {
-          isScrolling = null;
-        }, 500);
+        setTimeout(() => {
+          this.isScrolling = false;
+        }, 1500); // 1.5초 딜레이
       });
     },
+
+    adjustForNavBar() {
+      const isSafeAreaSupported =
+        window.CSS &&
+        CSS.supports("padding-bottom: env(safe-area-inset-bottom)");
+      if (!isSafeAreaSupported) {
+        const navBar = document.querySelector("nav");
+        if (navBar) {
+          const navBarHeight = navBar.offsetHeight;
+          const targetElement = this.$refs.scrollContainer; // 조정할 요소
+          if (targetElement) {
+            targetElement.style.paddingBottom = `${navBarHeight}px`;
+          }
+        }
+      }
+    },
   },
+
   mounted() {
     this.enableSmoothScroll();
+    this.adjustForNavBar(); // 네비게이션 바 높이 조정
+    window.addEventListener("resize", this.adjustForNavBar); // 창 크기 변경 시 다시 계산
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.adjustForNavBar); // 이벤트 리스너 제거
   },
 };
 </script>
 
 <style scoped>
-/* 홈 페이지 스타일을 여기에 추가할 수 있습니다. */
+/* 네비게이션 바 높이를 고려한 패딩 추가 */
+.target-element {
+  padding-bottom: env(safe-area-inset-bottom);
+}
 </style>

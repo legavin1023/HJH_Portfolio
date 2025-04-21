@@ -1,7 +1,7 @@
 <template>
   <button
     :disabled="!liveUrl"
-    class="flex justify-between pl-[26px] pr-[16px] w-[186px] h-[46px] rounded-full text-[16px] text-center leading-[46px] transition-colors duration-300 ease-in-out"
+    class="flex justify-between pl-[26px] pr-[16px] w-[200px] h-[46px] rounded-full text-[16px] text-center leading-[46px] transition-colors duration-300 ease-in-out"
     :class="[
       !liveUrl
         ? 'bg-black-b40 text-black-b80 cursor-not-allowed'

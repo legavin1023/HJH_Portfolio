@@ -1,5 +1,7 @@
 <template>
-  <div class="relative w-full h-full flex flex-col items-center justify-center">
+  <div
+    class="relative w-full h-full flex flex-col items-center justify-center pt-[20px]"
+  >
     <p
       class="full squiggly text-black-b900 text-[20px] tablet:text-[26px] desktop:text-[30px] text-center"
     >
@@ -23,17 +25,20 @@
             :key="index"
             class="w-full h-[90px] flex items-center justify-center leading-[50px] tablet:leading-[70px] desktop:leading-[90px] text-[38px] tablet:text-[50px] desktop:text-[60px] font-900 text-green-p300 text-nowrap"
           >
-            <span> {{ text }}</span>
+            <span> {{ text }} </span>
 
-            <span class="font-700 text-black-b900 hidden tablet:block"
-              >할 줄 알아요!</span
+            <span
+              class="font-700 text-black-b900 hidden tablet:block pl-[20px]"
+            >
+              할 줄 알아요!</span
             >
           </div>
         </div>
       </div>
       <span
         class="mt-[6px] font-700 text-center text-black-b900 tablet:hidden leading-[50px] text-[38px]"
-        >할 줄 알아요!</span
+      >
+        할 줄 알아요!</span
       >
     </div>
 
@@ -87,20 +92,34 @@
         class="absolute tablet:relative w-full tablet:w-[724px] desktop:w-[794px] h-[225px] border bg-black-b00 border-black-b40 tablet:rounded-t-[30px] tablet:rounded-b-[40px] flex flex-col overflow-x-hidden"
       >
         <div
-          class="flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
+          class="relative flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
         >
-          <span
-            v-for="(text, index) in texts"
-            :key="index"
-            :style="{
-              backgroundColor: currentIndex === index ? '#2B7FFF' : '',
-              borderColor: currentIndex === index ? '#2B7FFF' : '',
-              color: currentIndex === index ? 'white' : '',
-            }"
-            class="text-[14px] text-[#3C7BDC] rounded-full border flex-shrink-0 border-blue-b75 mr-[4px] ml-[4px] bg-[#F2F7FF] px-[14px] py-[8px] leading-none"
+          <div
+            class="transition-transform flex"
+            :style="
+              isMobile
+                ? {
+                    transform: `translateX(calc(50% - ${getButtonOffset(
+                      currentIndex
+                    )}px))`,
+                  }
+                : {}
+            "
           >
-            {{ text }}
-          </span>
+            <button
+              v-for="(text, index) in texts"
+              :key="index"
+              @click="goToSlide(index)"
+              :style="{
+                backgroundColor: currentIndex === index ? '#2B7FFF' : '',
+                borderColor: currentIndex === index ? '#2B7FFF' : '',
+                color: currentIndex === index ? 'white' : '',
+              }"
+              class="text-[14px] text-[#3C7BDC] rounded-full border flex-shrink-0 border-blue-b75 mr-[4px] ml-[4px] bg-[#F2F7FF] px-[14px] py-[8px] leading-none transition-colors duration-300 ease-in-out"
+            >
+              {{ text }}
+            </button>
+          </div>
         </div>
         <div
           class="relative w-full border-2 h-[152px] flex flex-col justify-center overflow-x-hidden"
@@ -217,8 +236,11 @@ export default {
       currentIndex: 0, // 현재 슬라이드 인덱스
       transitionKey: 0, // ReusableTransition을 재생성하기 위한 key
       progress: 0,
+      buttonWidth: 120, // 버튼의 너비 (px)
       slideInterval: null, // 슬라이드 타이머
       isPaused: false, // 슬라이드쇼 상태
+      scrollOffset: 0, // 현재 스크롤 오프셋
+      isMobile: false, // 모바일 여부
       imagesLeft: [
         {
           src: FigmaImage,
@@ -288,12 +310,38 @@ export default {
     };
   },
   computed: {
-    visibleTexts() {
-      // 현재 슬라이드에 해당하는 텍스트만 반환
-      return [this.texts[this.currentIndex]];
+    infiniteTexts() {
+      return [
+        this.texts[this.texts.length - 1], // 마지막 텍스트를 맨 앞에 추가
+        ...this.texts,
+        this.texts[0], // 첫 번째 텍스트를 맨 뒤에 추가
+      ];
     },
   },
   methods: {
+    goToSlide(index) {
+      // 슬라이드 이동
+      this.currentIndex = index;
+      this.updateProgress(); // 진행 상태 업데이트
+      this.resetSlideInterval(); // 타이머 초기화
+    },
+    getButtonOffset(index) {
+      // 현재 버튼까지의 너비를 계산하여 중앙 정렬
+      const buttonWidths = this.texts.map((text) =>
+        this.calculateButtonWidth(text)
+      );
+      const totalWidth = buttonWidths
+        .slice(0, index)
+        .reduce((acc, width) => acc + width, 0);
+      const currentButtonWidth = buttonWidths[index] / 2;
+      return totalWidth + currentButtonWidth;
+    },
+    calculateButtonWidth(text) {
+      // 글자 수에 따라 버튼 너비 계산 (기본 글자당 14px + 패딩)
+      const baseWidth = 14; // 글자당 기본 너비 (px)
+      const padding = 32; // 좌우 패딩 (px)
+      return text.length * baseWidth + padding;
+    },
     getPosition(positions) {
       const width = window.innerWidth;
 
@@ -326,9 +374,7 @@ export default {
         this.resetSlideInterval(); // 타이머 초기화
       }
     },
-    resetTransition() {
-      this.transitionKey += 1; // key 값을 변경하여 컴포넌트를 재생성
-    },
+
     updateProgress() {
       this.progress = 0; // 슬라이드 변경 시 즉시 0으로 초기화
       const targetProgress = this.percentages[this.currentIndex];
@@ -346,6 +392,7 @@ export default {
       }, 0); // 0ms 지연 후 진행 시작
     },
     resetSlideInterval() {
+      // 슬라이드 타이머 초기화
       if (this.slideInterval) {
         clearInterval(this.slideInterval);
       }
@@ -353,22 +400,20 @@ export default {
         this.nextSlide();
       }, 4000); // 4초마다 슬라이드 변경
     },
-    toggleSlideShow() {
-      this.isPaused = !this.isPaused;
 
-      if (this.isPaused) {
-        clearInterval(this.slideInterval); // 슬라이드쇼 멈춤
-      } else {
-        this.resetSlideInterval(); // 슬라이드쇼 다시 시작
-      }
+    checkIsMobile() {
+      this.isMobile = window.innerWidth <= 960;
     },
   },
   mounted() {
     this.resetSlideInterval(); // 컴포넌트가 마운트될 때 타이머 설정
     this.updateProgress();
+    this.checkIsMobile();
+    window.addEventListener("resize", this.checkIsMobile); // 창 크기 변경 시 모바일 여부 업데이트
   },
   beforeUnmount() {
     clearInterval(this.slideInterval); // 컴포넌트가 언마운트될 때 타이머 제거
+    window.removeEventListener("resize", this.checkIsMobile); // 이벤트 리스너 제거
   },
 };
 </script>
@@ -409,5 +454,12 @@ export default {
   100% {
     transform: translateY(0);
   }
+}
+</style>
+
+<style scoped>
+/* 부드러운 이동 애니메이션 */
+.transition-transform {
+  transition: transform 0.5s ease-in-out;
 }
 </style>
