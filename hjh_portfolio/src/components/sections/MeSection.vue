@@ -1,57 +1,66 @@
 <template>
   <div
-    class="relative w-full h-full tablet:h-auto box-border bg-background-green tablet:pt-[86px] tablet:pb-[30px] largeDesktop:pt-[rexd] largeDesktop:pb-[91px] flex justify-center items-center tablet:items-center flex-col"
+    class="flex justify-center items-center tablet:items-center flex-col relative w-full h-full tablet:h-[70%] desktop:h-[36%] largeDesktop:h-[60%] desktop:min-h-[278px] tablet:min-h-[388px] tablet:max-h-[447px] desktop:max-h-[500px] largeDesktop:max-h-[600px] box-border bg-background-green tablet:pt-[86px] tablet:pb-[30px] largeDesktop:pt-[69px] largeDesktop:pb-[91px]"
   >
     <div
-      class="absolute w-[322px] tablet:w-[864px] desktop:w-[1193px] bottom-[360px] tablet:bottom-[32px] largeDesktop:bottom-[92px]"
+      class="relative w-full h-full flex justify-center items-center min-h-[278px] tablet:min-h-[388px] desktop:min-h-[447px]"
     >
       <div
-        class="flex flex-col items-center w-[175px] tablet:h-[340px] h-[225px] desktop:h-[228px] rounded-[50px] rounded-br-none bg-black-b00"
-      >
-        <img
-          class="w-[129px] h-[129px] mt-[23px] mb-[16px]"
-          src="@/assets/image/backgrounds/hong.png"
-          alt=""
-        />
-        <p
-          class="text-[22px] tablet:text-[26px] font-800 text-black-b800 absolute top-[90px] left-[182px] tablet:relative tablet:top-[0px] tablet:left-[0px] text-nowrap"
-        >
-          <span class="text-black-b80">@ </span>홍지혜
-        </p>
-      </div>
-    </div>
-
-    <div
-      class="flex w-full h-full tablet:h-auto justify-center items-end tablet:items-center"
-    >
-      <div
-        class="flex items-center min-w-[322px] tablet:w-[864px] desktop:w-[1193px] h-[520px] tablet:h-[274px] desktop:h-[162px] tablet:rounded-[50px] rounded-tr-[50px] bg-black-b00"
+        class="relative flex items-end h-full mt-[70px] tablet:mt-[0px] tablet:h-auto tablet:bottom-[34px] w-[322px] tablet:w-[864px] desktop:w-[1193px]"
       >
         <div
-          class="flex items-start tablet:items-center flex-wrap flex-col tablet:flex-row pt-[100px] tablet:pt-0 pl-[26px] tablet:pl-[196px] desktop:pl-[200px] tablet:pr-[49px]"
+          class="relative bottom-[80px] tablet:bottom-[0px] flex flex-col items-center w-[175px] h-[78%] min-h-[225px] max-h-[640px] tablet:h-[340px] tablet:min-h-[340px] desktop:h-[225px] desktop:min-h-[225px] rounded-[50px] rounded-br-none bg-black-b00"
+        >
+          <img
+            class="z-20 w-[129px] h-[129px] mt-[23px] mb-[16px]"
+            src="@/assets/image/backgrounds/hong.png"
+            alt=""
+          />
+          <p
+            class="z-20 hidden tablet:block absolute left-[182px] tablet:relative tablet:top-[0px] tablet:left-[0px] text-[22px] tablet:text-[26px] font-800 text-black-b800 text-nowrap"
+          >
+            <span class="text-black-b80">@ </span>홍지혜
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="flex justify-end items-end h-full mt-[50px] tablet:h-auto absolute w-[322px] tablet:w-[864px] desktop:w-[1193px]"
+      >
+        <div
+          class="relative flex items-center bottom-[27px] min-w-[322px] tablet:w-[864px] desktop:w-[1193px] h-[78%] min-h-[495px] max-h-[640px] tablet:h-[274px] tablet:min-h-[274px] desktop:h-[162px] desktop:min-h-[162px] tablet:rounded-[50px] rounded-tr-[50px] bg-black-b00"
         >
           <div
-            v-for="(item, index) in items"
-            :key="index"
-            :class="[
-              'relative inline-block items-center space-x-2 mx-[4px] my-[3px] tablet:my-[7px] px-[20px] py-[9px] font-700  rounded-full overflow-hidden bg-black-b30',
-              {
-                'active-div': activeIndex === index,
-              },
-            ]"
+            class="flex relative items-start tablet:items-center flex-wrap flex-col tablet:flex-row pt-[100px] tablet:pt-0 pl-[26px] tablet:pl-[196px] desktop:pl-[200px] tablet:pr-[49px]"
           >
-            <!-- 텍스트 -->
-            <img :src="item.imgSrc" alt="" class="inline relative z-10" />
-            <span
-              class="text-[14px] tablet:text-[18px] p relative z-10 text-black-b800"
-              :class="{ 'active-slide-text': activeIndex === index }"
-              >{{ item.text }}</span
+            <p
+              class="block tablet:hidden absolute top-[29px] right-[14%] text-[22px] tablet:text-[26px] font-800 text-black-b800 text-nowrap"
             >
-            <!-- 애니메이션 배경 -->
-            <!-- <div
+              <span class="text-black-b80">@ </span>홍지혜
+            </p>
+            <div
+              v-for="(item, index) in items"
+              :key="index"
+              :class="[
+                'relative inline-block items-center space-x-2 mx-[4px] my-[3px] tablet:my-[7px] px-[20px] py-[9px] font-700  rounded-full overflow-hidden bg-black-b30',
+                {
+                  'active-div': activeIndex === index,
+                },
+              ]"
+            >
+              <!-- 텍스트 -->
+              <img :src="item.imgSrc" alt="" class="inline relative" />
+              <span
+                class="text-[14px] tablet:text-[18px] p relative text-black-b800"
+                :class="{ 'active-slide-text': activeIndex === index }"
+                >{{ item.text }}</span
+              >
+              <!-- 애니메이션 배경 -->
+              <!-- <div
               class="absolute top-0 left-0 w-full h-full bg-background-blue rounded-full opacity-0"
               :class="{ 'active-slide': activeIndex === index }"
             ></div> -->
+            </div>
           </div>
         </div>
       </div>

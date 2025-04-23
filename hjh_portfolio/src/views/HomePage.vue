@@ -61,89 +61,41 @@ export default {
     SiteFooter,
   },
 
-  data() {
-    return {
-      isScrolling: false, // 스크롤 중인지 여부
-      currentSection: 0, // 현재 섹션 인덱스
-    };
-  },
-
   methods: {
     enableSmoothScroll() {
       const container = this.$refs.scrollContainer;
-      const sections = container.querySelectorAll(".snap-start"); // 각 섹션 선택
 
+      let isScrolling;
       container.addEventListener("wheel", (event) => {
+        // 모달이 열려 있으면 스크롤 동작을 막지 않음
         const isModalOpen = document.body.classList.contains("no-scroll");
-        if (isModalOpen || this.isScrolling) return;
+        if (isModalOpen) return;
 
         event.preventDefault();
 
-        const delta = event.deltaY > 0 ? 1 : -1; // 스크롤 방향
-        const maxSectionIndex = sections.length - 1;
+        clearTimeout(isScrolling);
 
-        // 현재 섹션 인덱스 업데이트
-        this.currentSection = Math.min(
-          Math.max(this.currentSection + delta, 0),
-          maxSectionIndex
-        );
+        const delta = event.deltaY > 0 ? 1 : -1;
+        const scrollAmount = container.scrollTop + delta * window.innerHeight;
 
-        // 스크롤 중 플래그 설정
-        this.isScrolling = true;
+        container.scrollTo({
+          top: scrollAmount,
+          behavior: "smooth",
+        });
 
-        // 선택된 섹션으로 스크롤 이동
-        const targetSection = sections[this.currentSection];
-        if (targetSection) {
-          container.scrollTo({
-            top: targetSection.offsetTop,
-            behavior: "smooth", // 부드러운 스크롤
-          });
-        }
-
-        // 일정 시간 후 스크롤 가능하도록 설정
-        setTimeout(() => {
-          this.isScrolling = false;
-        }, 1500); // 1.5초 딜레이
+        // Prevent rapid scrolling
+        isScrolling = setTimeout(() => {
+          isScrolling = null;
+        }, 500);
       });
     },
-
-    adjustForNavBar() {
-      const isSafeAreaSupported =
-        window.CSS &&
-        CSS.supports("padding-bottom: env(safe-area-inset-bottom)");
-      const targetElement = this.$refs.scrollContainer;
-
-      if (targetElement) {
-        if (isSafeAreaSupported) {
-          // CSS로 안전 영역 패딩 적용
-          targetElement.style.paddingBottom = "env(safe-area-inset-bottom)";
-        } else {
-          // JavaScript로 네비게이션 바 높이 계산
-          const navBar = document.querySelector("nav");
-          if (navBar) {
-            const navBarHeight = navBar.offsetHeight;
-            targetElement.style.paddingBottom = `${navBarHeight}px`;
-          }
-        }
-      }
-    },
   },
-
   mounted() {
     this.enableSmoothScroll();
-    this.adjustForNavBar(); // 네비게이션 바 높이 조정
-    window.addEventListener("resize", this.adjustForNavBar); // 창 크기 변경 시 다시 계산
-  },
-
-  beforeUnmount() {
-    window.removeEventListener("resize", this.adjustForNavBar); // 이벤트 리스너 제거
   },
 };
 </script>
 
 <style scoped>
-/* 네비게이션 바 높이를 고려한 패딩 추가 */
-.target-element {
-  padding-bottom: env(safe-area-inset-bottom);
-}
+/* 홈 페이지 스타일을 여기에 추가할 수 있습니다. */
 </style>

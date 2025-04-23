@@ -92,16 +92,14 @@
         class="absolute tablet:relative w-full tablet:w-[724px] desktop:w-[794px] h-[225px] border bg-black-b00 border-black-b40 tablet:rounded-t-[30px] tablet:rounded-b-[40px] flex flex-col overflow-x-hidden"
       >
         <div
-          class="relative flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
+          class="relative pl-[10px] flex justify-center items-center w-full font-800 h-[75px] text-center py-4 bg-black-b20 border-b-[1px] border-black-b40"
         >
           <div
             class="transition-transform flex"
             :style="
               isMobile
                 ? {
-                    transform: `translateX(calc(50% - ${getButtonOffset(
-                      currentIndex
-                    )}px))`,
+                    transform: `translateX(-${getContainerOffset()}px)`,
                   }
                 : {}
             "
@@ -326,15 +324,31 @@ export default {
       this.resetSlideInterval(); // 타이머 초기화
     },
     getButtonOffset(index) {
-      // 현재 버튼까지의 너비를 계산하여 중앙 정렬
+      // 현재 버튼까지의 너비를 계산하여 왼쪽 기준으로 이동
       const buttonWidths = this.texts.map((text) =>
         this.calculateButtonWidth(text)
       );
       const totalWidth = buttonWidths
-        .slice(0, index)
+        .slice(0, index) // 현재 인덱스 이전 버튼들의 너비 합산
         .reduce((acc, width) => acc + width, 0);
-      const currentButtonWidth = buttonWidths[index] / 2;
-      return totalWidth + currentButtonWidth;
+      return totalWidth; // 왼쪽 기준으로 이동
+    },
+    getContainerOffset() {
+      const buttonWidths = this.texts.map((text) =>
+        this.calculateButtonWidth(text)
+      );
+      const containerWidth = this.$el.offsetWidth; // 화면에 보이는 컨테이너 너비
+      const currentOffset = buttonWidths
+        .slice(0, this.currentIndex) // 현재 인덱스 이전 버튼들의 너비 합산
+        .reduce((acc, width) => acc + width, 0);
+
+      // 버튼이 화면을 넘어갈 때만 이동
+      if (currentOffset + buttonWidths[this.currentIndex] > containerWidth) {
+        return currentOffset + buttonWidths[this.currentIndex] - containerWidth;
+      } else if (currentOffset < 0) {
+        return 0; // 왼쪽 끝에 고정
+      }
+      return 0; // 이동하지 않음
     },
     calculateButtonWidth(text) {
       // 글자 수에 따라 버튼 너비 계산 (기본 글자당 14px + 패딩)
