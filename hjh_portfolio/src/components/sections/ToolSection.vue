@@ -336,6 +336,10 @@ export default {
       return totalWidth; // 왼쪽 기준으로 이동
     },
     getContainerOffset() {
+      // 모바일이 아닐 경우 이동하지 않음
+      if (!this.isMobile) {
+        return 0; // 항상 0으로 유지
+      }
       const buttonWidths = this.texts.map((text) =>
         this.calculateButtonWidth(text)
       );
