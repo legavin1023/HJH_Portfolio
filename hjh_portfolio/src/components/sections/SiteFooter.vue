@@ -44,7 +44,7 @@
           ]"
           @mouseenter="changeState(item, 'hover')"
           @mouseleave="changeState(item, 'normal')"
-          @click="changeState(item, 'disabled')"
+          @click="handleDropdownClick(item)"
           class="last:mb-0"
         >
           <a
@@ -64,10 +64,14 @@
         </div>
       </div>
     </div>
+
+    <!-- ContactModal -->
+    <ContactModal v-if="isContactModalOpen" @close="closeContactModal" />
   </footer>
 </template>
 
 <script>
+import ContactModal from "@/components/partials/ContactModal.vue";
 import arrowOutwardNo from "@/assets/image/icons/arrow_outward_no.svg";
 import arrowOutwardHover from "@/assets/image/icons/arrow_outward_hover.svg";
 import arrowOutward from "@/assets/image/icons/arrow_outward.svg";
@@ -76,9 +80,13 @@ import addIcon from "@/assets/image/icons/add.svg"; // 버튼에서 사용
 
 export default {
   name: "SiteFooter",
+  components: {
+    ContactModal,
+  },
   data() {
     return {
       isDropdownOpen: false, // 드롭다운 상태
+      isContactModalOpen: false, // ContactModal 상태
       dropdownWidth: 0, // 드롭다운 메뉴의 최소 너비
       dropdownItems: [
         {
@@ -87,12 +95,6 @@ export default {
           href: "#",
           state: "disabled", // 초기 상태
         },
-
-        // id: 2,
-        // label: "깃헙 바로가기",
-        // href: "#",
-        // state: "normal", // 초기 상태
-
         {
           id: 3,
           label: "프로젝트 협업 문의",
@@ -103,6 +105,10 @@ export default {
     };
   },
   methods: {
+    closeModal() {
+      this.activeSlide = null;
+      this.isModalVisible = false;
+    },
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
       if (this.isDropdownOpen) {
@@ -131,13 +137,21 @@ export default {
     changeState(item, newState) {
       item.state = newState;
     },
+    handleDropdownClick(item) {
+      if (item.label === "프로젝트 협업 문의") {
+        this.openContactModal();
+      }
+    },
+    openContactModal() {
+      document.body.classList.add("no-scroll"); // 스크롤 비활성화
+      this.isContactModalOpen = true;
+    },
+    closeContactModal() {
+      this.isContactModalOpen = false; // 모달 닫기
+      document.body.classList.remove("no-scroll"); // 스크롤 활성화
+    },
   },
 };
 </script>
 
-<style scoped>
-/* 드롭다운 메뉴를 감싸는 div의 패딩 */
-div[v-if] {
-  padding: 18px 30px; /* x: 30px, y: 18px */
-}
-</style>
+<style scoped></style>
