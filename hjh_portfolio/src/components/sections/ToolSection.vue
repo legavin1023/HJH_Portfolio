@@ -96,13 +96,7 @@
         >
           <div
             class="transition-transform flex"
-            :style="
-              isMobile
-                ? {
-                    transform: `translateX(-${getContainerOffset()}px)`,
-                  }
-                : {}
-            "
+            :style="{ transform: `translateX(-${getContainerOffset()}px)` }"
           >
             <button
               v-for="(text, index) in texts"
@@ -113,7 +107,7 @@
                 borderColor: currentIndex === index ? '#2B7FFF' : '',
                 color: currentIndex === index ? 'white' : '',
               }"
-              class="text-[14px] text-[#3C7BDC] rounded-full border flex-shrink-0 border-blue-b75 mr-[4px] ml-[4px] bg-[#F2F7FF] px-[14px] py-[8px] leading-none transition-colors duration-300 ease-in-out"
+              class="text-[14px] text-[#3C7BDC] rounded-full border flex-shrink-0 border-blue-b75 mx-[4px] bg-[#F2F7FF] px-[14px] py-[8px] leading-none transition-colors duration-300 ease-in-out"
             >
               {{ text }}
             </button>
@@ -234,7 +228,7 @@ export default {
       currentIndex: 0, // 현재 슬라이드 인덱스
       transitionKey: 0, // ReusableTransition을 재생성하기 위한 key
       progress: 0,
-      buttonWidth: 120, // 버튼의 너비 (px)
+      buttonWidth: 0, // 버튼의 너비 (px)
       slideInterval: null, // 슬라이드 타이머
       isPaused: false, // 슬라이드쇼 상태
       scrollOffset: 0, // 현재 스크롤 오프셋
@@ -318,6 +312,14 @@ export default {
   },
   methods: {
     goToSlide(index) {
+      // 끝에서 3개의 버튼일 경우 이동하지 않음
+      if (index >= this.texts.length - 3) {
+        this.currentIndex = index; // 값은 변경
+        this.updateProgress(); // 진행 상태 업데이트
+        this.resetSlideInterval(); // 타이머 초기화
+        return; // 이동 로직 생략
+      }
+
       // 슬라이드 이동
       this.currentIndex = index;
       this.updateProgress(); // 진행 상태 업데이트
@@ -337,18 +339,20 @@ export default {
       const buttonWidths = this.texts.map((text) =>
         this.calculateButtonWidth(text)
       );
-      const containerWidth = this.$el.offsetWidth; // 화면에 보이는 컨테이너 너비
+
+      // 끝에서 3개의 버튼일 경우 이동하지 않음
+      if (this.currentIndex >= this.texts.length - 3) {
+        return buttonWidths
+          .slice(0, this.texts.length - 3) // 끝에서 3개의 버튼 이전까지만 계산
+          .reduce((acc, width) => acc + width, 0);
+      }
+
+      // 일반적인 경우
       const currentOffset = buttonWidths
         .slice(0, this.currentIndex) // 현재 인덱스 이전 버튼들의 너비 합산
         .reduce((acc, width) => acc + width, 0);
 
-      // 버튼이 화면을 넘어갈 때만 이동
-      if (currentOffset + buttonWidths[this.currentIndex] > containerWidth) {
-        return currentOffset + buttonWidths[this.currentIndex] - containerWidth;
-      } else if (currentOffset < 0) {
-        return 0; // 왼쪽 끝에 고정
-      }
-      return 0; // 이동하지 않음
+      return currentOffset; // 현재 버튼까지의 총 너비 반환
     },
     calculateButtonWidth(text) {
       // 글자 수에 따라 버튼 너비 계산 (기본 글자당 14px + 패딩)

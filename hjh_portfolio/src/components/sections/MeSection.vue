@@ -28,16 +28,16 @@
         class="flex justify-end items-end h-full mt-[50px] tablet:h-auto absolute w-[322px] tablet:w-[864px] desktop:w-[1193px]"
       >
         <div
-          class="relative flex items-center bottom-[27px] min-w-[322px] tablet:w-[864px] desktop:w-[1193px] h-[78%] min-h-[495px] max-h-[640px] tablet:h-[274px] tablet:min-h-[274px] desktop:h-[162px] desktop:min-h-[162px] tablet:rounded-[50px] rounded-tr-[50px] bg-black-b00"
+          class="relative flex items-center bottom-[27px] min-w-[322px] tablet:w-[864px] desktop:w-[1193px] h-[74%] min-h-[495px] max-h-[640px] tablet:h-[274px] tablet:min-h-[274px] desktop:h-[162px] desktop:min-h-[162px] tablet:rounded-[50px] rounded-tr-[50px] bg-black-b00"
         >
-          <div
-            class="flex relative items-start tablet:items-center flex-wrap flex-col tablet:flex-row pt-[100px] tablet:pt-0 pl-[26px] tablet:pl-[196px] desktop:pl-[200px] tablet:pr-[49px]"
+          <p
+            class="block tablet:hidden absolute top-[29px] left-[190px] text-[22px] tablet:text-[26px] font-800 text-black-b800 text-nowrap"
           >
-            <p
-              class="block tablet:hidden absolute top-[29px] right-[14%] text-[22px] tablet:text-[26px] font-800 text-black-b800 text-nowrap"
-            >
-              <span class="text-black-b80">@ </span>홍지혜
-            </p>
+            <span class="text-black-b80">@ </span>홍지혜
+          </p>
+          <div
+            class="relative flex items-start tablet:items-center flex-wrap flex-col tablet:flex-row pt-[100px] tablet:pt-0 pl-[26px] tablet:pl-[196px] desktop:pl-[200px] tablet:pr-[49px]"
+          >
             <div
               v-for="(item, index) in items"
               :key="index"
