@@ -184,7 +184,7 @@
               </div>
               <button
                 click="openModal(slide)"
-                class="flex justify-center absolute bottom-[18px] tablet:bottom-[20px] desktop:bottom-[28px] bg-black-b00 border border-black-b40 w-[232px] tablet:w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
+                class="flex justify-center items-center absolute bottom-[18px] tablet:bottom-[20px] desktop:bottom-[28px] bg-black-b00 border border-black-b40 w-[232px] tablet:w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
                 @click="openModal(slide)"
               >
                 <span class="font-800 text-black-b600">포트폴리오 보기</span>
