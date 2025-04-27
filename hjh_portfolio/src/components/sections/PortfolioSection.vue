@@ -150,7 +150,7 @@
               <img
                 :src="slide.image"
                 :alt="slide.alt"
-                class="w-full h-full transition-transform duration-300 group-hover:scale-105"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div
@@ -210,34 +210,37 @@
 </template>
 <script>
 //---------------슬라이드 내용-----------------
+//미리 받을 모달이미지는 serviceWorker.js에 주소를 적고 여기에도 추가
+//이미지는 public의 이미지의 포폴 폴더에 넣을것것
+const modalImage1 = "/image/portfolio/modalImage1.jpg";
+const modalImage2 = "/image/portfolio/modalImage2.jpg";
+const modalImage3 = "/image/portfolio/modalImage3.jpg";
+const modalImage4 = "/image/portfolio/modalImage4.jpg";
+const modalImage5 = "/image/portfolio/modalImage5.jpg";
+const modalImage6 = "/image/portfolio/modalImage6.jpg";
+const modalImage7 = "/image/portfolio/modalImage7.jpg";
 
-import slide1 from "@/assets/image/portfolio/solas.png";
+//------------------------------------------------
+import slide1 from "@/assets/image/portfolio/pp_image1.jpg";
 import companyLogo1 from "@/assets/image/logo.svg";
-import modalImage1 from "@/assets/image/portfolio/예시.jpg";
 
-import slide2 from "@/assets/image/portfolio/solas.png";
+import slide2 from "@/assets/image/portfolio/pp_image2.jpg";
 import companyLogo2 from "@/assets/image/logo.svg";
-import modalImage2 from "@/assets/image/portfolio/예시.jpg";
 
-import slide3 from "@/assets/image/portfolio/solas.png";
+import slide3 from "@/assets/image/portfolio/pp_image3.jpg";
 import companyLogo3 from "@/assets/image/logo.svg";
-import modalImage3 from "@/assets/image/portfolio/예시.jpg";
 
-import slide4 from "@/assets/image/portfolio/solas.png";
+import slide4 from "@/assets/image/portfolio/pp_image4.jpg";
 import companyLogo4 from "@/assets/image/logo.svg";
-import modalImage4 from "@/assets/image/portfolio/예시.jpg";
 
-import slide5 from "@/assets/image/portfolio/solas.png";
+import slide5 from "@/assets/image/portfolio/pp_image5.jpg";
 import companyLogo5 from "@/assets/image/logo.svg";
-import modalImage5 from "@/assets/image/portfolio/예시.jpg";
 
-import slide6 from "@/assets/image/portfolio/solas.png";
+import slide6 from "@/assets/image/portfolio/pp_image6.jpg";
 import companyLogo6 from "@/assets/image/logo.svg";
-import modalImage6 from "@/assets/image/portfolio/예시.jpg";
 
-import slide7 from "@/assets/image/portfolio/solas.png";
+import slide7 from "@/assets/image/portfolio/pp_image7.jpg";
 import companyLogo7 from "@/assets/image/logo.svg";
-import modalImage7 from "@/assets/image/portfolio/예시.jpg";
 
 //---------------버튼-----------------
 import moreHoriz from "@/assets/image/icons/more_horiz.svg";
@@ -270,7 +273,7 @@ export default {
         {
           image: slide1,
           companyLogo: companyLogo1,
-          modalImage: modalImage1,
+          modalImage: modalImage1, // 절대 경로 사용
           alt: "Slide 1",
           name: "Web 포트폴리오 1",
           date: "2023.01.01~10.31",
@@ -284,7 +287,7 @@ export default {
         {
           image: slide2,
           companyLogo: companyLogo2,
-          modalImage: modalImage2,
+          modalImage: modalImage2, // 절대 경로 사용
           alt: "Slide 2",
           name: "App 포트폴리오 2",
           date: "2023.01.01~10.31",
@@ -298,7 +301,7 @@ export default {
         {
           image: slide3,
           companyLogo: companyLogo3,
-          modalImage: modalImage3,
+          modalImage: modalImage3, // 절대 경로 사용
           alt: "Slide 3",
           name: "Web 포트폴리오 3",
           date: "2023.01.01~10.31",
@@ -313,7 +316,7 @@ export default {
         {
           image: slide4,
           companyLogo: companyLogo4,
-          modalImage: modalImage4,
+          modalImage: modalImage4, // 절대 경로 사용
           alt: "Slide 4",
           name: "App 포트폴리오 4",
           date: "2023.01.01~10.31",
@@ -328,7 +331,7 @@ export default {
         {
           image: slide5,
           companyLogo: companyLogo5,
-          modalImage: modalImage5,
+          modalImage: modalImage5, // 절대 경로 사용
           alt: "Slide 5",
           name: "Web 포트폴리오 5",
           date: "2023.01.01~10.31",
@@ -343,7 +346,7 @@ export default {
         {
           image: slide6,
           companyLogo: companyLogo6,
-          modalImage: modalImage6,
+          modalImage: modalImage6, // 절대 경로 사용
           alt: "Slide 6",
           name: "App 포트폴리오 6",
           date: "2023.01.01~10.31",
@@ -358,7 +361,7 @@ export default {
         {
           image: slide7,
           companyLogo: companyLogo7,
-          modalImage: modalImage7,
+          modalImage: modalImage7, // 절대 경로 사용
           alt: "Slide 7",
           name: "Web 포트폴리오 7",
           date: "2023.01.01~10.31",

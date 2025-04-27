@@ -8,6 +8,21 @@ import "@mdi/font/css/materialdesignicons.css";
 
 const app = createApp(App);
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log(
+          "Service Worker registered with scope:",
+          registration.scope
+        );
+      })
+      .catch((error) => {
+        console.error("Service Worker registration failed:", error);
+      });
+  });
+}
 // Vue 경고 무시 설정
 app.config.warnHandler = (msg, vm, trace) => {
   // 특정 경고 메시지를 무시

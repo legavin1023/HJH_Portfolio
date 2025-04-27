@@ -2,6 +2,7 @@
   <div
     v-if="isVisible"
     class="fixed top-0 inset-0 bg-black-b900 bg-opacity-50 z-50 flex justify-center items-center"
+    @click="closeModal"
   >
     <div
       class="z-50 fixed top-[0px] inset-0 h-[52px] w-full border-b-black-b50 desktop:border-none bg-black-b35 desktop:top-[42px] desktop:right-[42px] desktop:h-[72px] desktop:rounded-[10px] desktop:overflow-hidden desktop:border-b-[1px] desktop:bg-b desktop:bg-opacity-0 desktop:bg-none desktop:border-black-b50"

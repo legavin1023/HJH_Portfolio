@@ -2,6 +2,7 @@
   <div
     v-if="isContactModalOpen"
     class="fixed top-0 inset-0 bg-black-b900 bg-opacity-50 z-50 flex justify-center items-center"
+    @click.self="$emit('close')"
   >
     <div
       class="relative bg-black-b00 rounded-[10px] w-[622px] h-[800px] px-[24px] pt-[25px] pb-[24px] tablet:px-[84px] tablet:pt-[94px] tablet:pb-[75px]"
