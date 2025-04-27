@@ -210,15 +210,17 @@
 </template>
 <script>
 //---------------슬라이드 내용-----------------
+const basePath = process.env.NODE_ENV === "production" ? "/HJH_Portfolio" : "";
+
 //미리 받을 모달이미지는 serviceWorker.js에 주소를 적고 여기에도 추가
 //이미지는 public의 이미지의 포폴 폴더에 넣을것것
-const modalImage1 = "/image/portfolio/modalImage1.jpg";
-const modalImage2 = "/image/portfolio/modalImage2.jpg";
-const modalImage3 = "/image/portfolio/modalImage3.jpg";
-const modalImage4 = "/image/portfolio/modalImage4.jpg";
-const modalImage5 = "/image/portfolio/modalImage5.jpg";
-const modalImage6 = "/image/portfolio/modalImage6.jpg";
-const modalImage7 = "/image/portfolio/modalImage7.jpg";
+const modalImage1 = `${basePath}/image/portfolio/modalImage1.jpg`;
+const modalImage2 = `${basePath}/image/portfolio/modalImage2.jpg`;
+const modalImage3 = `${basePath}/image/portfolio/modalImage3.jpg`;
+const modalImage4 = `${basePath}/image/portfolio/modalImage4.jpg`;
+const modalImage5 = `${basePath}/image/portfolio/modalImage5.jpg`;
+const modalImage6 = `${basePath}/image/portfolio/modalImage6.jpg`;
+const modalImage7 = `${basePath}/image/portfolio/modalImage7.jpg`;
 
 //------------------------------------------------
 import slide1 from "@/assets/image/portfolio/pp_image1.jpg";

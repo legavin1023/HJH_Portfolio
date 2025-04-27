@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute bottom-[30px] flex justify-center items-center flex-col">
+  <div class="absolute bottom-[8%] flex justify-center items-center flex-col">
     <div
       class="pulse-bg absolute top-[-8px] w-[47px] h-[47px] tablet:w-[73px] tablet:h-[73px] rounded-[23px] bg-green-p200 largeDesktop:bg-violet-300 opacity-30"
     ></div>

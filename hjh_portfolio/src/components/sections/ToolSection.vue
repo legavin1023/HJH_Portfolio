@@ -1,5 +1,4 @@
 <template>
-  mb-[30px] tablet:mb-[0px]
   <div
     class="relative w-full h-full flex flex-col items-center justify-center pt-[20px]"
   >
