@@ -1,16 +1,17 @@
 <template>
+  mb-[30px] tablet:mb-[0px]
   <div
     class="relative w-full h-full flex flex-col items-center justify-center pt-[20px]"
   >
     <p
-      class="full squiggly text-black-b900 text-[20px] tablet:text-[26px] desktop:text-[30px] text-center"
+      class="full squiggly text-black-b900 text-[20px] tablet:text-[26px] desktop:text-[30px] text-center mb-[30px] tablet:mb-[0px]"
     >
       (당연하겠지만)
     </p>
     <!-- 슬라이드쇼 컨테이너 -->
 
     <div
-      class="w-full flex flex-col items-center justify-center mb-[170px] tablet:mb-[54px]"
+      class="w-full flex flex-col items-center justify-center mb-[200px] tablet:mb-[54px]"
     >
       <div
         class="relative overflow-y-hidden w-full h-[50px] tablet:h-[70px] desktop:h-[90px]"
@@ -44,7 +45,7 @@
 
     <div class="relative w-full flex flex-col items-center justify-center">
       <div
-        class="flex w-[400px] tablet:w-[1500px] desktop:w-[1706px] absolute bottom-[0px] z-0 flex-row justify-between items-center mt-[50px]"
+        class="flex w-[400px] tablet:w-[1500px] desktop:w-[1706px] absolute bottom-[0px] z-0 flex-row justify-between items-center mt-[50px] mb-[30px] tablet:mb-[0px]"
       >
         <!-- 왼쪽 이미지 그룹 -->
         <div class="w-[80px] tablet:w-[278px] h-[400px] relative">
@@ -114,7 +115,7 @@
           </div>
         </div>
         <div
-          class="relative w-full border-2 h-[152px] flex flex-col justify-center overflow-x-hidden"
+          class="relative w-full border-[0px] h-[152px] flex flex-col justify-center overflow-x-hidden"
         >
           <div
             class="fl w-full h-[90px] flex-shrink-0 flex flex-col tablet:flex-row items-center justify-center"

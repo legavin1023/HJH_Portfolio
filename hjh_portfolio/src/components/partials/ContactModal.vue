@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="isContactModalOpen"
     class="fixed top-0 inset-0 bg-black-b900 bg-opacity-50 z-50 flex justify-center items-center"
   >
     <div
@@ -9,7 +10,7 @@
         class="absolute top-0 left-0 w-full h-[52px] tablet:h-[0px] border-b-[1px] tablet:border-none border-black-b50 flex justify-between items-center mb-[30px] bg-black-b35"
       >
         <button
-          @click="closeModal"
+          @click="$emit('close')"
           class="absolute top-[15px] right-[13px] tablet:top-[36px] tablet:right-[34px] text-gray-500 hover:text-black"
         >
           <img
@@ -78,7 +79,7 @@
           :disabled="!formIsValid"
           :class="{
             'bg-green-p300 text-black-b00 cursor-pointer': formIsValid, // 활성화 상태
-            'bg-gray-400 text-gray-700 cursor-not-allowed': !formIsValid, // 비활성화 상태
+            'bg-black-b70 text-black-b00 cursor-not-allowed': !formIsValid, // 비활성화 상태
           }"
         />
       </form>
@@ -89,6 +90,12 @@
 <script>
 import emailjs from "@emailjs/browser";
 export default {
+  props: {
+    isContactModalOpen: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
       name: "",
@@ -105,9 +112,6 @@ export default {
     },
   },
   methods: {
-    closeModal() {
-      this.$emit("close");
-    },
     getInputClass(value, isFocused) {
       if (isFocused) {
         return " outline-green-p250 text-black-b800";

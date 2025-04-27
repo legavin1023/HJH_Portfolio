@@ -8,7 +8,7 @@
       거두절미하고,
     </p>
     <div
-      class="text-center mb-[62px] text-[38px] tablet:text-[50px] desktop:text-[60px]"
+      class="text-center mb-[62px] text-[38px] tablet:text-[50px] desktop:text-[60px] pb-[30px]"
     >
       <span class="text-green-p300 font-900 relative top-[10px]"
         >포트폴리오</span
@@ -46,7 +46,7 @@
             <img
               src="@/assets/image/icons/keyboard_arrow_down.svg"
               alt="Dropdown Icon"
-              class="w-[24px] transition-transform duration-300 z-50"
+              class="w-[24px] transition-transform duration-300 z-40"
               :class="{ 'rotate-180': isDropdownOpen }"
             />
           </button>
@@ -94,7 +94,7 @@
           <!-- "준비 중" 슬라이드 구분 -->
           <template v-if="slide.type.includes('준비 중')">
             <div
-              class="w-full h-[244px] bg-black-b50 flex items-center justify-center"
+              class="w-full h-[244px] overflow-hidden bg-black-b50 flex items-center justify-center"
             >
               <img
                 :src="slide.image"
@@ -103,7 +103,7 @@
               />
             </div>
             <div
-              class="flex justify-center items-center max-w-none absolute top-[208px] ml-[278px] w-[80px] h-[80px] rounded-[50%] border-[5px] border-black-b00 bg-black-b40 overflow-hidden"
+              class="flex justify-center items-center max-w-none absolute top-[208px] right-[20px] w-[80px] h-[80px] rounded-[50%] border-[5px]overflow-hidden border-black-b00 bg-black-b40"
             >
               <img
                 :src="slide.companyLogo"
@@ -112,7 +112,7 @@
               />
             </div>
             <div
-              class="flex flex-col h-[244px] justify-between p-[28px] text-black-b300"
+              class="flex flex-col h-[244px] justify-between px-[20px] py-[20px] tablet:px-[20px] tablet:py-[18px] desktop:px-[28px] desktop:py-[26px] text-black-b300"
             >
               <div>
                 <span
@@ -122,7 +122,7 @@
                 >
                   {{ type }}
                 </span>
-                <p class="text-[22px] mt-[14px] mb-[14px] font-800">
+                <p class="text-[22px] mt-[22px] mb-[4px] font-800">
                   {{ slide.name }}
                 </p>
                 <p class="text-[14px] font-700">
@@ -131,7 +131,7 @@
               </div>
               <button
                 click="openModal(slide)"
-                class="flex justify-center bg-black-b00 border border-black-b40 w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
+                class="flex justify-center items-center absolute bottom-[18px] tablet:bottom-[20px] desktop:bottom-[28px] w-[232px] tablet:w-[284px] desktop:w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full bg-black-b00 border border-black-b40"
                 @click="openModal(slide)"
               >
                 <span class="font-800 text-black-b80">포트폴리오 보기</span>
@@ -184,7 +184,7 @@
               </div>
               <button
                 click="openModal(slide)"
-                class="flex justify-center items-center absolute bottom-[18px] tablet:bottom-[20px] desktop:bottom-[28px] bg-black-b00 border border-black-b40 w-[232px] tablet:w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
+                class="flex justify-center items-center absolute bottom-[18px] tablet:bottom-[20px] desktop:bottom-[28px] bg-black-b00 border border-black-b40 w-[232px] tablet:w-[284px] desktop:w-[336px] h-[50px] leading-[50px] text-[14px] text-center font-800 rounded-full"
                 @click="openModal(slide)"
               >
                 <span class="font-800 text-black-b600">포트폴리오 보기</span>

@@ -4,12 +4,11 @@
     class="relative bottom-0 snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden"
   >
     <!-- bg-red-100 tablet:bg-blue-100 desktop:bg-green-100 largeDesktop:bg-yellow-100 -->
-    <NavBar />
+    <NavBar @openContactModal="openContactModal" />
     <div
       class="relative bottom-0 snap-start h-full flex flex-col items-center justify-center"
     >
       <HeroSection id="hero" />
-      <PageScroll />
     </div>
     <div
       class="hidden relative bottom-0 snap-start h-full tablet:flex flex-col items-center justify-center"
@@ -35,33 +34,49 @@
     <div
       class="relative bottom-0 snap-start h-[194px] flex flex-col items-center justify-center"
     >
-      <SiteFooter id="SiteFooter" />
+      <SiteFooter id="SiteFooter" @openContactModal="openContactModal" />
     </div>
+    <ContactModal
+      :isContactModalOpen="isContactModalOpen"
+      @close="closeContactModal"
+    />
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/sections/NavBar.vue";
 import HeroSection from "@/components/sections/HeroSection.vue";
-import PageScroll from "@/components/partials/PageScroll.vue";
 import ToolSection from "@/components/sections/ToolSection.vue";
 import MeSection from "@/components/sections/MeSection.vue";
 import PortfolioSection from "@/components/sections/PortfolioSection.vue";
 import SiteFooter from "@/components/sections/SiteFooter.vue";
+import ContactModal from "@/components/partials/ContactModal.vue";
 
 export default {
   name: "HomePage",
   components: {
     NavBar,
     HeroSection,
-    PageScroll,
+
     ToolSection,
     MeSection,
     PortfolioSection,
     SiteFooter,
+    ContactModal,
+  },
+  data() {
+    return {
+      isContactModalOpen: false,
+    };
   },
 
   methods: {
+    openContactModal() {
+      this.isContactModalOpen = true;
+    },
+    closeContactModal() {
+      this.isContactModalOpen = false;
+    },
     enableSmoothScroll() {
       const container = this.$refs.scrollContainer;
 

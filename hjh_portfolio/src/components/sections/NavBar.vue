@@ -21,14 +21,14 @@
           v-if="!isDropdownOpen"
           src="@/assets/image/icons/menu.svg"
           alt="메뉴"
-          class="h-[18px] w-[62px] object-contain cursor-pointer"
+          class="h-[24px] w-[62px] object-contain cursor-pointer"
           @click="toggleDropdown"
         />
         <img
           v-else
           src="@/assets/image/icons/closeX.svg"
           alt="닫기"
-          class="h-[18px] w-[62px] object-contain cursor-pointer"
+          class="h-[24px] w-[62px] object-contain cursor-pointer"
           @click="toggleDropdown"
         />
       </li>
@@ -58,7 +58,7 @@
       </div>
       <li
         class="hidden tablet:flex cursor-pointer px-[21px] py-[9.5px] rounded-full hover:bg-black-b200 bg-black-b700 text-black-b00"
-        @click="scrollToSection('contact')"
+        @click="$emit('openContactModal')"
       >
         연락하기
       </li>
@@ -83,7 +83,7 @@
         </li>
         <li
           class="flex tablet:hidden cursor-pointer w-[96px] px-[21px] py-[9.5px] rounded-full bg-black-b700 text-center text-[14px] text-black-b00"
-          @click="scrollToSection('contact')"
+          @click="$emit('openContactModal')"
         >
           연락하기
         </li>

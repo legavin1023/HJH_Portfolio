@@ -32,35 +32,42 @@
       <!-- 드롭다운 메뉴 -->
       <div
         v-if="isDropdownOpen"
-        class="absolute z-10 bottom-full flex flex-col bg-black-b900 text-black-b100 text[14px]border-b border-b border-black-b700"
-        :style="{ minWidth: dropdownWidth + 'px', padding: '18px 28px' }"
+        class="absolute z-10 bottom-full flex flex-col bg-black-b900 text-black-b100 text-[14px] border-b border-black-b700"
+        :style="{
+          minWidth: dropdownWidth + 'px',
+          padding: ' 18px 0px 0px 30px',
+        }"
       >
+        <!-- 정적 드롭다운 항목 -->
         <div
-          v-for="item in dropdownItems"
-          :key="item.id"
-          :class="[
-            'flex items-center mb-[18px] font-800 ',
-            item.state === 'disabled' ? 'opacity-50 pointer-events-none' : '',
-          ]"
-          @mouseenter="changeState(item, 'hover')"
-          @mouseleave="changeState(item, 'normal')"
-          @click="handleDropdownClick(item)"
-          class="last:mb-0"
+          class="flex items-center mb-[18px] font-800 opacity-50 pointer-events-none text-black-b100"
         >
           <a
-            :href="item.href"
-            class="flex items-center w-full"
-            :class="{
-              'font-900 text-black-b80': item.state === 'hover',
-            }"
+            href="#"
+            class="flex items-center w-full hover:font-900 hover:text-black-b80"
           >
-            {{ item.label }}
+            개발자 사이트 가기
             <img
-              :src="getIcon(item)"
+              src="@/assets/image/icons/arrow_outward_no.svg"
               alt="Item Icon"
               class="w-[9.75px] h-[9.75px] ml-[5.17px]"
             />
           </a>
+        </div>
+        <div
+          class="flex items-center mb-[18px] font-800"
+          @click="$emit('openContactModal')"
+        >
+          <button
+            class="flex items-center w-full hover:font-900 hover:text-black-b80"
+          >
+            프로젝트 협업 문의
+            <img
+              src="@/assets/image/icons/arrow_outward.svg"
+              alt="Item Icon"
+              class="w-[9.75px] h-[9.75px] ml-[5.17px]"
+            />
+          </button>
         </div>
       </div>
     </div>
@@ -69,12 +76,8 @@
     <ContactModal v-if="isContactModalOpen" @close="closeContactModal" />
   </footer>
 </template>
-
 <script>
 import ContactModal from "@/components/partials/ContactModal.vue";
-import arrowOutwardNo from "@/assets/image/icons/arrow_outward_no.svg";
-import arrowOutwardHover from "@/assets/image/icons/arrow_outward_hover.svg";
-import arrowOutward from "@/assets/image/icons/arrow_outward.svg";
 import removeIcon from "@/assets/image/icons/remove.svg"; // 버튼에서 사용
 import addIcon from "@/assets/image/icons/add.svg"; // 버튼에서 사용
 
@@ -88,27 +91,9 @@ export default {
       isDropdownOpen: false, // 드롭다운 상태
       isContactModalOpen: false, // ContactModal 상태
       dropdownWidth: 0, // 드롭다운 메뉴의 최소 너비
-      dropdownItems: [
-        {
-          id: 1,
-          label: "개발자 사이트 가기",
-          href: "#",
-          state: "disabled", // 초기 상태
-        },
-        {
-          id: 3,
-          label: "프로젝트 협업 문의",
-          href: "#",
-          state: "normal", // 초기 상태
-        },
-      ],
     };
   },
   methods: {
-    closeModal() {
-      this.activeSlide = null;
-      this.isModalVisible = false;
-    },
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
       if (this.isDropdownOpen) {
@@ -121,34 +106,8 @@ export default {
         this.dropdownWidth = button.offsetWidth;
       }
     },
-    getIcon(item) {
-      switch (item.state) {
-        case "disabled":
-          return arrowOutwardNo;
-        case "hover":
-          return arrowOutwardHover;
-        default:
-          return arrowOutward;
-      }
-    },
     getToggleIcon() {
       return this.isDropdownOpen ? removeIcon : addIcon;
-    },
-    changeState(item, newState) {
-      item.state = newState;
-    },
-    handleDropdownClick(item) {
-      if (item.label === "프로젝트 협업 문의") {
-        this.openContactModal();
-      }
-    },
-    openContactModal() {
-      document.body.classList.add("no-scroll"); // 스크롤 비활성화
-      this.isContactModalOpen = true;
-    },
-    closeContactModal() {
-      this.isContactModalOpen = false; // 모달 닫기
-      document.body.classList.remove("no-scroll"); // 스크롤 활성화
     },
   },
 };
