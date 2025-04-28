@@ -10,8 +10,10 @@ const app = createApp(App);
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
+    const basePath =
+      process.env.NODE_ENV === "production" ? "/HJH_Portfolio" : "";
     navigator.serviceWorker
-      .register("/service-worker.js")
+      .register(`${basePath}/service-worker.js`)
       .then((registration) => {
         console.log(
           "Service Worker registered with scope:",
