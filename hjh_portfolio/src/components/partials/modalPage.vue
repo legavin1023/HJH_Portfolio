@@ -26,9 +26,10 @@
         <div
           class="w-full top-0 z-10 bg-black-b00 rounded-t-none desktop:rounded-t-[10px]"
           style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)"
-        >
+        ></div>
+        <div class="sticky top-0 z-10">
           <div
-            class="flex items-center pl-[20px] pt-[15px] pb-[10px] tablet:pl-[30px] tablet:pt-[20px] tablet:pb-[15px] desktop:pl-[44px] desktop:pt-[30px] desktop:pb-[20px]"
+            class="bg-black-b00 flex items-center pl-[20px] pt-[15px] pb-[10px] tablet:pl-[30px] tablet:pt-[20px] tablet:pb-[15px] desktop:pl-[44px] desktop:pt-[30px] desktop:pb-[20px]"
           >
             <img
               :src="content.companyLogo"
@@ -46,40 +47,39 @@
               </p>
             </div>
           </div>
-        </div>
-
-        <div
-          class="w-full h-auto tablet:h-[70px] flex flex-col tablet:flex-row items-center justify-between tablet:pl-[30px] tablet:pr-[30px] bg-green-p25 border-t-black-b50 border-t-[1px]"
-        >
           <div
-            class="flex flex-col py-[24px] tablet:p-0 tablet:flex-row flex-wrap justify-start tablet:items-center items-start"
+            class="w-full h-auto tablet:h-[70px] flex flex-col tablet:flex-row items-center justify-between tablet:pl-[30px] tablet:pr-[30px] bg-green-p25 border-t-black-b50 border-t-[1px]"
           >
-            <p class="mb-[10px] tablet:mb-0 desktop:p-[0px]">
-              <EmphasisSpan>작업기간</EmphasisSpan>
-              <span class="ml-[10px] mr-[36px] text-[14px]">
-                {{ content.date }}
-              </span>
-            </p>
-            <p class="mb-[10px] tablet:mb-0 desktop:mb-[0px]">
-              <EmphasisSpan>기여도</EmphasisSpan>
-              <span class="ml-[10px] mr-[36px] text-[14px]">
-                {{ content.contribution }}
-              </span>
-            </p>
-            <p>
-              <EmphasisSpan>플랫폼</EmphasisSpan>
-              <span class="ml-[10px] tablet:mb-0 mr-[36px] text-[14px]">
-                {{ (content.platform || []).join(", ") }}
-              </span>
-            </p>
-          </div>
-          <div
-            class="flex justify-center border-[1px] desktop:border-none w-full tablet:w-auto bg-black-b00 desktop:bg-none tablet:bg-opacity-0 py-[24px]"
-          >
-            <!-- PortfolioButton 사용 -->
-            <PortfolioButton :liveUrl="content.liveUrl">
-              실서비스 페이지
-            </PortfolioButton>
+            <div
+              class="flex flex-col py-[24px] tablet:p-0 tablet:flex-row flex-wrap justify-start tablet:items-center items-start"
+            >
+              <p class="mb-[10px] tablet:mb-0 desktop:p-[0px]">
+                <EmphasisSpan>작업기간</EmphasisSpan>
+                <span class="ml-[10px] mr-[36px] text-[14px]">
+                  {{ content.date }}
+                </span>
+              </p>
+              <p class="mb-[10px] tablet:mb-0 desktop:mb-[0px]">
+                <EmphasisSpan>기여도</EmphasisSpan>
+                <span class="ml-[10px] mr-[36px] text-[14px]">
+                  {{ content.contribution }}
+                </span>
+              </p>
+              <p>
+                <EmphasisSpan>플랫폼</EmphasisSpan>
+                <span class="ml-[10px] tablet:mb-0 mr-[36px] text-[14px]">
+                  {{ (content.platform || []).join(", ") }}
+                </span>
+              </p>
+            </div>
+            <div
+              class="flex justify-center border-[1px] desktop:border-none w-full tablet:w-auto bg-black-b00 desktop:bg-none tablet:bg-opacity-0 py-[24px]"
+            >
+              <!-- PortfolioButton 사용 -->
+              <PortfolioButton :liveUrl="content.liveUrl">
+                실서비스 페이지
+              </PortfolioButton>
+            </div>
           </div>
         </div>
         <div class="w-full flex justify-center">
@@ -145,11 +145,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-/* 고정된 상단 콘텐츠 스타일 */
-.sticky {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-</style>
+<style scoped></style>

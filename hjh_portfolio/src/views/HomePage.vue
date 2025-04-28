@@ -111,6 +111,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* 홈 페이지 스타일을 여기에 추가할 수 있습니다. */
-</style>
+<style scoped></style>

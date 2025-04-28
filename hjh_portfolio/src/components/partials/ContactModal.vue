@@ -5,7 +5,7 @@
     @click.self="$emit('close')"
   >
     <div
-      class="relative flex flex-col justify-center items-center bg-black-b00 rounded-[10px] w-full h-full tablet:w-[622px] tablet:h-[800px] px-[7%] pt-[25px] pb-[24px] tablet:px-[84px] tablet:pt-[94px] tablet:pb-[75px]"
+      class="relative flex flex-col justify-center items-start bg-black-b00 rounded-[10px] w-full h-full tablet:w-[622px] tablet:h-[800px] px-[7%] pt-[25px] pb-[24px] tablet:px-[84px] tablet:pt-[94px] tablet:pb-[75px]"
     >
       <div
         class="absolute top-0 left-0 w-full h-[52px] tablet:h-[0px] border-b-[1px] tablet:border-none border-black-b50 flex justify-between items-center mb-[30px] bg-black-b35"
