@@ -90,7 +90,7 @@ export default {
           clearInterval(interval); // 진행 완료 시 인터벌 정지
           resolve();
         }
-      }, 200); // 300ms마다 진행 바 증가
+      }, 100); // 100ms마다 진행 바 증가
     });
 
     // 최소 로딩 시간과 진행 바 완료를 병렬로 처리

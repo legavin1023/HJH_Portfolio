@@ -1,12 +1,16 @@
 const CACHE_NAME = "portfolio-cache-v1";
+const basePath = self.location.pathname.includes("/HJH_Portfolio/")
+  ? "/HJH_Portfolio"
+  : "";
+
 const urlsToCache = [
-  "/image/portfolio/modalImage1.jpg",
-  "/image/portfolio/modalImage2.jpg",
-  "/image/portfolio/modalImage3.jpg",
-  "/image/portfolio/modalImage4.jpg",
-  "/image/portfolio/modalImage5.jpg",
-  "/image/portfolio/modalImage6.jpg",
-  "/image/portfolio/modalImage7.jpg",
+  `${basePath}/image/portfolio/modalImage1.jpg`,
+  `${basePath}/image/portfolio/modalImage2.jpg`,
+  `${basePath}/image/portfolio/modalImage3.jpg`,
+  `${basePath}/image/portfolio/modalImage4.jpg`,
+  `${basePath}/image/portfolio/modalImage5.jpg`,
+  `${basePath}/image/portfolio/modalImage6.jpg`,
+  `${basePath}/image/portfolio/modalImage7.jpg`,
 ];
 
 // 서비스 워커 설치 및 캐싱
