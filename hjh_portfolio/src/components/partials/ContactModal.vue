@@ -5,7 +5,7 @@
     @click.self="$emit('close')"
   >
     <div
-      class="relative bg-black-b00 rounded-[10px] w-[622px] h-[800px] px-[24px] pt-[25px] pb-[24px] tablet:px-[84px] tablet:pt-[94px] tablet:pb-[75px]"
+      class="relative flex flex-col justify-center items-center bg-black-b00 rounded-[10px] w-full h-full tablet:w-[622px] tablet:h-[800px] px-[7%] pt-[25px] pb-[24px] tablet:px-[84px] tablet:pt-[94px] tablet:pb-[75px]"
     >
       <div
         class="absolute top-0 left-0 w-full h-[52px] tablet:h-[0px] border-b-[1px] tablet:border-none border-black-b50 flex justify-between items-center mb-[30px] bg-black-b35"
@@ -22,7 +22,7 @@
         </button>
       </div>
       <h3
-        class="pt-[77px] tablet:pt-[0px] font-800 text-[26px] tablet:text-[32px] pb-[10px]"
+        class="pt-[15%] tablet:pt-[0px] font-800 text-[26px] tablet:text-[32px] pb-[10px]"
       >
         메일을 보내시겠어요?
       </h3>
@@ -34,7 +34,7 @@
       <form
         ref="form"
         @submit.prevent="sendEmail"
-        class="w-full mt-[45px] text-[14px]"
+        class="w-full mt-[5%] tablet:mt-[45px] text-[14px]"
       >
         <input
           ref="name"
@@ -67,7 +67,7 @@
           cols="50"
           rows="10"
           placeholder="내용을 입력해주세요."
-          class="w-full h-[244px] px-[26px] py-[22px] rounded-[5px] mb-[29px] border transition-colors duration-300"
+          class="w-full h-[244px] px-[26px] py-[22px] rounded-[5px] mb-[3%] border transition-colors duration-300"
           :class="getInputClass(content, isContentFocused)"
           @focus="isContentFocused = true"
           @blur="isContentFocused = false"
